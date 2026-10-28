@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="he" dir="rtl" class="h-full"><head>
+<html lang="he" dir="rtl" class="h-full">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>SmartNotes | פלטפורמת סיכומי לימודים מעוררת השראה</title>
+  <title>SmartNotes | פלטפורמת סיכומי לימודים</title>
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -16,27 +17,20 @@
             serif: ['Frank Ruhl Libre', 'David Libre', 'serif'],
           },
           colors: {
-            amberWood: {
-              50: '#fdfbf7',
-              100: '#f7f2e7',
-              200: '#ede1cd',
-              300: '#decaa8',
-              400: '#cca97b',
-              500: '#be8c54',
-              700: '#8e5e34',
-              900: '#4a2f18',
-            },
-            parchment: '#fbf9f4',
+            stone: {
+              750: '#221f1d',
+              850: '#171513'
+            }
           }
         }
       }
     }
   </script>
 
-  <!-- Google Fonts: Assistant, Heebo & Frank Ruhl Libre -->
+  <!-- Google Fonts: Assistant & Frank Ruhl Libre -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700;800&amp;family=Frank+Ruhl+Libre:wght@400;500;700;900&amp;family=Heebo:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700;800&family=Frank+Ruhl+Libre:wght@400;500;700;900&display=swap" rel="stylesheet">
 
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest" crossorigin="anonymous"></script>
@@ -47,30 +41,37 @@
       touch-action: manipulation;
     }
 
-    /* Ambient Inspiring & Light Study Atmosphere Background */
+    /* Ambient Serene Study Background */
     .ambient-study-bg {
       background-color: #faf7f2;
       background-image: 
         radial-gradient(at 0% 0%, rgba(228, 218, 202, 0.45) 0px, transparent 55%),
-        radial-gradient(at 100% 0%, rgba(210, 226, 218, 0.35) 0px, transparent 50%),
-        radial-gradient(at 50% 100%, rgba(242, 230, 215, 0.45) 0px, transparent 60%),
-        radial-gradient(at 100% 100%, rgba(218, 222, 234, 0.35) 0px, transparent 50%);
+        radial-gradient(at 100% 0%, rgba(210, 224, 218, 0.4) 0px, transparent 50%),
+        radial-gradient(at 50% 100%, rgba(240, 228, 212, 0.45) 0px, transparent 60%);
       background-attachment: fixed;
     }
 
     .dark .ambient-study-bg {
-      background-color: #121418;
+      background-color: #131518;
       background-image: 
-        radial-gradient(at 0% 0%, rgba(45, 35, 28, 0.5) 0px, transparent 55%),
-        radial-gradient(at 100% 0%, rgba(25, 40, 35, 0.45) 0px, transparent 50%),
-        radial-gradient(at 50% 100%, rgba(30, 26, 42, 0.5) 0px, transparent 60%);
+        radial-gradient(at 0% 0%, rgba(45, 36, 30, 0.5) 0px, transparent 55%),
+        radial-gradient(at 100% 0%, rgba(28, 42, 38, 0.45) 0px, transparent 50%),
+        radial-gradient(at 50% 100%, rgba(32, 28, 44, 0.5) 0px, transparent 60%);
       background-attachment: fixed;
+    }
+
+    /* Compact Notebook Tile */
+    .compact-nb-card {
+      transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .compact-nb-card:hover {
+      transform: translateY(-4px);
     }
 
     /* Paper Grid Patterns for Stylus Canvas */
     .paper-ruled {
-      background-color: #fffdfa;
-      background-image: repeating-linear-gradient(transparent, transparent 31px, #e7decb 31px, #e7decb 32px);
+      background-color: #ffffff;
+      background-image: repeating-linear-gradient(transparent, transparent 31px, #e8dfcd 31px, #e8dfcd 32px);
     }
     .dark .paper-ruled {
       background-color: #181b22;
@@ -78,11 +79,11 @@
     }
 
     .paper-grid {
-      background-color: #fffdfa;
+      background-color: #ffffff;
       background-size: 24px 24px;
       background-image: 
-        linear-gradient(to right, #ece4d4 1px, transparent 1px),
-        linear-gradient(to bottom, #ece4d4 1px, transparent 1px);
+        linear-gradient(to right, #ede4d2 1px, transparent 1px),
+        linear-gradient(to bottom, #ede4d2 1px, transparent 1px);
     }
     .dark .paper-grid {
       background-color: #181b22;
@@ -93,7 +94,7 @@
     }
 
     .paper-dots {
-      background-color: #fffdfa;
+      background-color: #ffffff;
       background-image: radial-gradient(#d3c6ae 1.5px, transparent 1.5px);
       background-size: 22px 22px;
     }
@@ -104,144 +105,41 @@
     }
 
     .paper-blank {
-      background-color: #fffdfa;
+      background-color: #ffffff;
     }
     .dark .paper-blank {
       background-color: #181b22;
     }
 
-    /* Realistic 3D Physical Notebook Styling */
-    .notebook-perspective-wrap {
-      perspective: 1200px;
-    }
-
-    .realistic-notebook {
-      transform-style: preserve-3d;
-      transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
-      box-shadow: 
-        -4px 8px 22px -3px rgba(120, 100, 75, 0.16),
-        -1px 2px 5px rgba(0, 0, 0, 0.08),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.35);
-      border-radius: 6px 18px 18px 6px;
-      position: relative;
-    }
-
-    .dark .realistic-notebook {
-      box-shadow: 
-        -5px 10px 24px -4px rgba(0, 0, 0, 0.5),
-        -1px 2px 6px rgba(0, 0, 0, 0.3),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.08);
-    }
-
-    .realistic-notebook:hover {
-      transform: translateY(-8px) rotateY(-5deg) scale(1.02);
-      box-shadow: 
-        -12px 20px 30px -5px rgba(110, 85, 60, 0.22),
-        -2px 4px 8px rgba(0, 0, 0, 0.1),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.45);
-    }
-
-    .dark .realistic-notebook:hover {
-      box-shadow: 
-        -16px 24px 38px -6px rgba(0, 0, 0, 0.7),
-        -2px 4px 12px rgba(0, 0, 0, 0.4);
-    }
-
-    /* Spine Texture & Crease for Hebrew Book (Spine on right) */
-    .notebook-spine {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      width: 32px;
-      border-radius: 4px 12px 12px 4px;
-      background: linear-gradient(to left, rgba(0, 0, 0, 0.25) 0%, rgba(255, 255, 255, 0.2) 40%, rgba(0, 0, 0, 0.18) 90%, rgba(0,0,0,0.3) 100%);
-      box-shadow: inset -2px 0 3px rgba(0,0,0,0.15);
-      pointer-events: none;
-      z-index: 10;
-    }
-
-    .notebook-crease {
-      position: absolute;
-      top: 0;
-      right: 32px;
-      bottom: 0;
-      width: 4px;
-      background: linear-gradient(to right, rgba(0,0,0,0.2) 0%, rgba(255,255,255,0.2) 50%, rgba(0,0,0,0.18) 100%);
-      pointer-events: none;
-      z-index: 10;
-    }
-
-    /* Notebook Bookplate / Stitched Paper Label */
-    .notebook-label-plate {
-      background: #fefdfa;
-      border: 1px solid #dcd1be;
-      box-shadow: 
-        inset 0 0 0 2px #ffffff,
-        inset 0 0 0 3px #ded3c2,
-        0 3px 10px rgba(60, 45, 30, 0.12);
-      position: relative;
-    }
-
-    .dark .notebook-label-plate {
-      background: #1e222a;
-      border-color: #3e4758;
-      box-shadow: 
-        inset 0 0 0 2px #262c37,
-        inset 0 0 0 3px #3e4758,
-        0 4px 12px rgba(0, 0, 0, 0.35);
-    }
-
-    /* Woven Bookmark Ribbon (סימניית בד משי) */
-    .bookmark-ribbon {
-      position: absolute;
-      bottom: -16px;
-      left: 36px;
-      width: 18px;
-      height: 38px;
-      box-shadow: -2px 5px 8px rgba(0,0,0,0.2);
-      z-index: 15;
-      clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 50% 82%, 0% 100%);
-      transition: transform 0.3s ease;
-    }
-    .realistic-notebook:hover .bookmark-ribbon {
-      transform: translateY(4px);
-    }
-
-    /* Interactive Draggable & Resizable Sketch Widget in Editor */
+    /* Interactive Draggable & Resizable Sketch Widget */
     .sketch-widget {
       position: relative;
       display: inline-block;
       margin: 1.25rem 0;
       padding: 6px;
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.85);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.95);
       border: 1.5px dashed rgba(160, 130, 90, 0.4);
-      box-shadow: 0 8px 24px -4px rgba(60, 45, 25, 0.08);
-      transition: border-color 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 16px -2px rgba(60, 45, 25, 0.08);
       user-select: none;
       max-width: 100%;
     }
-
     .dark .sketch-widget {
-      background: rgba(26, 30, 38, 0.9);
+      background: rgba(26, 30, 38, 0.95);
       border-color: rgba(120, 140, 180, 0.3);
-      box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.35);
+      box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.35);
     }
-
     .sketch-widget:hover, .sketch-widget.active-widget {
       border-color: #c2884a;
-      box-shadow: 0 10px 28px -4px rgba(194, 136, 74, 0.22);
+      box-shadow: 0 6px 20px -2px rgba(194, 136, 74, 0.2);
     }
 
-    /* Widget Floating Controls Toolbar */
     .sketch-widget-toolbar {
       opacity: 0;
       pointer-events: none;
       transform: translateY(4px);
       transition: all 0.2s ease;
     }
-
     .sketch-widget:hover .sketch-widget-toolbar,
     .sketch-widget.active-widget .sketch-widget-toolbar {
       opacity: 1;
@@ -249,7 +147,6 @@
       transform: translateY(0);
     }
 
-    /* Resize Handle */
     .sketch-resize-handle {
       position: absolute;
       width: 14px;
@@ -265,13 +162,11 @@
       opacity: 0;
       transition: opacity 0.2s;
     }
-
     .sketch-widget:hover .sketch-resize-handle,
     .sketch-widget.active-widget .sketch-resize-handle {
       opacity: 1;
     }
 
-    /* Dragging handle */
     .sketch-drag-handle {
       cursor: grab;
     }
@@ -279,32 +174,28 @@
       cursor: grabbing;
     }
 
-    /* Stylus Canvas Pointer Events */
     #drawingCanvas {
       touch-action: none;
       cursor: crosshair;
     }
 
-    /* Note Content Typography */
     #noteContent:focus {
       outline: none;
     }
-    #noteContent h1 { font-size: 2.15rem; font-weight: 800; font-family: 'Frank Ruhl Libre', serif; margin-top: 1.5rem; margin-bottom: 0.85rem; color: #2d261e; }
-    #noteContent h2 { font-size: 1.6rem; font-weight: 700; font-family: 'Frank Ruhl Libre', serif; margin-top: 1.25rem; margin-bottom: 0.6rem; color: #43392c; }
-    #noteContent h3 { font-size: 1.3rem; font-weight: 600; margin-top: 1rem; margin-bottom: 0.45rem; color: #5a4d3c; }
+    #noteContent h1 { font-size: 1.85rem; font-weight: 800; font-family: 'Frank Ruhl Libre', serif; margin-top: 1.5rem; margin-bottom: 0.75rem; color: #2d261e; }
+    #noteContent h2 { font-size: 1.4rem; font-weight: 700; font-family: 'Frank Ruhl Libre', serif; margin-top: 1.25rem; margin-bottom: 0.5rem; color: #43392c; }
+    #noteContent h3 { font-size: 1.15rem; font-weight: 600; margin-top: 1rem; margin-bottom: 0.35rem; color: #5a4d3c; }
     .dark #noteContent h1 { color: #f2eee6; }
     .dark #noteContent h2 { color: #e4ddcf; }
     .dark #noteContent h3 { color: #cfc5b4; }
-    #noteContent p { margin-bottom: 0.95rem; line-height: 1.85; color: #3b352e; }
-    .dark #noteContent p { color: #d6cfc5; }
-    #noteContent blockquote { border-right: 4px solid #be8c54; padding-right: 1.25rem; font-style: italic; margin: 1.25rem 0; color: #6f5f4b; background: rgba(190, 140, 84, 0.05); padding-top: 8px; padding-bottom: 8px; border-radius: 0 10px 10px 0; }
+    #noteContent p { margin-bottom: 0.85rem; line-height: 1.8; }
+    #noteContent blockquote { border-right: 4px solid #be8c54; padding-right: 1.2rem; font-style: italic; margin: 1.2rem 0; color: #6f5f4b; background: rgba(190, 140, 84, 0.05); padding-top: 6px; padding-bottom: 6px; border-radius: 0 8px 8px 0; }
     .dark #noteContent blockquote { color: #b7a892; background: rgba(190, 140, 84, 0.1); }
     #noteContent code { background: #eee7d8; padding: 0.2rem 0.4rem; border-radius: 0.35rem; font-family: monospace; font-size: 0.9em; color: #8e5e34; }
     .dark #noteContent code { background: #222834; color: #d69f64; }
-    #noteContent ul { list-style-type: disc; margin-right: 1.5rem; margin-bottom: 0.85rem; }
-    #noteContent ol { list-style-type: decimal; margin-right: 1.5rem; margin-bottom: 0.85rem; }
+    #noteContent ul { list-style-type: disc; margin-right: 1.5rem; margin-bottom: 0.75rem; }
+    #noteContent ol { list-style-type: decimal; margin-right: 1.5rem; margin-bottom: 0.75rem; }
 
-    /* Custom Ambient Scrollbars */
     ::-webkit-scrollbar {
       width: 7px;
       height: 7px;
@@ -313,7 +204,7 @@
       background: transparent;
     }
     ::-webkit-scrollbar-thumb {
-      background: #d8cdba;
+      background: #dcd2c1;
       border-radius: 6px;
     }
     .dark ::-webkit-scrollbar-thumb {
@@ -321,73 +212,56 @@
     }
 
     @media print {
-      body * {
-        visibility: hidden;
-      }
-      #printArea, #printArea * {
-        visibility: visible;
-      }
-      #printArea {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-      }
-      .no-print, .sketch-widget-toolbar, .sketch-resize-handle {
-        display: none !important;
-      }
+      body * { visibility: hidden; }
+      #printArea, #printArea * { visibility: visible; }
+      #printArea { position: absolute; left: 0; top: 0; width: 100%; }
+      .no-print, .sketch-widget-toolbar, .sketch-resize-handle { display: none !important; }
     }
   </style>
 </head>
 <body class="ambient-study-bg text-stone-800 dark:text-stone-100 h-full flex flex-col transition-colors duration-300">
 
-  <!-- Toast Notification Box -->
+  <!-- Toast Notification -->
   <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 transform transition-all duration-300 opacity-0 pointer-events-none translate-y-4">
-    <div class="bg-stone-900/90 dark:bg-stone-800/95 backdrop-blur-md text-stone-100 px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 border border-stone-700/60">
+    <div class="bg-stone-900/90 dark:bg-stone-800/95 backdrop-blur-md text-stone-100 px-4 py-2.5 rounded-xl shadow-xl flex items-center gap-2.5 border border-stone-700/60 text-xs sm:text-sm">
       <span id="toastIcon" class="text-amber-400"></span>
-      <span id="toastMessage" class="text-sm font-medium"></span>
+      <span id="toastMessage" class="font-medium">הודעה</span>
     </div>
   </div>
 
-  <!-- Ambient Serene Top Bar -->
-  <header class="no-print bg-white/80 dark:bg-stone-900/70 backdrop-blur-md border-b border-stone-200/70 dark:border-stone-800 sticky top-0 z-30 transition-colors shadow-xs">
-    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 h-18 py-3.5 flex items-center justify-between">
+  <!-- Header Bar -->
+  <header class="no-print bg-white/80 dark:bg-stone-900/80 backdrop-blur-md border-b border-stone-200/70 dark:border-stone-800 sticky top-0 z-30 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
       
-      <!-- Logo & Academic Identity -->
-      <div class="flex items-center gap-3.5 cursor-pointer group" onclick="app.showDashboard()">
-        <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-amber-700 via-amber-800 to-amber-900 flex items-center justify-center text-amber-100 shadow-md shadow-amber-900/15 group-hover:scale-105 transition">
-          <i data-lucide="book-marked" class="w-5 h-5"></i>
+      <!-- Brand Logo -->
+      <div class="flex items-center gap-2.5 cursor-pointer group" onclick="app.showDashboard()">
+        <div class="w-8 h-8 rounded-lg bg-amber-800 flex items-center justify-center text-amber-50 shadow-sm">
+          <i data-lucide="book-marked" class="w-4 h-4"></i>
         </div>
         <div>
-          <div class="flex items-center gap-2">
-            <span class="text-xl font-bold tracking-tight font-serif bg-gradient-to-r from-amber-900 via-stone-800 to-amber-800 dark:from-amber-200 dark:via-stone-100 dark:to-amber-400 bg-clip-text text-transparent">SmartNotes</span>
-            <span class="text-xs bg-amber-100/90 dark:bg-amber-950/70 text-amber-800 dark:text-amber-300 font-semibold px-2.5 py-0.5 rounded-full border border-amber-200/80 dark:border-amber-800/60">מרחב למידה</span>
-          </div>
-          <p class="text-xs text-stone-500 dark:text-stone-400 hidden sm:block">סיכומים, ספריית מחברות ושרטוטי עט באווירה רגועה</p>
+          <span class="text-base font-bold font-serif tracking-tight text-stone-900 dark:text-stone-100">SmartNotes</span>
+          <span class="text-[11px] text-stone-400 font-normal mr-1.5 hidden sm:inline">| סיכומים ומחברות</span>
         </div>
       </div>
 
-      <!-- Action Navigation Buttons -->
-      <div class="flex items-center gap-2 sm:gap-3">
-        <!-- Backup & Restore -->
-        <button onclick="app.exportAllData()" title="ייצוא גיבוי מחברות (JSON)" class="p-2.5 text-stone-600 hover:text-stone-900 dark:text-stone-300 dark:hover:text-white rounded-xl hover:bg-stone-200/50 dark:hover:bg-stone-800 transition">
-          <i data-lucide="download" class="w-5 h-5"></i>
+      <!-- Header Actions -->
+      <div class="flex items-center gap-1.5 sm:gap-2">
+        <button onclick="app.exportAllData()" title="ייצוא גיבוי (JSON)" class="p-2 text-stone-500 hover:text-stone-800 dark:text-stone-400 dark:hover:text-stone-100 rounded-lg hover:bg-stone-100 dark:hover:bg-stone-800 transition">
+          <i data-lucide="download" class="w-4 h-4"></i>
         </button>
-        <button onclick="document.getElementById('importFileInput').click()" title="ייבוא גיבוי מחברות" class="p-2.5 text-stone-600 hover:text-stone-900 dark:text-stone-300 dark:hover:text-white rounded-xl hover:bg-stone-200/50 dark:hover:bg-stone-800 transition">
-          <i data-lucide="upload" class="w-5 h-5"></i>
+        <button onclick="document.getElementById('importFileInput').click()" title="ייבוא גיבוי" class="p-2 text-stone-500 hover:text-stone-800 dark:text-stone-400 dark:hover:text-stone-100 rounded-lg hover:bg-stone-100 dark:hover:bg-stone-800 transition">
+          <i data-lucide="upload" class="w-4 h-4"></i>
         </button>
         <input type="file" id="importFileInput" class="hidden" accept=".json" onchange="app.importAllData(event)">
 
-        <!-- Theme Toggle -->
-        <button onclick="app.toggleDarkMode()" title="החלף מצב תאורה" class="p-2.5 text-stone-600 hover:text-stone-900 dark:text-stone-300 dark:hover:text-white rounded-xl hover:bg-stone-200/50 dark:hover:bg-stone-800 transition">
-          <i data-lucide="moon" class="w-5 h-5 dark:hidden"></i>
-          <i data-lucide="sun" class="w-5 h-5 hidden dark:block text-amber-400"></i>
+        <button onclick="app.toggleDarkMode()" title="החלף מצב תאורה" class="p-2 text-stone-500 hover:text-stone-800 dark:text-stone-400 dark:hover:text-stone-100 rounded-lg hover:bg-stone-100 dark:hover:bg-stone-800 transition">
+          <i data-lucide="moon" class="w-4 h-4 dark:hidden"></i>
+          <i data-lucide="sun" class="w-4 h-4 hidden dark:block text-amber-400"></i>
         </button>
 
-        <!-- New Physical Notebook Action -->
-        <button onclick="app.openNewNotebookModal()" class="bg-gradient-to-r from-amber-700 to-amber-800 hover:from-amber-800 hover:to-amber-900 text-white px-4.5 py-2.5 rounded-xl font-medium shadow-md shadow-amber-900/15 flex items-center gap-2 transition active:scale-95">
-          <i data-lucide="feather" class="w-4 h-4"></i>
-          <span class="text-sm font-semibold">מחברת חדשה</span>
+        <button onclick="app.openNewNotebookModal()" class="bg-amber-800 hover:bg-amber-900 text-white px-3.5 py-1.5 rounded-lg text-xs font-semibold shadow-sm flex items-center gap-1.5 transition active:scale-95 mr-1">
+          <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+          <span>מחברת חדשה</span>
         </button>
       </div>
 
@@ -395,128 +269,82 @@
   </header>
 
   <!-- ============================================================== -->
-  <!-- VIEW 1: DASHBOARD / LIBRARY (ספריית המחברות הריאליסטיות)         -->
+  <!-- VIEW 1: DASHBOARD / COMPACT NOTEBOOK SHELF                     -->
   <!-- ============================================================== -->
-  <main id="dashboardView" class="flex-1 max-w-7xl w-full mx-auto px-5 sm:px-8 lg:px-12 py-10 transition-opacity duration-300">
+  <main id="dashboardView" class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 transition-opacity duration-300">
     
-    <!-- Cozy, Light & Spacious Banner -->
-    <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-amber-50/90 via-stone-50/95 to-orange-50/80 dark:from-stone-800 dark:via-stone-850 dark:to-amber-950 text-stone-800 dark:text-stone-100 p-8 sm:p-11 mb-10 shadow-sm border border-stone-200/80 dark:border-stone-700/40">
-      <div class="absolute -left-12 -bottom-12 w-72 h-72 bg-amber-200/35 dark:bg-amber-600/15 rounded-full blur-3xl pointer-events-none"></div>
-      <div class="absolute -right-12 -top-12 w-64 h-64 bg-emerald-100/45 dark:bg-emerald-600/15 rounded-full blur-2xl pointer-events-none"></div>
+    <!-- Top Filter & Controls -->
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 bg-white/60 dark:bg-stone-900/60 p-3 rounded-2xl border border-stone-200/60 dark:border-stone-800 backdrop-blur-sm">
       
-      <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
-        <div class="max-w-2xl">
-          <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-semibold bg-amber-100/80 dark:bg-white/10 text-amber-900 dark:text-amber-200 backdrop-blur-md mb-3.5 border border-amber-200/60 dark:border-white/10 shadow-2xs">
-            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-700 dark:text-amber-300"></i>
-            מרחב למידה בהיר, מרווח ושליו
-          </span>
-          <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight font-serif mb-3 text-stone-900 dark:text-white">מדף המחברות האקדמיות</h1>
-          <p class="text-stone-600 dark:text-stone-300 text-base sm:text-lg leading-relaxed">
-            בחר מחברת כדי לפתוח אותה לעבודה חיה – הקלד סיכומי הרצאות במחשב, שרטט בעט דיגיטלי בטאבלט, והטמע דיאגרמות מעוצבות שניתן להזיז ולהתאים בחופשיות.
-          </p>
-        </div>
-
-        <!-- Shelf Statistics -->
-        <div class="flex items-center gap-6 bg-white/80 dark:bg-white/10 backdrop-blur-md px-6 py-5 rounded-2xl border border-stone-200/80 dark:border-white/15 shadow-xs">
-          <div class="text-center">
-            <div id="statNotebooksCount" class="text-3xl font-black font-serif text-amber-800 dark:text-amber-200">3</div>
-            <div class="text-xs font-medium text-stone-500 dark:text-stone-300">מחברות פעילות</div>
-          </div>
-          <div class="w-px h-10 bg-stone-200 dark:bg-white/20"></div>
-          <div class="text-center">
-            <div id="statActiveYear" class="text-2xl font-bold font-serif text-stone-800 dark:text-white">שנה א'</div>
-            <div class="text-xs font-medium text-stone-500 dark:text-stone-300">שנת לימודים</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Filters & Shelf Organizer -->
-    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-5 mb-10">
-      
-      <!-- Academic Year Filter Tabs -->
-      <div class="flex items-center gap-2 overflow-x-auto pb-2 lg:pb-0 scrollbar-none" id="yearFilterTabs">
-        <button onclick="app.setYearFilter('all')" class="year-tab px-4.5 py-2 rounded-xl text-sm font-semibold transition bg-amber-800 text-white shadow-xs" data-year="all">
-          כל השנים
-        </button>
-        <button onclick="app.setYearFilter('שנה א\'')" class="year-tab px-4.5 py-2 rounded-xl text-sm font-medium transition text-stone-600 dark:text-stone-300 hover:bg-stone-200/60 dark:hover:bg-stone-800" data-year="שנה א'">
-          שנה א׳
-        </button>
-        <button onclick="app.setYearFilter('שנה ב\'')" class="year-tab px-4.5 py-2 rounded-xl text-sm font-medium transition text-stone-600 dark:text-stone-300 hover:bg-stone-200/60 dark:hover:bg-stone-800" data-year="שנה ב'">
-          שנה ב׳
-        </button>
-        <button onclick="app.setYearFilter('שנה ג\'')" class="year-tab px-4.5 py-2 rounded-xl text-sm font-medium transition text-stone-600 dark:text-stone-300 hover:bg-stone-200/60 dark:hover:bg-stone-800" data-year="שנה ג'">
-          שנה ג׳
-        </button>
-        <button onclick="app.setYearFilter('שנה ד\'')" class="year-tab px-4.5 py-2 rounded-xl text-sm font-medium transition text-stone-600 dark:text-stone-300 hover:bg-stone-200/60 dark:hover:bg-stone-800" data-year="שנה ד'">
-          שנה ד׳
-        </button>
+      <!-- Year Tabs -->
+      <div class="flex items-center gap-1 overflow-x-auto pb-1 sm:pb-0 scrollbar-none" id="yearFilterTabs">
+        <button onclick="app.setYearFilter('all')" class="year-tab px-3 py-1.5 rounded-lg text-xs font-semibold transition bg-amber-800 text-white" data-year="all">הכל</button>
+        <button onclick="app.setYearFilter('שנה א\'')" class="year-tab px-3 py-1.5 rounded-lg text-xs font-medium text-stone-600 dark:text-stone-300 hover:bg-stone-200/60 dark:hover:bg-stone-800" data-year="שנה א'">שנה א׳</button>
+        <button onclick="app.setYearFilter('שנה ב\'')" class="year-tab px-3 py-1.5 rounded-lg text-xs font-medium text-stone-600 dark:text-stone-300 hover:bg-stone-200/60 dark:hover:bg-stone-800" data-year="שנה ב'">שנה ב׳</button>
+        <button onclick="app.setYearFilter('שנה ג\'')" class="year-tab px-3 py-1.5 rounded-lg text-xs font-medium text-stone-600 dark:text-stone-300 hover:bg-stone-200/60 dark:hover:bg-stone-800" data-year="שנה ג'">שנה ג׳</button>
+        <button onclick="app.setYearFilter('שנה ד\'')" class="year-tab px-3 py-1.5 rounded-lg text-xs font-medium text-stone-600 dark:text-stone-300 hover:bg-stone-200/60 dark:hover:bg-stone-800" data-year="שנה ד'">שנה ד׳</button>
       </div>
 
-      <!-- Search & Subject Select -->
-      <div class="flex items-center gap-3.5">
-        <!-- Subject Dropdown -->
+      <!-- Search & Subject Filter -->
+      <div class="flex items-center gap-2">
         <div class="relative">
-          <select id="subjectFilterSelect" onchange="app.setSubjectFilter(this.value)" class="bg-white/90 dark:bg-stone-850/80 backdrop-blur-sm border border-stone-200 dark:border-stone-700 text-stone-700 dark:text-stone-200 text-sm rounded-xl px-4 py-2.5 pr-8 focus:ring-2 focus:ring-amber-600 focus:outline-none appearance-none shadow-xs cursor-pointer">
+          <select id="subjectFilterSelect" onchange="app.setSubjectFilter(this.value)" class="bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 text-stone-700 dark:text-stone-200 text-xs rounded-lg px-3 py-1.5 pr-6 appearance-none focus:outline-none">
             <option value="all">כל המקצועות</option>
             <option value="מתמטיקה">מתמטיקה</option>
             <option value="פיזיקה">פיזיקה</option>
             <option value="מדעי המחשב">מדעי המחשב</option>
             <option value="הנדסה">הנדסה</option>
-            <option value="רפואה">רפואה ומדעי החיים</option>
+            <option value="רפואה">רפואה</option>
             <option value="כללי">כללי</option>
           </select>
-          <i data-lucide="chevron-down" class="w-4 h-4 text-stone-400 absolute left-3 top-3.5 pointer-events-none"></i>
+          <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-stone-400 absolute left-2 top-2 pointer-events-none"></i>
         </div>
 
-        <!-- Search Input -->
-        <div class="relative flex-1 sm:w-72">
-          <i data-lucide="search" class="w-4 h-4 text-stone-400 absolute right-3.5 top-3.5 pointer-events-none"></i>
-          <input type="text" id="searchInput" oninput="app.setSearchFilter(this.value)" placeholder="חיפוש מחברת או נושא..." class="w-full bg-white/90 dark:bg-stone-850/80 backdrop-blur-sm border border-stone-200 dark:border-stone-700 text-stone-800 dark:text-stone-100 text-sm rounded-xl pl-4 pr-10 py-2.5 focus:ring-2 focus:ring-amber-600 focus:outline-none shadow-xs">
+        <div class="relative w-44 sm:w-56">
+          <i data-lucide="search" class="w-3.5 h-3.5 text-stone-400 absolute right-2.5 top-2.5 pointer-events-none"></i>
+          <input type="text" id="searchInput" oninput="app.setSearchFilter(this.value)" placeholder="חיפוש מחברת..." class="w-full bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 text-stone-800 dark:text-stone-100 text-xs rounded-lg pl-3 pr-8 py-1.5 focus:outline-none">
         </div>
       </div>
 
     </div>
 
-    <!-- Realistic Physical Notebooks Shelf Grid (Spacious) -->
-    <div id="notebooksGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 sm:gap-10">
-      <!-- Notebook cards injected here via app.renderNotebooks() -->
-    </div>
+    <!-- Notebooks Grid: Clean, Compact Icons / Cards -->
+    <div id="notebooksGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
 
     <!-- Empty State -->
-    <div id="emptyState" class="text-center py-20 px-4 hidden">
-      <div class="w-20 h-20 rounded-3xl bg-amber-100/70 dark:bg-stone-800 flex items-center justify-center text-amber-800 dark:text-amber-300 mx-auto mb-4 border border-amber-200/50">
-        <i data-lucide="book-open" class="w-9 h-9"></i>
+    <div id="emptyState" class="text-center py-16 px-4 hidden">
+      <div class="w-12 h-12 rounded-xl bg-amber-100/80 dark:bg-stone-800 flex items-center justify-center text-amber-800 dark:text-amber-300 mx-auto mb-3">
+        <i data-lucide="book-open" class="w-6 h-6"></i>
       </div>
-      <h3 class="text-xl font-bold font-serif mb-1.5">המדף ריק כעת</h3>
-      <p class="text-sm text-stone-500 dark:text-stone-400 max-w-sm mx-auto mb-5">לא נמצאו מחברות התואמות לחיפוש או לסינון הנוכחי. תוכל לפתוח מחברת חדשה בלחיצת כפתור.</p>
-      <button onclick="app.resetFilters()" class="text-amber-800 dark:text-amber-300 text-sm font-semibold hover:underline">
-        אפס את כל הסינונים
+      <h3 class="text-base font-bold font-serif mb-1">לא נמצאו מחברות</h3>
+      <p class="text-xs text-stone-400 max-w-xs mx-auto mb-3">נסה לאפס את החיפוש או צור מחברת חדשה</p>
+      <button onclick="app.resetFilters()" class="text-amber-800 dark:text-amber-300 text-xs font-semibold hover:underline">
+        איפוס סינונים
       </button>
     </div>
 
   </main>
 
   <!-- ============================================================== -->
-  <!-- VIEW 2: NOTEBOOK WORKSPACE (סביבת כתיבה במחשב וציור בטאבלט)    -->
+  <!-- VIEW 2: NOTEBOOK WORKSPACE WITH SPACIOUS SURROUNDING MARGINS   -->
   <!-- ============================================================== -->
-  <div id="editorView" class="flex-1 flex flex-col h-[calc(100vh-4rem)] overflow-hidden">
+  <div id="editorView" class="flex-1 flex flex-col h-[calc(100vh-3.5rem)] p-3 sm:p-5 lg:p-6 max-w-[1600px] mx-auto w-full overflow-hidden hidden">
     
-    <!-- Top Action Bar for Editor -->
-    <div class="no-print bg-white/85 dark:bg-stone-850/85 backdrop-blur-md border-b border-stone-200/70 dark:border-stone-800 px-4 py-2.5 flex items-center justify-between gap-3 shadow-xs z-20">
+    <!-- Floating Header Bar Inside Workspace -->
+    <div class="no-print bg-white/90 dark:bg-stone-850/90 backdrop-blur-md border border-stone-200/80 dark:border-stone-750 px-4 py-2.5 rounded-2xl flex items-center justify-between gap-3 shadow-xs mb-3">
       
-      <!-- Back & Notebook Details -->
-      <div class="flex items-center gap-3">
-        <button onclick="app.showDashboard()" title="חזרה למדף המחברות" class="p-2 text-stone-600 hover:text-stone-900 dark:text-stone-300 dark:hover:text-white hover:bg-stone-100 dark:hover:bg-stone-800 rounded-xl transition">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="arrow-right" aria-hidden="true" class="lucide lucide-arrow-right w-5 h-5"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+      <!-- Back & Notebook Meta -->
+      <div class="flex items-center gap-2.5">
+        <button onclick="app.showDashboard()" title="חזרה למדף המחברות" class="p-1.5 text-stone-500 hover:text-stone-900 dark:text-stone-400 dark:hover:text-white hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg transition">
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
         </button>
         <div>
           <div class="flex items-center gap-2">
-            <h2 id="activeNotebookTitle" class="font-bold font-serif text-lg tracking-tight text-stone-900 dark:text-stone-50">מכניקה קלאסית ותרמודינמיקה</h2>
-            <span id="activeNotebookSubjectBadge" class="text-xs px-2.5 py-0.5 rounded-full font-medium bg-amber-100 text-amber-800 dark:bg-amber-950/80 dark:text-amber-300 border border-amber-200/50">פיזיקה</span>
+            <h2 id="activeNotebookTitle" class="font-bold font-serif text-sm sm:text-base text-stone-900 dark:text-stone-50">שם מחברת</h2>
+            <span id="activeNotebookSubjectBadge" class="text-[11px] px-2 py-0.2 rounded-md font-medium bg-amber-50 text-amber-800 dark:bg-amber-950/80 dark:text-amber-300 border border-amber-200/60">מקצוע</span>
           </div>
-          <div class="flex items-center gap-2 text-xs text-stone-400">
-            <span id="saveStatusIndicator" class="flex items-center gap-1 text-emerald-700 dark:text-emerald-400 font-medium"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="loader-2" aria-hidden="true" class="lucide lucide-loader-2 w-3.5 h-3.5 animate-spin text-amber-600"><path d="M21 12a9 9 0 1 1-6.219-8.56"></path></svg><span class="text-amber-600">שומר שינויים...</span></span>
+          <div class="flex items-center gap-1.5 text-[11px] text-stone-400">
+            <span id="saveStatusIndicator" class="flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-medium">נשמר</span>
             <span>•</span>
             <span id="activeNotebookYear">שנה א'</span>
           </div>
@@ -524,218 +352,232 @@
       </div>
 
       <!-- Mode Switcher Tabs (PC Text vs Tablet Canvas vs Dual Split) -->
-      <div class="flex items-center bg-stone-200/70 dark:bg-stone-900/90 p-1 rounded-2xl border border-stone-300/60 dark:border-stone-800">
-        <button onclick="app.setEditorMode('text')" id="modeBtnText" class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition bg-white dark:bg-stone-800 text-amber-800 dark:text-amber-300 shadow-xs">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="type" aria-hidden="true" class="lucide lucide-type w-4 h-4"><path d="M12 4v16"></path><path d="M4 7V5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2"></path><path d="M9 20h6"></path></svg>
-          <span class="hidden md:inline">הקלדת מחשב</span>
+      <div class="flex items-center bg-stone-100 dark:bg-stone-900 p-1 rounded-xl border border-stone-200 dark:border-stone-800">
+        <button onclick="app.setEditorMode('text')" id="modeBtnText" class="flex items-center gap-1 px-3 py-1 rounded-lg text-xs font-semibold bg-white dark:bg-stone-800 text-amber-800 dark:text-amber-300 shadow-xs">
+          <i data-lucide="type" class="w-3.5 h-3.5"></i>
+          <span>הקלדה (PC)</span>
         </button>
-        <button onclick="app.setEditorMode('canvas')" id="modeBtnCanvas" class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-medium text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white transition">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="pen-tool" aria-hidden="true" class="lucide lucide-pen-tool w-4 h-4"><path d="m18 13-.654-4.736a4 4 0 00-2.756-3.266l-9.163-2.9a2 2 0 00-2.017.493l-.82.819a2 2 0 00-.492 2.017l2.9 9.163a4 4 0 003.266 2.756L13 18"></path><path d="M18.648 12.352a1.205 1.205 0 011.704 0l1.296 1.296a1.205 1.205 0 010 1.704l-6.296 6.296a1.205 1.205 0 01-1.704 0l-1.296-1.296a1.205 1.205 0 010-1.704z"></path><path d="m3 3 6.586 6.586"></path><circle cx="11" cy="11" r="2"></circle></svg>
-          <span class="hidden md:inline">עט טאבלט</span>
+        <button onclick="app.setEditorMode('canvas')" id="modeBtnCanvas" class="flex items-center gap-1 px-3 py-1 rounded-lg text-xs font-medium text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white transition">
+          <i data-lucide="pen-tool" class="w-3.5 h-3.5"></i>
+          <span>עט (טאבלט)</span>
         </button>
-        <button onclick="app.setEditorMode('dual')" id="modeBtnDual" class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-medium text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white transition">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="columns-2" aria-hidden="true" class="lucide lucide-columns-2 w-4 h-4"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M12 3v18"></path></svg>
-          <span class="hidden md:inline">מפוצל (Dual)</span>
+        <button onclick="app.setEditorMode('dual')" id="modeBtnDual" class="flex items-center gap-1 px-3 py-1 rounded-lg text-xs font-medium text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white transition">
+          <i data-lucide="columns-2" class="w-3.5 h-3.5"></i>
+          <span>מפוצל</span>
         </button>
       </div>
 
       <!-- Action Tools -->
       <div class="flex items-center gap-2">
-        <button onclick="window.print()" title="הדפסה או ייצוא ל-PDF" class="p-2 text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-xl transition">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="printer" aria-hidden="true" class="lucide lucide-printer w-5 h-5"><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><path d="M6 9V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6"></path><rect x="6" y="14" width="12" height="8" rx="1"></rect></svg>
+        <button onclick="window.print()" title="הדפסה או ייצוא ל-PDF" class="p-1.5 text-stone-500 hover:text-stone-900 dark:text-stone-400 dark:hover:text-white hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg transition">
+          <i data-lucide="printer" class="w-4 h-4"></i>
         </button>
-        <button onclick="app.insertCanvasToNote()" title="הטמע את שרטוט העט לתוך גוף הסיכום" class="flex items-center gap-1.5 bg-gradient-to-r from-amber-700 to-amber-800 hover:from-amber-800 hover:to-amber-900 text-white px-3.5 py-1.5 rounded-xl text-xs font-semibold shadow-xs transition active:scale-95">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="image-plus" aria-hidden="true" class="lucide lucide-image-plus w-4 h-4"><path d="M16 5h6"></path><path d="M19 2v6"></path><path d="M21 11.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7.5"></path><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path><circle cx="9" cy="9" r="2"></circle></svg>
-          <span class="hidden sm:inline">הטמע שרטוט בסיכום</span>
+        <button onclick="app.insertCanvasToNote()" title="הטמע את שרטוט העט לתוך גוף הסיכום" class="flex items-center gap-1.5 bg-amber-800 hover:bg-amber-900 text-white px-3 py-1.5 rounded-lg text-xs font-semibold shadow-xs transition active:scale-95">
+          <i data-lucide="image-plus" class="w-3.5 h-3.5"></i>
+          <span class="hidden sm:inline">הטמע שרטוט</span>
         </button>
       </div>
 
     </div>
 
-    <!-- Workspace Container -->
-    <div class="flex-1 flex flex-col md:flex-row overflow-hidden relative" id="workspaceContainer">
+    <!-- Workspace Surrounding Desk Frame with Generous Padding -->
+    <div class="flex-1 flex flex-col md:flex-row overflow-hidden relative rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-stone-100/50 dark:bg-stone-900/40 p-2 sm:p-3 gap-3" id="workspaceContainer">
       
       <!-- ============================================== -->
-      <!-- PANE A: RICH TEXT EDITOR (עורך טקסט מחשב)     -->
+      <!-- PANE A: RICH TEXT EDITOR (FLOATING SHEET)      -->
       <!-- ============================================== -->
-      <div id="textPane" class="flex-1 flex flex-col bg-white/75 dark:bg-stone-900/80 backdrop-blur-md border-l border-stone-200/70 dark:border-stone-800 overflow-hidden">
+      <div id="textPane" class="flex-1 flex flex-col bg-white dark:bg-stone-850 rounded-xl border border-stone-200/70 dark:border-stone-800 shadow-xs overflow-hidden">
         
         <!-- Formatting Toolbar -->
-        <div class="no-print bg-stone-100/80 dark:bg-stone-850/80 border-b border-stone-200/80 dark:border-stone-800 px-3 py-2 flex flex-wrap items-center gap-1 text-stone-700 dark:text-stone-200 text-sm overflow-x-auto">
+        <div class="no-print bg-stone-50 dark:bg-stone-800/60 border-b border-stone-200/70 dark:border-stone-800 px-3 py-1.5 flex flex-wrap items-center gap-1 text-stone-700 dark:text-stone-300 text-xs">
           
           <!-- Headings -->
-          <div class="flex items-center bg-white dark:bg-stone-800 rounded-xl border border-stone-200 dark:border-stone-700 p-0.5">
-            <button onclick="app.execCmd('formatBlock', '&lt;h1&gt;')" title="כותרת ראשית" class="p-1.5 hover:bg-stone-100 dark:hover:bg-stone-700 rounded-lg font-bold font-serif text-xs">H1</button>
-            <button onclick="app.execCmd('formatBlock', '&lt;h2&gt;')" title="כותרת משנית" class="p-1.5 hover:bg-stone-100 dark:hover:bg-stone-700 rounded-lg font-bold font-serif text-xs">H2</button>
-            <button onclick="app.execCmd('formatBlock', '&lt;h3&gt;')" title="כותרת שלישית" class="p-1.5 hover:bg-stone-100 dark:hover:bg-stone-700 rounded-lg font-bold text-xs">H3</button>
-            <button onclick="app.execCmd('formatBlock', '&lt;p&gt;')" title="פסקה רגילה" class="p-1.5 hover:bg-stone-100 dark:hover:bg-stone-700 rounded-lg text-xs">P</button>
+          <div class="flex items-center bg-white dark:bg-stone-800 rounded-lg border border-stone-200 dark:border-stone-700 p-0.5">
+            <button onclick="app.execCmd('formatBlock', '<h1>')" title="כותרת ראשית" class="px-2 py-1 hover:bg-stone-100 dark:hover:bg-stone-700 rounded font-bold font-serif text-xs">H1</button>
+            <button onclick="app.execCmd('formatBlock', '<h2>')" title="כותרת משנית" class="px-2 py-1 hover:bg-stone-100 dark:hover:bg-stone-700 rounded font-bold font-serif text-xs">H2</button>
+            <button onclick="app.execCmd('formatBlock', '<p>')" title="פסקה רגילה" class="px-2 py-1 hover:bg-stone-100 dark:hover:bg-stone-700 rounded text-xs">P</button>
           </div>
 
-          <div class="w-px h-6 bg-stone-200 dark:bg-stone-700 mx-1"></div>
+          <div class="w-px h-5 bg-stone-200 dark:bg-stone-700 mx-1"></div>
 
           <!-- Basic Styling -->
-          <div class="flex items-center bg-white dark:bg-stone-800 rounded-xl border border-stone-200 dark:border-stone-700 p-0.5">
-            <button onclick="app.execCmd('bold')" title="מודגש" class="p-1.5 hover:bg-stone-100 dark:hover:bg-stone-700 rounded-lg font-bold">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="bold" aria-hidden="true" class="lucide lucide-bold w-4 h-4"><path d="M6 12h9a4 4 0 0 1 0 8H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h7a4 4 0 0 1 0 8"></path></svg>
+          <div class="flex items-center bg-white dark:bg-stone-800 rounded-lg border border-stone-200 dark:border-stone-700 p-0.5">
+            <button onclick="app.execCmd('bold')" title="מודגש" class="p-1 hover:bg-stone-100 dark:hover:bg-stone-700 rounded font-bold">
+              <i data-lucide="bold" class="w-3.5 h-3.5"></i>
             </button>
-            <button onclick="app.execCmd('italic')" title="נטוי" class="p-1.5 hover:bg-stone-100 dark:hover:bg-stone-700 rounded-lg italic">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="italic" aria-hidden="true" class="lucide lucide-italic w-4 h-4"><line x1="19" x2="10" y1="4" y2="4"></line><line x1="14" x2="5" y1="20" y2="20"></line><line x1="15" x2="9" y1="4" y2="20"></line></svg>
+            <button onclick="app.execCmd('italic')" title="נטוי" class="p-1 hover:bg-stone-100 dark:hover:bg-stone-700 rounded italic">
+              <i data-lucide="italic" class="w-3.5 h-3.5"></i>
             </button>
-            <button onclick="app.execCmd('underline')" title="קו תחתון" class="p-1.5 hover:bg-stone-100 dark:hover:bg-stone-700 rounded-lg underline">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="underline" aria-hidden="true" class="lucide lucide-underline w-4 h-4"><path d="M6 4v6a6 6 0 0 0 12 0V4"></path><line x1="4" x2="20" y1="20" y2="20"></line></svg>
-            </button>
-            <button onclick="app.execCmd('strikeThrough')" title="קו חוצה" class="p-1.5 hover:bg-stone-100 dark:hover:bg-stone-700 rounded-lg line-through">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="strikethrough" aria-hidden="true" class="lucide lucide-strikethrough w-4 h-4"><path d="M16 4H9a3 3 0 0 0-2.83 4"></path><path d="M14 12a4 4 0 0 1 0 8H6"></path><line x1="4" x2="20" y1="12" y2="12"></line></svg>
+            <button onclick="app.execCmd('underline')" title="קו תחתון" class="p-1 hover:bg-stone-100 dark:hover:bg-stone-700 rounded">
+              <i data-lucide="underline" class="w-3.5 h-3.5"></i>
             </button>
           </div>
 
-          <div class="w-px h-6 bg-stone-200 dark:bg-stone-700 mx-1"></div>
+          <div class="w-px h-5 bg-stone-200 dark:bg-stone-700 mx-1"></div>
 
           <!-- Lists & Alignment -->
-          <div class="flex items-center bg-white dark:bg-stone-800 rounded-xl border border-stone-200 dark:border-stone-700 p-0.5">
-            <button onclick="app.execCmd('insertUnorderedList')" title="רשימת תבליטים" class="p-1.5 hover:bg-stone-100 dark:hover:bg-stone-700 rounded-lg">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="list" aria-hidden="true" class="lucide lucide-list w-4 h-4"><path d="M3 5h.01"></path><path d="M3 12h.01"></path><path d="M3 19h.01"></path><path d="M8 5h13"></path><path d="M8 12h13"></path><path d="M8 19h13"></path></svg>
+          <div class="flex items-center bg-white dark:bg-stone-800 rounded-lg border border-stone-200 dark:border-stone-700 p-0.5">
+            <button onclick="app.execCmd('insertUnorderedList')" title="תבליטים" class="p-1 hover:bg-stone-100 dark:hover:bg-stone-700 rounded">
+              <i data-lucide="list" class="w-3.5 h-3.5"></i>
             </button>
-            <button onclick="app.execCmd('insertOrderedList')" title="רשימה ממוספרת" class="p-1.5 hover:bg-stone-100 dark:hover:bg-stone-700 rounded-lg">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="list-ordered" aria-hidden="true" class="lucide lucide-list-ordered w-4 h-4"><path d="M11 5h10"></path><path d="M11 12h10"></path><path d="M11 19h10"></path><path d="M4 4h1v5"></path><path d="M4 9h2"></path><path d="M6.5 20H3.4c0-1 2.6-1.925 2.6-3.5a1.5 1.5 0 0 0-2.6-1.02"></path></svg>
+            <button onclick="app.execCmd('insertOrderedList')" title="רשימה ממוספרת" class="p-1 hover:bg-stone-100 dark:hover:bg-stone-700 rounded">
+              <i data-lucide="list-ordered" class="w-3.5 h-3.5"></i>
             </button>
-            <button onclick="app.execCmd('justifyRight')" title="יישור לימין" class="p-1.5 hover:bg-stone-100 dark:hover:bg-stone-700 rounded-lg">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="align-right" aria-hidden="true" class="lucide lucide-align-right w-4 h-4"><path d="M21 5H3"></path><path d="M21 12H9"></path><path d="M21 19H7"></path></svg>
+            <button onclick="app.execCmd('justifyRight')" title="יישור לימין" class="p-1 hover:bg-stone-100 dark:hover:bg-stone-700 rounded">
+              <i data-lucide="align-right" class="w-3.5 h-3.5"></i>
             </button>
-            <button onclick="app.execCmd('justifyCenter')" title="יישור למרכז" class="p-1.5 hover:bg-stone-100 dark:hover:bg-stone-700 rounded-lg">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="align-center" aria-hidden="true" class="lucide lucide-align-center w-4 h-4"><path d="M21 5H3"></path><path d="M17 12H7"></path><path d="M19 19H5"></path></svg>
+            <button onclick="app.execCmd('justifyCenter')" title="יישור למרכז" class="p-1 hover:bg-stone-100 dark:hover:bg-stone-700 rounded">
+              <i data-lucide="align-center" class="w-3.5 h-3.5"></i>
             </button>
           </div>
 
-          <div class="w-px h-6 bg-stone-200 dark:bg-stone-700 mx-1"></div>
+          <div class="w-px h-5 bg-stone-200 dark:bg-stone-700 mx-1"></div>
 
-          <!-- Colors & Highlight Markers -->
+          <!-- Highlight Markers -->
           <div class="flex items-center gap-1">
-            <label class="p-1.5 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-xl cursor-pointer flex items-center justify-center border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800" title="צבע גופן">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="palette" aria-hidden="true" class="lucide lucide-palette w-4 h-4 text-stone-700 dark:text-stone-300"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"></path><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle></svg>
-              <input type="color" onchange="app.execCmd('foreColor', this.value)" class="sr-only">
-            </label>
-
-            <button onclick="app.execCmd('hiliteColor', '#fef08a')" title="מרקר צהוב עדין" class="w-7 h-7 rounded-xl bg-amber-200/90 hover:scale-105 border border-amber-300 transition"></button>
-            <button onclick="app.execCmd('hiliteColor', '#bbf7d0')" title="מרקר ירוק מנטה" class="w-7 h-7 rounded-xl bg-emerald-200/90 hover:scale-105 border border-emerald-300 transition"></button>
-            <button onclick="app.execCmd('hiliteColor', '#fed7aa')" title="מרקר אפרסק חם" class="w-7 h-7 rounded-xl bg-orange-200/90 hover:scale-105 border border-orange-300 transition"></button>
-            <button onclick="app.execCmd('hiliteColor', 'transparent')" title="נקה מרקר" class="p-1 hover:bg-stone-200 dark:hover:bg-stone-700 rounded-lg text-xs text-stone-400">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="eraser" aria-hidden="true" class="lucide lucide-eraser w-4 h-4"><path d="M21 21H8a2 2 0 0 1-1.42-.587l-3.994-3.999a2 2 0 0 1 0-2.828l10-10a2 2 0 0 1 2.829 0l5.999 6a2 2 0 0 1 0 2.828L12.834 21"></path><path d="m5.082 11.09 8.828 8.828"></path></svg>
+            <button onclick="app.execCmd('hiliteColor', '#fef08a')" title="מרקר צהוב" class="w-5 h-5 rounded bg-amber-200 border border-amber-300"></button>
+            <button onclick="app.execCmd('hiliteColor', '#bbf7d0')" title="מרקר ירוק" class="w-5 h-5 rounded bg-emerald-200 border border-emerald-300"></button>
+            <button onclick="app.execCmd('hiliteColor', '#fed7aa')" title="מרקר כתום" class="w-5 h-5 rounded bg-orange-200 border border-orange-300"></button>
+            <button onclick="app.execCmd('hiliteColor', 'transparent')" title="נקה סימון" class="p-1 hover:bg-stone-200 dark:hover:bg-stone-700 rounded text-stone-400">
+              <i data-lucide="eraser" class="w-3.5 h-3.5"></i>
             </button>
           </div>
 
-          <div class="w-px h-6 bg-stone-200 dark:bg-stone-700 mx-1"></div>
+          <div class="w-px h-5 bg-stone-200 dark:bg-stone-700 mx-1"></div>
 
-          <!-- Academic Insert Snippets -->
-          <div class="flex items-center gap-1">
-            <button onclick="app.execCmd('formatBlock', '&lt;blockquote&gt;')" title="בלוק ציור / משפט חשוב" class="p-1.5 bg-white dark:bg-stone-800 hover:bg-stone-100 dark:hover:bg-stone-700 rounded-xl border border-stone-200 dark:border-stone-700">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="quote" aria-hidden="true" class="lucide lucide-quote w-4 h-4"><path d="M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"></path><path d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"></path></svg>
-            </button>
-            <button onclick="app.insertCodeBlock()" title="בלוק קוד" class="p-1.5 bg-white dark:bg-stone-800 hover:bg-stone-100 dark:hover:bg-stone-700 rounded-xl border border-stone-200 dark:border-stone-700">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="code" aria-hidden="true" class="lucide lucide-code w-4 h-4"><path d="m16 18 6-6-6-6"></path><path d="m8 6-6 6 6 6"></path></svg>
-            </button>
-            <button onclick="app.insertMathSnippet()" title="הוסף נוסחה מתמטית מעוצבת" class="px-2.5 py-1 bg-amber-50 dark:bg-amber-950/50 text-amber-900 dark:text-amber-200 hover:bg-amber-100 rounded-xl border border-amber-200/70 dark:border-amber-800/60 text-xs font-bold flex items-center gap-1 font-serif">
-              <span>ƒ(x) נוסחה</span>
-            </button>
-          </div>
+          <!-- Snippets -->
+          <button onclick="app.execCmd('formatBlock', '<blockquote>')" title="ציטוט / משפט" class="p-1 hover:bg-stone-100 dark:hover:bg-stone-700 rounded">
+            <i data-lucide="quote" class="w-3.5 h-3.5"></i>
+          </button>
+          <button onclick="app.insertCodeBlock()" title="בלוק קוד" class="p-1 hover:bg-stone-100 dark:hover:bg-stone-700 rounded">
+            <i data-lucide="code" class="w-3.5 h-3.5"></i>
+          </button>
+          <button onclick="app.insertMathSnippet()" title="נוסחה מתמטית" class="px-2 py-0.5 bg-amber-50 text-amber-900 rounded font-serif text-[11px] font-bold border border-amber-200">
+            ƒ(x)
+          </button>
 
         </div>
-        <!-- Note Text Body Area with Spacious Premium Paper Document Feel -->
-        <div class="flex-1 overflow-y-auto p-4 sm:p-8 lg:p-12" id="printArea">
-          <div class="max-w-4xl mx-auto bg-white dark:bg-stone-850/90 rounded-3xl p-8 sm:p-14 lg:p-16 shadow-lg shadow-stone-300/25 dark:shadow-stone-950/40 border border-stone-200/80 dark:border-stone-750 transition-all min-h-full">
-            <div id="noteContent" contenteditable="true" class="w-full min-h-[70vh] outline-none text-stone-800 dark:text-stone-100 text-base sm:text-lg leading-relaxed placeholder:text-stone-400" oninput="app.onTextChange()">
-              <h1>חוקי שימור ותנועה הרמונית פשוטה</h1>
-              <p>סיכום תרגול: מתקף, תנע ומשפט עבודה-אנרגיה.</p>
-              <blockquote>ΣW = ΔE_k &nbsp;|&nbsp; שימור תנע כולל במערכת סגורה: P_initial = P_final</blockquote>
-            </div>
+
+        <!-- Note Text Body with Inner Breathing Margins -->
+        <div class="flex-1 overflow-y-auto p-6 sm:p-10 lg:p-12" id="printArea">
+          <div id="noteContent" contenteditable="true" class="max-w-3xl mx-auto min-h-full outline-none text-stone-800 dark:text-stone-100 text-base leading-relaxed" oninput="app.onTextChange()">
           </div>
         </div>
 
       </div>
 
       <!-- ============================================== -->
-      <!-- PANE B: TABLET STYLUS CANVAS (משטח עט דיגיטלי) -->
+      <!-- PANE B: TABLET STYLUS CANVAS (DRAWING PAD)     -->
       <!-- ============================================== -->
-      <div id="canvasPane" class="flex-1 flex flex-col bg-stone-100/90 dark:bg-stone-950/90 overflow-hidden relative hidden">
+      <div id="canvasPane" class="flex-1 flex flex-col bg-white dark:bg-stone-850 rounded-xl border border-stone-200/70 dark:border-stone-800 shadow-xs overflow-hidden relative hidden">
         
-        <!-- Canvas Stylus Toolbar -->
-        <div class="no-print bg-white/85 dark:bg-stone-850/85 backdrop-blur-md border-b border-stone-200/70 dark:border-stone-800 px-3 py-2 flex flex-wrap items-center justify-between gap-2 shadow-xs z-10">
+        <!-- Canvas Toolbar -->
+        <div class="no-print bg-stone-50 dark:bg-stone-800/60 border-b border-stone-200/70 dark:border-stone-800 px-3 py-1.5 flex flex-wrap items-center justify-between gap-2 text-xs">
           
-          <!-- Drawing Tools & Pen Modes -->
-          <div class="flex items-center gap-1">
-            <button onclick="app.setTool('pen')" id="toolPen" title="עט רגיל" class="p-2 rounded-xl bg-amber-800 text-white font-medium shadow-xs transition">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="pen" aria-hidden="true" class="lucide lucide-pen w-4 h-4"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"></path></svg>
+          <!-- Drawing Tools & Shapes -->
+          <div class="flex items-center flex-wrap gap-1">
+            <div class="flex items-center bg-white dark:bg-stone-800 p-0.5 rounded-lg border border-stone-200 dark:border-stone-700">
+              <button onclick="app.setTool('pen')" id="toolPen" title="עט רגיל" class="p-1.5 rounded bg-amber-800 text-white font-medium">
+                <i data-lucide="pen" class="w-3.5 h-3.5"></i>
+              </button>
+              <button onclick="app.setTool('brush')" id="toolBrush" title="עט נובע (לחץ סטיילוס)" class="p-1.5 rounded text-stone-600 dark:text-stone-300 hover:bg-stone-100">
+                <i data-lucide="feather" class="w-3.5 h-3.5"></i>
+              </button>
+              <button onclick="app.setTool('highlighter')" id="toolHighlighter" title="מרקר שרטוטים" class="p-1.5 rounded text-stone-600 dark:text-stone-300 hover:bg-stone-100">
+                <i data-lucide="highlighter" class="w-3.5 h-3.5"></i>
+              </button>
+              <button onclick="app.setTool('eraser')" id="toolEraser" title="מחק" class="p-1.5 rounded text-stone-600 dark:text-stone-300 hover:bg-stone-100">
+                <i data-lucide="eraser" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+
+            <div class="w-px h-5 bg-stone-200 dark:bg-stone-700 mx-0.5"></div>
+
+            <!-- Geometric Shapes -->
+            <div class="flex items-center bg-white dark:bg-stone-800 p-0.5 rounded-lg border border-stone-200 dark:border-stone-700">
+              <button onclick="app.setTool('line')" id="toolLine" title="קו ישר" class="p-1.5 rounded text-stone-600 dark:text-stone-300 hover:bg-stone-100">
+                <i data-lucide="minus" class="w-3.5 h-3.5"></i>
+              </button>
+              <button onclick="app.setTool('arrow')" id="toolArrow" title="חץ וקטורי" class="p-1.5 rounded text-stone-600 dark:text-stone-300 hover:bg-stone-100">
+                <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+              </button>
+              <button onclick="app.setTool('axes')" id="toolAxes" title="מערכת צירים לגרפים" class="p-1.5 rounded text-stone-600 dark:text-stone-300 hover:bg-stone-100 flex items-center justify-center">
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 20h16M20 20l-3-3M20 20l-3 3M4 20V4M4 4l-3 3M4 4l3 3M8 18v4M12 18v4M16 18v4M2 16h4M2 12h4M2 8h4"/>
+                </svg>
+              </button>
+              <button onclick="app.setTool('rect')" id="toolRect" title="מלבן" class="p-1.5 rounded text-stone-600 dark:text-stone-300 hover:bg-stone-100">
+                <i data-lucide="square" class="w-3.5 h-3.5"></i>
+              </button>
+              <button onclick="app.setTool('circle')" id="toolCircle" title="עיגול" class="p-1.5 rounded text-stone-600 dark:text-stone-300 hover:bg-stone-100">
+                <i data-lucide="circle" class="w-3.5 h-3.5"></i>
+              </button>
+              <button onclick="app.setTool('triangle')" id="toolTriangle" title="משולש" class="p-1.5 rounded text-stone-600 dark:text-stone-300 hover:bg-stone-100">
+                <i data-lucide="triangle" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+
+            <!-- Modifiers -->
+            <button onclick="app.toggleDashed()" id="btnDashed" title="קו מקווקו" class="p-1.5 rounded-lg border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-600 dark:text-stone-300 hover:bg-stone-100">
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="4 3" stroke-linecap="round">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+              </svg>
             </button>
-            <button onclick="app.setTool('brush')" id="toolBrush" title="עט נובע (מגיב ללחץ סטיילוס)" class="p-2 rounded-xl text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-750 transition">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="feather" aria-hidden="true" class="lucide lucide-feather w-4 h-4"><path d="M14.086 18.412A2 2 0 0112.67 19H5v-7.672a2 2 0 01.586-1.414L11.75 3.75a6 6 0 118.49 8.49z"></path><path d="M16 8 2 22"></path><path d="M17.488 15H9"></path></svg>
-            </button>
-            <button onclick="app.setTool('highlighter')" id="toolHighlighter" title="מרקר שרטוטים שקוף" class="p-2 rounded-xl text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-750 transition">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="highlighter" aria-hidden="true" class="lucide lucide-highlighter w-4 h-4"><path d="m9 11-6 6v3h9l3-3"></path><path d="m22 12-4.6 4.6a2 2 0 0 1-2.8 0l-5.2-5.2a2 2 0 0 1 0-2.8L14 4"></path></svg>
-            </button>
-            <button onclick="app.setTool('eraser')" id="toolEraser" title="מחק" class="p-2 rounded-xl text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-750 transition">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="eraser" aria-hidden="true" class="lucide lucide-eraser w-4 h-4"><path d="M21 21H8a2 2 0 0 1-1.42-.587l-3.994-3.999a2 2 0 0 1 0-2.828l10-10a2 2 0 0 1 2.829 0l5.999 6a2 2 0 0 1 0 2.828L12.834 21"></path><path d="m5.082 11.09 8.828 8.828"></path></svg>
+            <button onclick="app.toggleFill()" id="btnFill" title="מילוי צורה שקוף" class="p-1.5 rounded-lg border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-600 dark:text-stone-300 hover:bg-stone-100">
+              <i data-lucide="paint-bucket" class="w-3.5 h-3.5"></i>
             </button>
 
-            <div class="w-px h-6 bg-stone-200 dark:bg-stone-700 mx-1"></div>
-
-            <!-- Stroke Size Slider -->
-            <div class="flex items-center gap-2 px-2.5 bg-stone-100 dark:bg-stone-800 rounded-xl py-1">
-              <span class="text-xs text-stone-400 font-mono" id="sizeDisplay">3px</span>
-              <input type="range" id="strokeSizeInput" min="1" max="28" value="3" oninput="app.setStrokeSize(this.value)" class="w-20 sm:w-24 accent-amber-700 h-1.5 cursor-pointer">
-              <div id="brushPreviewCircle" class="w-2.5 h-2.5 rounded-full bg-stone-900 dark:bg-white" style="width: 3px; height: 3px;"></div>
+            <!-- Size Slider -->
+            <div class="flex items-center gap-1.5 px-2 bg-white dark:bg-stone-800 rounded-lg border border-stone-200 dark:border-stone-700 py-1">
+              <span class="text-[10px] text-stone-400 font-mono" id="sizeDisplay">3px</span>
+              <input type="range" id="strokeSizeInput" min="1" max="24" value="3" oninput="app.setStrokeSize(this.value)" class="w-16 accent-amber-700 h-1 cursor-pointer">
+              <div id="brushPreviewCircle" class="w-1.5 h-1.5 rounded-full bg-stone-900 dark:bg-white"></div>
             </div>
           </div>
 
           <!-- Color Presets -->
           <div class="flex items-center gap-1.5">
-            <button onclick="app.setColor('#1c1917')" class="w-6 h-6 rounded-full bg-stone-900 border-2 border-white dark:border-stone-800 shadow-xs hover:scale-110 transition" title="שחור דיו"></button>
-            <button onclick="app.setColor('#1e3a8a')" class="w-6 h-6 rounded-full bg-blue-900 border-2 border-white dark:border-stone-800 shadow-xs hover:scale-110 transition" title="כחול עמוק"></button>
-            <button onclick="app.setColor('#991b1b')" class="w-6 h-6 rounded-full bg-red-800 border-2 border-white dark:border-stone-800 shadow-xs hover:scale-110 transition" title="אדום בורדו"></button>
-            <button onclick="app.setColor('#166534')" class="w-6 h-6 rounded-full bg-emerald-800 border-2 border-white dark:border-stone-800 shadow-xs hover:scale-110 transition" title="ירוק יער"></button>
-            <button onclick="app.setColor('#92400e')" class="w-6 h-6 rounded-full bg-amber-800 border-2 border-white dark:border-stone-800 shadow-xs hover:scale-110 transition" title="חום עור"></button>
-            <label class="w-6 h-6 rounded-full border border-stone-300 dark:border-stone-600 cursor-pointer overflow-hidden flex items-center justify-center hover:scale-110 transition" title="צבע מותאם אישית">
+            <button onclick="app.setColor('#1c1917')" class="w-5 h-5 rounded-full bg-stone-900 border border-white dark:border-stone-800 shadow-xs" title="שחור דיו"></button>
+            <button onclick="app.setColor('#1e3a8a')" class="w-5 h-5 rounded-full bg-blue-900 border border-white dark:border-stone-800 shadow-xs" title="כחול"></button>
+            <button onclick="app.setColor('#991b1b')" class="w-5 h-5 rounded-full bg-red-800 border border-white dark:border-stone-800 shadow-xs" title="אדום"></button>
+            <button onclick="app.setColor('#166534')" class="w-5 h-5 rounded-full bg-emerald-800 border border-white dark:border-stone-800 shadow-xs" title="ירוק"></button>
+            <button onclick="app.setColor('#92400e')" class="w-5 h-5 rounded-full bg-amber-800 border border-white dark:border-stone-800 shadow-xs" title="חום"></button>
+            <label class="w-5 h-5 rounded-full border border-stone-300 dark:border-stone-600 cursor-pointer overflow-hidden flex items-center justify-center" title="צבע מותאם אישית">
               <input type="color" id="customColorPicker" onchange="app.setColor(this.value)" class="opacity-0 w-8 h-8 cursor-pointer">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="plus" aria-hidden="true" class="lucide lucide-plus w-3.5 h-3.5 text-stone-500 pointer-events-none"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+              <i data-lucide="plus" class="w-3 h-3 text-stone-500 pointer-events-none"></i>
             </label>
           </div>
 
-          <!-- Paper Styles & Canvas History -->
-          <div class="flex items-center gap-1.5">
-            <select id="sheetTemplateSelect" onchange="app.setSheetTemplate(this.value)" class="bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 text-xs rounded-xl px-2 py-1.5 text-stone-700 dark:text-stone-300 cursor-pointer">
-              <option value="paper-grid" selected="">משבצות חשבון</option>
-              <option value="paper-ruled">שורות מחברת</option>
-              <option value="paper-dots">נקודות (Dots)</option>
-              <option value="paper-blank">דף חלק</option>
+          <!-- Paper Patterns & Actions -->
+          <div class="flex items-center gap-1">
+            <select id="sheetTemplateSelect" onchange="app.setSheetTemplate(this.value)" class="bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 text-[11px] rounded-lg px-2 py-1 text-stone-700 dark:text-stone-300">
+              <option value="paper-grid" selected>משבצות</option>
+              <option value="paper-ruled">שורות</option>
+              <option value="paper-dots">נקודות</option>
+              <option value="paper-blank">חלק</option>
             </select>
 
-            <button onclick="app.undoCanvas()" title="ביטול פעולה (Undo)" class="p-1.5 hover:bg-stone-200 dark:hover:bg-stone-800 rounded-lg text-stone-600 dark:text-stone-300 transition">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="undo-2" aria-hidden="true" class="lucide lucide-undo-2 w-4 h-4"><path d="M9 14 4 9l5-5"></path><path d="M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5a5.5 5.5 0 0 1-5.5 5.5H11"></path></svg>
+            <button onclick="app.undoCanvas()" title="בטל (Undo)" class="p-1 hover:bg-stone-200 dark:hover:bg-stone-800 rounded text-stone-600 dark:text-stone-300">
+              <i data-lucide="undo-2" class="w-3.5 h-3.5"></i>
             </button>
-            <button onclick="app.redoCanvas()" title="בצע שוב (Redo)" class="p-1.5 hover:bg-stone-200 dark:hover:bg-stone-800 rounded-lg text-stone-600 dark:text-stone-300 transition">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="redo-2" aria-hidden="true" class="lucide lucide-redo-2 w-4 h-4"><path d="m15 14 5-5-5-5"></path><path d="M20 9H9.5A5.5 5.5 0 0 0 4 14.5A5.5 5.5 0 0 0 9.5 20H13"></path></svg>
+            <button onclick="app.redoCanvas()" title="בצע שוב (Redo)" class="p-1 hover:bg-stone-200 dark:hover:bg-stone-800 rounded text-stone-600 dark:text-stone-300">
+              <i data-lucide="redo-2" class="w-3.5 h-3.5"></i>
             </button>
-            <button onclick="app.clearCanvasPrompt()" title="נקה משטח שרטוט" class="p-1.5 hover:bg-red-50 text-stone-400 hover:text-red-600 rounded-lg transition">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="trash-2" aria-hidden="true" class="lucide lucide-trash-2 w-4 h-4"><path d="M10 11v6"></path><path d="M14 11v6"></path><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"></path><path d="M3 6h18"></path><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+            <button onclick="app.clearCanvasPrompt()" title="נקה משטח" class="p-1 hover:bg-red-50 text-stone-400 hover:text-red-600 rounded">
+              <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
             </button>
           </div>
 
         </div>
 
-        <!-- Drawing Canvas Container -->
+        <!-- Drawing Canvas Area -->
         <div id="canvasWrapper" class="flex-1 w-full h-full relative paper-grid overflow-hidden">
-          <canvas id="drawingCanvas" class="w-full h-full block" width="948" height="649"></canvas>
+          <canvas id="drawingCanvas" class="w-full h-full block"></canvas>
           
-          <!-- Tablet Stylus Indicator -->
-          <div class="no-print absolute bottom-4 left-4 bg-white/85 dark:bg-stone-900/85 backdrop-blur-md px-3 py-1.5 rounded-full border border-stone-200 dark:border-stone-700 text-xs text-stone-600 dark:text-stone-400 flex items-center gap-2 pointer-events-none shadow-sm">
-            <span class="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
+          <div class="no-print absolute bottom-3 left-3 bg-white/80 dark:bg-stone-900/80 px-2.5 py-1 rounded-full border border-stone-200 dark:border-stone-700 text-[10px] text-stone-500 flex items-center gap-1.5 pointer-events-none">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
             <span>עט סטיילוס ורגישות לחץ פעילים</span>
           </div>
-
-          <!-- Quick Mobile Embed Button -->
-          <button onclick="app.insertCanvasToNote()" class="no-print sm:hidden absolute bottom-4 right-4 bg-amber-800 text-white p-3 rounded-2xl shadow-lg flex items-center gap-1 text-xs font-bold active:scale-95 transition">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="corner-down-left" aria-hidden="true" class="lucide lucide-corner-down-left w-4 h-4"><path d="M20 4v7a4 4 0 0 1-4 4H4"></path><path d="m9 10-5 5 5 5"></path></svg>
-            <span>שמור לסיכום</span>
-          </button>
         </div>
 
       </div>
@@ -744,39 +586,35 @@
   </div>
 
   <!-- ============================================================== -->
-  <!-- MODAL: יצירת מחברת חדשה (New Realistic Notebook Modal)          -->
+  <!-- MODAL: יצירת מחברת חדשה (New Notebook Modal)                   -->
   <!-- ============================================================== -->
-  <div id="newNotebookModal" class="fixed inset-0 bg-stone-950/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-200">
-    <div class="bg-white/95 dark:bg-stone-850/95 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-stone-200/80 dark:border-stone-700 transform transition-all duration-200 scale-95" id="newNotebookCard">
+  <div id="newNotebookModal" class="fixed inset-0 bg-stone-950/50 backdrop-blur-xs z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-200">
+    <div class="bg-white dark:bg-stone-850 rounded-2xl max-w-md w-full p-5 sm:p-6 shadow-xl border border-stone-200 dark:border-stone-700 transform transition-all duration-200 scale-95" id="newNotebookCard">
       
-      <div class="flex items-center justify-between mb-6">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-2xl bg-amber-100 dark:bg-amber-950/80 text-amber-800 dark:text-amber-300 flex items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="book-plus" aria-hidden="true" class="lucide lucide-book-plus w-5 h-5"><path d="M12 7v6"></path><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"></path><path d="M9 10h6"></path></svg>
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-amber-100 dark:bg-amber-950/80 text-amber-800 dark:text-amber-300 flex items-center justify-center">
+            <i data-lucide="book-plus" class="w-4 h-4"></i>
           </div>
           <div>
-            <h3 class="text-xl font-bold font-serif tracking-tight">כריכת מחברת חדשה</h3>
-            <p class="text-xs text-stone-400">הוסף מחברת מעוצבת למדף הלימודים שלך</p>
+            <h3 class="text-base font-bold font-serif">יצירת מחברת חדשה</h3>
           </div>
         </div>
-        <button onclick="app.closeNewNotebookModal()" class="text-stone-400 hover:text-stone-600 dark:hover:text-stone-200 p-1 rounded-xl">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="x" aria-hidden="true" class="lucide lucide-x w-5 h-5"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+        <button onclick="app.closeNewNotebookModal()" class="text-stone-400 hover:text-stone-600 p-1">
+          <i data-lucide="x" class="w-4 h-4"></i>
         </button>
       </div>
 
-      <form onsubmit="app.handleCreateNotebook(event)" class="space-y-4">
-        
-        <!-- Course Title -->
+      <form onsubmit="app.handleCreateNotebook(event)" class="space-y-3.5">
         <div>
-          <label class="block text-xs font-semibold text-stone-600 dark:text-stone-300 mb-1.5">שם המחברת / הקורס *</label>
-          <input type="text" id="nbTitleInput" required="" placeholder="למשל: אינפי 1, מבני נתונים ואלגוריתמים, אנטומיה" class="w-full bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl px-4 py-2.5 text-sm focus:ring-2 focus:ring-amber-700 focus:outline-none">
+          <label class="block text-xs font-semibold text-stone-600 dark:text-stone-300 mb-1">שם הקורס / המחברת *</label>
+          <input type="text" id="nbTitleInput" required placeholder="למשל: אינפי 1, מבני נתונים, פיזיקה" class="w-full bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-lg px-3 py-2 text-xs sm:text-sm focus:outline-none focus:ring-1 focus:ring-amber-700">
         </div>
 
-        <!-- Academic Year & Subject -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="grid grid-cols-2 gap-3">
           <div>
-            <label class="block text-xs font-semibold text-stone-600 dark:text-stone-300 mb-1.5">שנת לימודים</label>
-            <select id="nbYearSelect" class="w-full bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl px-3 py-2.5 text-sm focus:ring-2 focus:ring-amber-700 focus:outline-none">
+            <label class="block text-xs font-semibold text-stone-600 dark:text-stone-300 mb-1">שנת לימודים</label>
+            <select id="nbYearSelect" class="w-full bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none">
               <option value="שנה א'">שנה א׳</option>
               <option value="שנה ב'">שנה ב׳</option>
               <option value="שנה ג'">שנה ג׳</option>
@@ -785,158 +623,107 @@
           </div>
 
           <div>
-            <label class="block text-xs font-semibold text-stone-600 dark:text-stone-300 mb-1.5">תחום מקצוע</label>
-            <select id="nbSubjectSelect" class="w-full bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl px-3 py-2.5 text-sm focus:ring-2 focus:ring-amber-700 focus:outline-none">
+            <label class="block text-xs font-semibold text-stone-600 dark:text-stone-300 mb-1">תחום מקצוע</label>
+            <select id="nbSubjectSelect" class="w-full bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none">
               <option value="מתמטיקה">מתמטיקה</option>
               <option value="פיזיקה">פיזיקה</option>
               <option value="מדעי המחשב">מדעי המחשב</option>
               <option value="הנדסה">הנדסה</option>
-              <option value="רפואה">רפואה ומדעי החיים</option>
+              <option value="רפואה">רפואה</option>
               <option value="כללי">כללי</option>
             </select>
           </div>
         </div>
 
-        <!-- Physical Leather/Cloth Cover Colors -->
         <div>
-          <label class="block text-xs font-semibold text-stone-600 dark:text-stone-300 mb-2">סגנון כריכת עור ובד</label>
-          <div class="grid grid-cols-5 gap-3" id="coverStyleChoices">
-            <label class="cursor-pointer text-center">
-              <input type="radio" name="nbColor" value="leather-emerald" class="sr-only peer" checked="">
-              <div class="h-14 rounded-xl bg-gradient-to-b from-[#4a7261] to-[#3a584a] ring-2 ring-transparent peer-checked:ring-offset-2 peer-checked:ring-amber-600 transition shadow-sm border border-emerald-800/40 flex items-center justify-center">
-                <span class="text-emerald-100 text-[10px] font-serif">מרווה</span>
-              </div>
+          <label class="block text-xs font-semibold text-stone-600 dark:text-stone-300 mb-1.5">גוון מחברת</label>
+          <div class="grid grid-cols-5 gap-2">
+            <label class="cursor-pointer">
+              <input type="radio" name="nbColor" value="color-sage" class="sr-only peer" checked>
+              <div class="h-9 rounded-lg bg-emerald-800 border-2 border-transparent peer-checked:border-amber-500 shadow-xs flex items-center justify-center text-[10px] text-white">ירוק</div>
             </label>
-            <label class="cursor-pointer text-center">
-              <input type="radio" name="nbColor" value="leather-navy" class="sr-only peer">
-              <div class="h-14 rounded-xl bg-gradient-to-b from-[#40607a] to-[#324b61] ring-2 ring-transparent peer-checked:ring-offset-2 peer-checked:ring-amber-600 transition shadow-sm border border-blue-900/40 flex items-center justify-center">
-                <span class="text-blue-100 text-[10px] font-serif">פלדה</span>
-              </div>
+            <label class="cursor-pointer">
+              <input type="radio" name="nbColor" value="color-navy" class="sr-only peer">
+              <div class="h-9 rounded-lg bg-blue-900 border-2 border-transparent peer-checked:border-amber-500 shadow-xs flex items-center justify-center text-[10px] text-white">כחול</div>
             </label>
-            <label class="cursor-pointer text-center">
-              <input type="radio" name="nbColor" value="leather-burgundy" class="sr-only peer">
-              <div class="h-14 rounded-xl bg-gradient-to-b from-[#915648] to-[#764235] ring-2 ring-transparent peer-checked:ring-offset-2 peer-checked:ring-amber-600 transition shadow-sm border border-red-900/40 flex items-center justify-center">
-                <span class="text-rose-100 text-[10px] font-serif">טרקוטה</span>
-              </div>
+            <label class="cursor-pointer">
+              <input type="radio" name="nbColor" value="color-terracotta" class="sr-only peer">
+              <div class="h-9 rounded-lg bg-red-900 border-2 border-transparent peer-checked:border-amber-500 shadow-xs flex items-center justify-center text-[10px] text-white">בורדו</div>
             </label>
-            <label class="cursor-pointer text-center">
-              <input type="radio" name="nbColor" value="leather-cognac" class="sr-only peer">
-              <div class="h-14 rounded-xl bg-gradient-to-b from-[#99734e] to-[#7c5b3a] ring-2 ring-transparent peer-checked:ring-offset-2 peer-checked:ring-amber-600 transition shadow-sm border border-amber-900/40 flex items-center justify-center">
-                <span class="text-amber-100 text-[10px] font-serif">קאמל</span>
-              </div>
+            <label class="cursor-pointer">
+              <input type="radio" name="nbColor" value="color-cognac" class="sr-only peer">
+              <div class="h-9 rounded-lg bg-amber-800 border-2 border-transparent peer-checked:border-amber-500 shadow-xs flex items-center justify-center text-[10px] text-white">חום</div>
             </label>
-            <label class="cursor-pointer text-center">
-              <input type="radio" name="nbColor" value="leather-charcoal" class="sr-only peer">
-              <div class="h-14 rounded-xl bg-gradient-to-b from-[#635c55] to-[#4e4842] ring-2 ring-transparent peer-checked:ring-offset-2 peer-checked:ring-amber-600 transition shadow-sm border border-stone-800/40 flex items-center justify-center">
-                <span class="text-stone-100 text-[10px] font-serif">פשתן</span>
-              </div>
+            <label class="cursor-pointer">
+              <input type="radio" name="nbColor" value="color-charcoal" class="sr-only peer">
+              <div class="h-9 rounded-lg bg-stone-700 border-2 border-transparent peer-checked:border-amber-500 shadow-xs flex items-center justify-center text-[10px] text-white">אפור</div>
             </label>
           </div>
         </div>
 
-        <!-- Action Buttons -->
-        <div class="flex items-center justify-end gap-3 pt-4 border-t border-stone-200 dark:border-stone-800">
-          <button type="button" onclick="app.closeNewNotebookModal()" class="px-4 py-2.5 rounded-xl text-sm font-medium text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800 transition">
+        <div class="flex items-center justify-end gap-2 pt-3 border-t border-stone-200 dark:border-stone-800">
+          <button type="button" onclick="app.closeNewNotebookModal()" class="px-3 py-1.5 rounded-lg text-xs font-medium text-stone-500 hover:bg-stone-100">
             ביטול
           </button>
-          <button type="submit" class="bg-amber-800 hover:bg-amber-900 active:scale-95 text-white px-5 py-2.5 rounded-xl text-sm font-semibold shadow-md shadow-amber-900/20 transition">
-            כרוך מחברת ופתח לעבודה
+          <button type="submit" class="bg-amber-800 hover:bg-amber-900 text-white px-4 py-1.5 rounded-lg text-xs font-semibold shadow-xs transition">
+            פתח מחברת
           </button>
         </div>
-
       </form>
+
     </div>
   </div>
 
-  <!-- Confirmation Modal -->
-  <div id="confirmModal" class="fixed inset-0 bg-stone-950/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-200">
-    <div class="bg-white dark:bg-stone-850 rounded-3xl max-w-sm w-full p-6 text-center shadow-2xl border border-stone-200 dark:border-stone-750">
-      <div class="w-12 h-12 rounded-2xl bg-red-100 dark:bg-red-950/60 text-red-600 mx-auto flex items-center justify-center mb-4">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="alert-triangle" aria-hidden="true" class="lucide lucide-alert-triangle w-6 h-6"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg>
+  <!-- Delete Confirmation Modal -->
+  <div id="confirmModal" class="fixed inset-0 bg-stone-950/50 backdrop-blur-xs z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-200">
+    <div class="bg-white dark:bg-stone-850 rounded-2xl max-w-xs w-full p-5 text-center shadow-xl border border-stone-200 dark:border-stone-700">
+      <div class="w-10 h-10 rounded-xl bg-red-100 text-red-600 mx-auto flex items-center justify-center mb-3">
+        <i data-lucide="alert-triangle" class="w-5 h-5"></i>
       </div>
-      <h3 id="confirmTitle" class="text-lg font-bold font-serif mb-1">האם להסיר את המחברת?</h3>
-      <p id="confirmMessage" class="text-xs text-stone-500 dark:text-stone-400 mb-6">המחברת וכל הסיכומים והשרטוטים שבה יימחקו מהמכשיר.</p>
-      <div class="flex items-center justify-center gap-3">
-        <button onclick="app.closeConfirmModal()" class="px-4 py-2 rounded-xl text-sm font-medium text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800">
-          ביטול
-        </button>
-        <button id="confirmBtnAction" class="bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-xl text-sm font-semibold shadow-md shadow-red-600/20">
-          אישור ומחיקה
-        </button>
+      <h3 class="text-sm font-bold font-serif mb-1">האם למחוק את המחברת?</h3>
+      <p class="text-xs text-stone-400 mb-4">כל הסיכומים והשרטוטים במחברת זו יימחקו.</p>
+      <div class="flex items-center justify-center gap-2">
+        <button onclick="app.closeConfirmModal()" class="px-3 py-1.5 rounded-lg text-xs text-stone-500 hover:bg-stone-100">ביטול</button>
+        <button id="confirmBtnAction" class="bg-red-600 hover:bg-red-700 text-white px-4 py-1.5 rounded-lg text-xs font-semibold shadow-xs">מחק</button>
       </div>
     </div>
   </div>
 
-  <!-- JAVASCRIPT APPLICATION LOGIC -->
+  <!-- APPLICATION JAVASCRIPT LOGIC -->
   <script>
-    /**
-     * SmartNotes - Serene & Realistic Academic Platform
-     * Features: Realistic 3D physical covers, Draggable & Resizable sketch widgets,
-     * Dual Mode (Rich text + stylus pressure canvas), and persistence.
-     */
     const app = {
       notebooks: [],
       activeNotebookId: null,
-      filters: {
-        year: 'all',
-        subject: 'all',
-        search: ''
-      },
-      editorMode: 'dual', // 'text', 'canvas', 'dual'
+      filters: { year: 'all', subject: 'all', search: '' },
+      editorMode: 'dual',
 
-      // Canvas variables
+      // Canvas state
       canvas: null,
       ctx: null,
       isDrawing: false,
       lastPoint: null,
+      startPoint: null,
+      canvasSnapshot: null,
       currentTool: 'pen',
       currentColor: '#1c1917',
       currentStrokeSize: 3,
       currentSheetTemplate: 'paper-grid',
+      isDashed: false,
+      isFilled: false,
       undoStack: [],
       redoStack: [],
       maxUndoSteps: 25,
       saveTimeout: null,
-      // Color Presets for Realistic Covers (Serene Academic Shades)
+
       coverStyles: {
-        'leather-emerald': {
-          gradient: 'from-[#4a7261] via-[#5b8774] to-[#3a584a]',
-          spineBg: 'from-[#3a584a] to-[#2b4438]',
-          ribbonColor: '#e6b87d',
-          accentColor: '#4a7261',
-          name: 'ירוק מרווה אקדמי'
-        },
-        'leather-navy': {
-          gradient: 'from-[#40607a] via-[#517594] to-[#324b61]',
-          spineBg: 'from-[#324b61] to-[#243747]',
-          ribbonColor: '#e9a769',
-          accentColor: '#40607a',
-          name: 'כחול פלדה נורדי'
-        },
-        'leather-burgundy': {
-          gradient: 'from-[#915648] via-[#a46455] to-[#764235]',
-          spineBg: 'from-[#764235] to-[#592f25]',
-          ribbonColor: '#8cb3a0',
-          accentColor: '#915648',
-          name: 'טרקוטה מעודנת'
-        },
-        'leather-cognac': {
-          gradient: 'from-[#99734e] via-[#ad865f] to-[#7c5b3a]',
-          spineBg: 'from-[#7c5b3a] to-[#5e4328]',
-          ribbonColor: '#5c8577',
-          accentColor: '#99734e',
-          name: 'קאמל וחול חם'
-        },
-        'leather-charcoal': {
-          gradient: 'from-[#635c55] via-[#756d65] to-[#4e4842]',
-          spineBg: 'from-[#4e4842] to-[#39342f]',
-          ribbonColor: '#c2945d',
-          accentColor: '#635c55',
-          name: 'פשתן אפור-חם'
-        }
+        'color-sage': { colorClass: 'bg-emerald-800', borderClass: 'border-emerald-900', textAccent: 'text-emerald-700 dark:text-emerald-400' },
+        'color-navy': { colorClass: 'bg-blue-900', borderClass: 'border-blue-950', textAccent: 'text-blue-700 dark:text-blue-400' },
+        'color-terracotta': { colorClass: 'bg-red-900', borderClass: 'border-red-950', textAccent: 'text-rose-700 dark:text-rose-400' },
+        'color-cognac': { colorClass: 'bg-amber-800', borderClass: 'border-amber-950', textAccent: 'text-amber-700 dark:text-amber-400' },
+        'color-charcoal': { colorClass: 'bg-stone-700', borderClass: 'border-stone-800', textAccent: 'text-stone-700 dark:text-stone-400' }
       },
 
-      STORAGE_KEY: 'smartnotes_academic_realistic_v2',
+      STORAGE_KEY: 'smartnotes_academic_v3',
       THEME_KEY: 'smartnotes_theme_mode',
 
       init() {
@@ -944,9 +731,7 @@
         this.loadData();
         this.initCanvas();
         this.renderNotebooks();
-        this.updateStats();
         this.initInteractiveWidgetsObserver();
-        
         lucide.createIcons();
 
         window.addEventListener('resize', () => {
@@ -956,7 +741,6 @@
 
       loadSettings() {
         const savedTheme = localStorage.getItem(this.THEME_KEY);
-        // Default to clean serene light theme unless specifically toggled to dark
         if (savedTheme === 'dark') {
           document.documentElement.classList.add('dark');
         } else {
@@ -967,7 +751,6 @@
       toggleDarkMode() {
         const isDark = document.documentElement.classList.toggle('dark');
         localStorage.setItem(this.THEME_KEY, isDark ? 'dark' : 'light');
-        this.showToast(isDark ? 'מצב לילה הופעל' : 'מצב יום שליו הופעל', 'moon');
         lucide.createIcons();
       },
 
@@ -982,27 +765,22 @@
           }
         }
 
-        // Initial default inspiring sample notebooks
         this.notebooks = [
           {
             id: 'nb_1',
-            title: 'אינפי 1 - נגזרות, אינטגרלים וסדרות',
+            title: 'אינפי 1 - נגזרות ואינטגרלים',
             year: 'שנה א\'',
             subject: 'מתמטיקה',
-            coverStyle: 'leather-emerald',
+            coverStyle: 'color-sage',
             updatedAt: new Date().toISOString(),
             content: `
               <h1>הרצאה 4: משפטי גזירות וקירוב טיילור</h1>
               <p>סיכום מעמיק מתוך חומרי ההרצאה ותרגולי הבית.</p>
               <blockquote>
                 <strong>משפט הערך הממוצע של לגראנז':</strong><br>
-                תהי f פונקציה רציפה בקטע הסגור [a,b] וגזירה בקטע הפתוח (a,b). אזי קיימת לפחות נקודה אחת c ב-(a,b) שעבורה השיפוע שווה לקצב הממוצע:
-                <br><em>f'(c) = [f(b) - f(a)] / (b - a)</em>
+                f'(c) = [f(b) - f(a)] / (b - a)
               </blockquote>
-              <h3>נגזרות בסיסיות לזכירה:</h3>
-              <p>• (sin x)' = cos x &nbsp;|&nbsp; (cos x)' = -sin x</p>
-              <p>• (eˣ)' = eˣ &nbsp;|&nbsp; (ln x)' = 1/x (עבור x > 0)</p>
-              <p>תוכלו לצייר סקיצה או גרף פונקציה בטאבלט וללחוץ על <strong>"הטמע שרטוט בסיכום"</strong>. לאחר ההטמעה ניתן להזיז ולשנות את גודל השרטוט בחופשיות!</p>
+              <p>ניתן לשרטט פונקציות וגרפים בטאבלט ולהטמיע ישירות בגוף הסיכום.</p>
             `,
             canvasData: null
           },
@@ -1011,15 +789,11 @@
             title: 'מבני נתונים ואלגוריתמים 1',
             year: 'שנה ב\'',
             subject: 'מדעי המחשב',
-            coverStyle: 'leather-navy',
+            coverStyle: 'color-navy',
             updatedAt: new Date(Date.now() - 3600000 * 24).toISOString(),
             content: `
               <h1>עצי חיפוש בינאריים ו-AVL Trees</h1>
               <p>סקירת מבני נתונים מאוזנים וזמני ריצה של פעולות הכנסה, מחיקה וחיפוש.</p>
-              <pre class="bg-stone-100 dark:bg-stone-800 p-3 rounded-xl font-mono text-sm my-3 text-amber-900 dark:text-amber-300"><code>// גובה העץ והפרש גבהים (Balance Factor)
-int balanceFactor = height(node.left) - height(node.right);
-// כאשר |balanceFactor| > 1 מתבצעת רוטציה (LL, RR, LR, RL)</code></pre>
-              <p>ניתן לשרטט את עץ החיפוש בטאבלט ולמקם אותו ישירות ליד הפסקה המתאימה.</p>
             `,
             canvasData: null
           },
@@ -1028,12 +802,11 @@ int balanceFactor = height(node.left) - height(node.right);
             title: 'מכניקה קלאסית ותרמודינמיקה',
             year: 'שנה א\'',
             subject: 'פיזיקה',
-            coverStyle: 'leather-cognac',
+            coverStyle: 'color-cognac',
             updatedAt: new Date(Date.now() - 3600000 * 48).toISOString(),
             content: `
               <h1>חוקי שימור ותנועה הרמונית פשוטה</h1>
               <p>סיכום תרגול: מתקף, תנע ומשפט עבודה-אנרגיה.</p>
-              <blockquote>ΣW = ΔE_k &nbsp;|&nbsp; שימור תנע כולל במערכת סגורה: P_initial = P_final</blockquote>
             `,
             canvasData: null
           }
@@ -1043,10 +816,8 @@ int balanceFactor = height(node.left) - height(node.right);
 
       saveData() {
         localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.notebooks));
-        this.updateStats();
       },
 
-      // Navigation & Views
       showDashboard() {
         document.getElementById('editorView').classList.add('hidden');
         document.getElementById('dashboardView').classList.remove('hidden');
@@ -1070,7 +841,6 @@ int balanceFactor = height(node.left) - height(node.right);
         const contentDiv = document.getElementById('noteContent');
         contentDiv.innerHTML = nb.content || '<p>התחל לכתוב את הסיכום כאן...</p>';
 
-        // Set default view mode based on screen width
         if (window.innerWidth < 768) {
           this.setEditorMode('text');
         } else {
@@ -1085,7 +855,7 @@ int balanceFactor = height(node.left) - height(node.right);
             this.clearCanvasOnly();
           }
           this.attachWidgetListeners();
-        }, 100);
+        }, 80);
 
         lucide.createIcons();
       },
@@ -1094,16 +864,15 @@ int balanceFactor = height(node.left) - height(node.right);
         this.editorMode = mode;
         const textPane = document.getElementById('textPane');
         const canvasPane = document.getElementById('canvasPane');
-        
         const btnText = document.getElementById('modeBtnText');
         const btnCanvas = document.getElementById('modeBtnCanvas');
         const btnDual = document.getElementById('modeBtnDual');
 
         [btnText, btnCanvas, btnDual].forEach(btn => {
-          btn.className = "flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-medium text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white transition";
+          btn.className = "flex items-center gap-1 px-3 py-1 rounded-lg text-xs font-medium text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white transition";
         });
 
-        const activeClass = "flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition bg-white dark:bg-stone-800 text-amber-800 dark:text-amber-300 shadow-xs";
+        const activeClass = "flex items-center gap-1 px-3 py-1 rounded-lg text-xs font-semibold bg-white dark:bg-stone-800 text-amber-800 dark:text-amber-300 shadow-xs";
 
         if (mode === 'text') {
           textPane.classList.remove('hidden');
@@ -1122,14 +891,13 @@ int balanceFactor = height(node.left) - height(node.right);
         }
       },
 
-      // Dashboard Realistic Notebook Rendering
       setYearFilter(year) {
         this.filters.year = year;
         document.querySelectorAll('.year-tab').forEach(btn => {
           if (btn.dataset.year === year) {
-            btn.className = 'year-tab px-4 py-2 rounded-xl text-sm font-semibold transition bg-amber-800 text-white shadow-sm';
+            btn.className = 'year-tab px-3 py-1.5 rounded-lg text-xs font-semibold transition bg-amber-800 text-white';
           } else {
-            btn.className = 'year-tab px-4 py-2 rounded-xl text-sm font-medium transition text-stone-600 dark:text-stone-300 hover:bg-stone-200/60 dark:hover:bg-stone-800';
+            btn.className = 'year-tab px-3 py-1.5 rounded-lg text-xs font-medium text-stone-600 dark:text-stone-300 hover:bg-stone-200/60 dark:hover:bg-stone-800';
           }
         });
         this.renderNotebooks();
@@ -1152,6 +920,7 @@ int balanceFactor = height(node.left) - height(node.right);
         this.setYearFilter('all');
       },
 
+      // Render Compact Notebook Icons / Cards
       renderNotebooks() {
         const grid = document.getElementById('notebooksGrid');
         const emptyState = document.getElementById('emptyState');
@@ -1174,88 +943,60 @@ int balanceFactor = height(node.left) - height(node.right);
         }
 
         filtered.forEach(nb => {
-          const style = this.coverStyles[nb.coverStyle] || this.coverStyles['leather-emerald'];
+          const style = this.coverStyles[nb.coverStyle] || this.coverStyles['color-sage'];
           const formattedDate = new Date(nb.updatedAt).toLocaleDateString('he-IL', {
-            month: 'short',
+            month: 'numeric',
             day: 'numeric'
           });
 
-          // Realistic 3D Notebook Component
-          const cardWrap = document.createElement('div');
-          cardWrap.className = "notebook-perspective-wrap group cursor-pointer";
+          // Compact notebook tile with small book icon
+          const card = document.createElement('div');
+          card.className = "compact-nb-card bg-white dark:bg-stone-850 border border-stone-200/80 dark:border-stone-750 rounded-xl p-3.5 shadow-xs cursor-pointer flex flex-col justify-between hover:shadow-md hover:border-amber-700/40 relative overflow-hidden group";
           
-          cardWrap.innerHTML = `
-            <div class="realistic-notebook bg-gradient-to-l ${style.gradient} h-80 p-5 flex flex-col justify-between overflow-hidden relative" onclick="app.openNotebook('${nb.id}')">
-              
-              <!-- Spine & Creases (RTL Book) -->
-              <div class="notebook-spine"></div>
-              <div class="notebook-crease"></div>
+          card.onclick = () => app.openNotebook(nb.id);
 
-              <!-- Woven Silk Bookmark Ribbon -->
-              <div class="bookmark-ribbon" style="background-color: ${style.ribbonColor};"></div>
+          card.innerHTML = `
+            <!-- Top spine accent line -->
+            <div class="absolute top-0 right-0 left-0 h-1.5 ${style.colorClass}"></div>
 
-              <!-- Top Notebook Meta Details -->
-              <div class="flex items-start justify-between z-10 pr-9">
-                <span class="text-xs px-2.5 py-1 rounded-md font-semibold bg-black/25 text-stone-100 backdrop-blur-sm border border-white/10 font-serif">
+            <!-- Header of card with small icon -->
+            <div class="flex items-start justify-between gap-2 pt-1 mb-2">
+              <div class="flex items-center gap-2">
+                <!-- Small Notebook Icon -->
+                <div class="w-7 h-7 rounded-lg ${style.colorClass} text-white flex items-center justify-center shrink-0 shadow-xs">
+                  <i data-lucide="book" class="w-3.5 h-3.5"></i>
+                </div>
+                <span class="text-[11px] font-semibold text-stone-500 dark:text-stone-400 bg-stone-100 dark:bg-stone-800 px-2 py-0.5 rounded-md">
                   ${nb.year}
                 </span>
-
-                <div class="flex items-center gap-1 z-20" onclick="event.stopPropagation()">
-                  <button onclick="app.confirmDeleteNotebook('${nb.id}')" title="מחק מחברת" class="p-1.5 rounded-xl bg-black/20 hover:bg-red-900/60 text-stone-200 hover:text-white backdrop-blur-sm transition">
-                    <i data-lucide="trash-2" class="w-4 h-4"></i>
-                  </button>
-                </div>
               </div>
 
-              <!-- Center Paper Bookplate (תווית נייר מסורתית תפורה לכריכה) -->
-              <div class="notebook-label-plate rounded-xl p-4 mx-auto my-auto w-[82%] text-center z-10 pr-4">
-                <span class="inline-block text-[11px] font-bold text-amber-800 dark:text-amber-400 bg-amber-100/70 dark:bg-amber-950/60 px-2 py-0.5 rounded-full mb-1.5 border border-amber-200 dark:border-amber-800">
-                  ${nb.subject}
-                </span>
-                <h3 class="font-bold text-base sm:text-lg font-serif text-stone-900 dark:text-stone-100 line-clamp-2 leading-snug">
-                  ${nb.title}
-                </h3>
-              </div>
+              <!-- Delete button -->
+              <button onclick="event.stopPropagation(); app.confirmDeleteNotebook('${nb.id}')" title="מחק מחברת" class="p-1 rounded-md text-stone-400 hover:text-red-600 hover:bg-stone-100 dark:hover:bg-stone-800 opacity-60 group-hover:opacity-100 transition">
+                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
 
-              <!-- Bottom Footer with Golden Stamped Details -->
-              <div class="flex items-center justify-between text-[11px] text-stone-300/80 pr-9 z-10 border-t border-white/10 pt-2.5">
-                <span class="flex items-center gap-1">
-                  <i data-lucide="clock" class="w-3.5 h-3.5 text-amber-300/70"></i>
-                  ${formattedDate}
-                </span>
-                <span class="text-amber-200 font-serif font-bold group-hover:underline flex items-center gap-0.5">
-                  פתח מחברת
-                  <i data-lucide="chevron-left" class="w-3.5 h-3.5"></i>
-                </span>
-              </div>
+            <!-- Title -->
+            <div class="my-1.5">
+              <h3 class="font-bold text-sm font-serif text-stone-900 dark:text-stone-100 line-clamp-2 leading-snug">
+                ${nb.title}
+              </h3>
+            </div>
 
+            <!-- Bottom meta -->
+            <div class="flex items-center justify-between text-[11px] text-stone-400 pt-2 border-t border-stone-100 dark:border-stone-800">
+              <span class="font-medium ${style.textAccent}">${nb.subject}</span>
+              <span class="text-[10px]">${formattedDate}</span>
             </div>
           `;
 
-          grid.appendChild(cardWrap);
+          grid.appendChild(card);
         });
 
         lucide.createIcons();
       },
 
-      updateStats() {
-        document.getElementById('statNotebooksCount').textContent = this.notebooks.length;
-        const yearCounts = {};
-        this.notebooks.forEach(n => {
-          yearCounts[n.year] = (yearCounts[n.year] || 0) + 1;
-        });
-        let topYear = 'שנה א׳';
-        let maxCount = 0;
-        for (let y in yearCounts) {
-          if (yearCounts[y] > maxCount) {
-            maxCount = yearCounts[y];
-            topYear = y;
-          }
-        }
-        document.getElementById('statActiveYear').textContent = topYear;
-      },
-
-      // Modal Controls
       openNewNotebookModal() {
         const modal = document.getElementById('newNotebookModal');
         const card = document.getElementById('newNotebookCard');
@@ -1278,9 +1019,8 @@ int balanceFactor = height(node.left) - height(node.right);
         const title = document.getElementById('nbTitleInput').value.trim();
         const year = document.getElementById('nbYearSelect').value;
         const subject = document.getElementById('nbSubjectSelect').value;
-        
         const selectedColorRadio = document.querySelector('input[name="nbColor"]:checked');
-        const coverStyle = selectedColorRadio ? selectedColorRadio.value : 'leather-emerald';
+        const coverStyle = selectedColorRadio ? selectedColorRadio.value : 'color-sage';
 
         if (!title) return;
 
@@ -1298,7 +1038,6 @@ int balanceFactor = height(node.left) - height(node.right);
         this.notebooks.unshift(newNb);
         this.saveData();
         this.closeNewNotebookModal();
-        this.showToast('המחברת נכרכה ונפתחה בהצלחה!', 'book-check');
         this.openNotebook(newNb.id);
       },
 
@@ -1313,7 +1052,6 @@ int balanceFactor = height(node.left) - height(node.right);
           this.saveData();
           this.closeConfirmModal();
           this.renderNotebooks();
-          this.showToast('המחברת הוסרה ממדף הספרים', 'trash-2');
         };
         lucide.createIcons();
       },
@@ -1324,9 +1062,7 @@ int balanceFactor = height(node.left) - height(node.right);
         this.notebookToDeleteId = null;
       },
 
-      // ==========================================
-      // RICH TEXT EDITOR & AUTOSAVE
-      // ==========================================
+      // Rich Text Editor Commands
       execCmd(command, value = null) {
         document.getElementById('noteContent').focus();
         document.execCommand(command, false, value);
@@ -1334,15 +1070,15 @@ int balanceFactor = height(node.left) - height(node.right);
       },
 
       insertCodeBlock() {
-        const codeHTML = `<pre class="bg-stone-100 dark:bg-stone-800 p-3 rounded-xl font-mono text-sm my-2 text-amber-900 dark:text-amber-300 overflow-x-auto"><code>// כתוב קוד, נוסחה או פסאודו-קוד כאן\nfunction calculate() {\n  return 42;\n}</code></pre><p><br></p>`;
+        const codeHTML = `<pre class="bg-stone-100 dark:bg-stone-800 p-2.5 rounded-lg font-mono text-xs my-2 text-amber-900 dark:text-amber-300"><code>// כתוב קוד או נוסחה כאן\n</code></pre><p><br></p>`;
         document.execCommand('insertHTML', false, codeHTML);
         this.onTextChange();
       },
 
       insertMathSnippet() {
         const formulaHTML = `
-          <div style="background: rgba(190, 140, 84, 0.08); border: 1px solid rgba(190, 140, 84, 0.3); border-radius: 12px; padding: 12px 18px; margin: 12px 0; display: inline-block; direction: ltr;">
-            <span style="font-family: serif; font-size: 1.3em; font-style: italic; color: #78350f;">lim (x→0) [sin(x) / x] = 1</span>
+          <div style="background: rgba(190, 140, 84, 0.08); border: 1px solid rgba(190, 140, 84, 0.3); border-radius: 8px; padding: 8px 12px; margin: 8px 0; display: inline-block; direction: ltr;">
+            <span style="font-family: serif; font-size: 1.15em; font-style: italic; color: #78350f;">lim (x→0) [sin(x) / x] = 1</span>
           </div>
           <p><br></p>
         `;
@@ -1362,61 +1098,43 @@ int balanceFactor = height(node.left) - height(node.right);
 
       triggerAutoSave() {
         const indicator = document.getElementById('saveStatusIndicator');
-        indicator.innerHTML = `<i data-lucide="loader-2" class="w-3.5 h-3.5 animate-spin text-amber-600"></i><span class="text-amber-600">שומר שינויים...</span>`;
-        lucide.createIcons();
+        indicator.innerHTML = `שומר...`;
+        indicator.className = "text-[11px] text-amber-600 font-medium";
 
         clearTimeout(this.saveTimeout);
         this.saveTimeout = setTimeout(() => {
           this.saveData();
-          indicator.innerHTML = `<i data-lucide="check" class="w-3.5 h-3.5"></i><span>נשמר אוטומטית</span>`;
-          indicator.className = "flex items-center gap-1 text-emerald-700 dark:text-emerald-400 font-medium";
-          lucide.createIcons();
+          indicator.innerHTML = `נשמר`;
+          indicator.className = "text-[11px] text-emerald-600 dark:text-emerald-400 font-medium";
         }, 500);
       },
 
-      // ==============================================================
-      // INTERACTIVE DRAGGABLE & RESIZABLE EMBEDDED SKETCH WIDGET
-      // ==============================================================
+      // Embed Sketch Widget
       insertCanvasToNote() {
         if (!this.canvas) return;
         const dataUrl = this.canvas.toDataURL('image/png');
         const widgetId = 'sketch_' + Date.now();
 
-        // Build rich interactive draggable widget
         const widgetHTML = `
-          <div class="sketch-widget active-widget" id="${widgetId}" contenteditable="false" style="width: 380px; text-align: center; float: none; display: block; margin: 1.5rem auto;">
-            <!-- Floating Controls Toolbar -->
-            <div class="sketch-widget-toolbar absolute -top-10 left-1/2 -translate-x-1/2 flex items-center gap-1 bg-stone-900/90 backdrop-blur-md text-white p-1 rounded-xl shadow-lg border border-stone-700/60 z-30">
-              <span class="sketch-drag-handle p-1 hover:bg-stone-700 rounded-lg text-stone-300" title="גרור להזזה במסמך">
+          <div class="sketch-widget active-widget" id="${widgetId}" contenteditable="false" style="width: 320px; text-align: center; float: none; display: block; margin: 1.25rem auto;">
+            <div class="sketch-widget-toolbar absolute -top-8 left-1/2 -translate-x-1/2 flex items-center gap-1 bg-stone-900/90 text-white p-1 rounded-lg shadow border border-stone-700/60 z-30">
+              <span class="sketch-drag-handle p-0.5 hover:bg-stone-700 rounded text-stone-300" title="גרור להזזה">
                 <i data-lucide="move" class="w-3.5 h-3.5"></i>
               </span>
-              <button onclick="app.setWidgetAlign('${widgetId}', 'right')" class="p-1 hover:bg-stone-700 rounded-lg" title="יישור לימין">
+              <button onclick="app.setWidgetAlign('${widgetId}', 'right')" class="p-0.5 hover:bg-stone-700 rounded" title="יישור לימין">
                 <i data-lucide="align-right" class="w-3.5 h-3.5"></i>
               </button>
-              <button onclick="app.setWidgetAlign('${widgetId}', 'center')" class="p-1 hover:bg-stone-700 rounded-lg" title="יישור למרכז">
+              <button onclick="app.setWidgetAlign('${widgetId}', 'center')" class="p-0.5 hover:bg-stone-700 rounded" title="יישור למרכז">
                 <i data-lucide="align-center" class="w-3.5 h-3.5"></i>
               </button>
-              <button onclick="app.setWidgetAlign('${widgetId}', 'left')" class="p-1 hover:bg-stone-700 rounded-lg" title="יישור לשמאל">
+              <button onclick="app.setWidgetAlign('${widgetId}', 'left')" class="p-0.5 hover:bg-stone-700 rounded" title="יישור לשמאל">
                 <i data-lucide="align-left" class="w-3.5 h-3.5"></i>
               </button>
-              <button onclick="app.setWidgetAlign('${widgetId}', 'float-right')" class="p-1 hover:bg-stone-700 rounded-lg" title="עטיפת טקסט (Float Right)">
-                <i data-lucide="wrap-text" class="w-3.5 h-3.5"></i>
-              </button>
-              <button onclick="app.moveWidgetOrder('${widgetId}', 'up')" class="p-1 hover:bg-stone-700 rounded-lg" title="הזז מעלה">
-                <i data-lucide="arrow-up" class="w-3.5 h-3.5"></i>
-              </button>
-              <button onclick="app.moveWidgetOrder('${widgetId}', 'down')" class="p-1 hover:bg-stone-700 rounded-lg" title="הזז מטה">
-                <i data-lucide="arrow-down" class="w-3.5 h-3.5"></i>
-              </button>
-              <button onclick="app.deleteWidget('${widgetId}')" class="p-1 hover:bg-red-700 text-red-300 rounded-lg" title="מחק שרטוט">
+              <button onclick="app.deleteWidget('${widgetId}')" class="p-0.5 hover:bg-red-700 text-red-300 rounded" title="מחק">
                 <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
               </button>
             </div>
-
-            <!-- Sketch Image -->
-            <img src="${dataUrl}" alt="שרטוט מטאבלט" class="w-full h-auto rounded-xl block pointer-events-none">
-
-            <!-- Interactive Resize Handle -->
+            <img src="${dataUrl}" alt="שרטוט מטאבלט" class="w-full h-auto rounded-lg block pointer-events-none">
             <div class="sketch-resize-handle" onmousedown="app.startWidgetResize(event, '${widgetId}')" ontouchstart="app.startWidgetResize(event, '${widgetId}')"></div>
           </div>
           <p><br></p>
@@ -1430,44 +1148,24 @@ int balanceFactor = height(node.left) - height(node.right);
         if (this.editorMode === 'canvas') {
           this.setEditorMode('dual');
         }
-
-        this.showToast('השרטוט הוטמע! ניתן להזיז, ליישר ולשנות את גודלו', 'move');
         lucide.createIcons();
       },
 
       setWidgetAlign(widgetId, alignment) {
         const el = document.getElementById(widgetId);
         if (!el) return;
-
         if (alignment === 'right') {
           el.style.float = 'none';
           el.style.display = 'block';
-          el.style.margin = '1.5rem 0 1.5rem auto';
+          el.style.margin = '1rem 0 1rem auto';
         } else if (alignment === 'center') {
           el.style.float = 'none';
           el.style.display = 'block';
-          el.style.margin = '1.5rem auto';
+          el.style.margin = '1rem auto';
         } else if (alignment === 'left') {
           el.style.float = 'none';
           el.style.display = 'block';
-          el.style.margin = '1.5rem auto 1.5rem 0';
-        } else if (alignment === 'float-right') {
-          el.style.float = 'right';
-          el.style.display = 'inline-block';
-          el.style.margin = '0.5rem 0 1rem 1.5rem';
-        }
-
-        this.onTextChange();
-      },
-
-      moveWidgetOrder(widgetId, dir) {
-        const el = document.getElementById(widgetId);
-        if (!el) return;
-
-        if (dir === 'up' && el.previousElementSibling) {
-          el.parentNode.insertBefore(el, el.previousElementSibling);
-        } else if (dir === 'down' && el.nextElementSibling) {
-          el.parentNode.insertBefore(el.nextElementSibling, el);
+          el.style.margin = '1rem auto 1rem 0';
         }
         this.onTextChange();
       },
@@ -1477,7 +1175,6 @@ int balanceFactor = height(node.left) - height(node.right);
         if (el) {
           el.remove();
           this.onTextChange();
-          this.showToast('השרטוט הוסר מהסיכום', 'trash');
         }
       },
 
@@ -1493,9 +1190,8 @@ int balanceFactor = height(node.left) - height(node.right);
 
         const onMove = (moveEvent) => {
           const currentX = moveEvent.touches ? moveEvent.touches[0].clientX : moveEvent.clientX;
-          // In RTL, moving left increases width because resize handle is on left
           const diff = startX - currentX;
-          const newWidth = Math.max(160, Math.min(780, startWidth + diff));
+          const newWidth = Math.max(140, Math.min(760, startWidth + diff));
           el.style.width = `${newWidth}px`;
         };
 
@@ -1514,19 +1210,14 @@ int balanceFactor = height(node.left) - height(node.right);
       },
 
       attachWidgetListeners() {
-        // Drag and drop handler for repositioning widgets inside contenteditable
         const editor = document.getElementById('noteContent');
         const widgets = editor.querySelectorAll('.sketch-widget');
         
         widgets.forEach(w => {
           const dragHandle = w.querySelector('.sketch-drag-handle');
           if (dragHandle) {
-            dragHandle.onmousedown = (e) => {
-              w.setAttribute('draggable', 'true');
-            };
-            w.ondragstart = (e) => {
-              e.dataTransfer.setData('text/plain', w.id);
-            };
+            dragHandle.onmousedown = () => w.setAttribute('draggable', 'true');
+            w.ondragstart = (e) => e.dataTransfer.setData('text/plain', w.id);
             w.ondragend = () => {
               w.removeAttribute('draggable');
               this.onTextChange();
@@ -1534,10 +1225,7 @@ int balanceFactor = height(node.left) - height(node.right);
           }
         });
 
-        editor.ondragover = (e) => {
-          e.preventDefault();
-        };
-
+        editor.ondragover = (e) => e.preventDefault();
         editor.ondrop = (e) => {
           e.preventDefault();
           const widgetId = e.dataTransfer.getData('text/plain');
@@ -1556,28 +1244,20 @@ int balanceFactor = height(node.left) - height(node.right);
       },
 
       initInteractiveWidgetsObserver() {
-        const observer = new MutationObserver(() => {
-          lucide.createIcons();
-        });
+        const observer = new MutationObserver(() => lucide.createIcons());
         const editor = document.getElementById('noteContent');
-        if (editor) {
-          observer.observe(editor, { childList: true, subtree: false });
-        }
+        if (editor) observer.observe(editor, { childList: true });
       },
 
-      // ==========================================
-      // STYLUS DRAWING CANVAS ENGINE
-      // ==========================================
+      // Stylus Canvas Engine
       initCanvas() {
         this.canvas = document.getElementById('drawingCanvas');
         this.ctx = this.canvas.getContext('2d', { willReadFrequently: true });
 
-        // Pointer Events for Apple Pencil, S-Pen & Touches
         this.canvas.addEventListener('pointerdown', (e) => this.onPointerDown(e));
         this.canvas.addEventListener('pointermove', (e) => this.onPointerMove(e));
         this.canvas.addEventListener('pointerup', (e) => this.onPointerUp(e));
         this.canvas.addEventListener('pointercancel', (e) => this.onPointerUp(e));
-
         this.canvas.addEventListener('touchstart', (e) => e.preventDefault(), { passive: false });
       },
 
@@ -1613,37 +1293,59 @@ int balanceFactor = height(node.left) - height(node.right);
         };
       },
 
+      isShapeTool(tool) {
+        return ['line', 'arrow', 'axes', 'rect', 'circle', 'triangle'].includes(tool);
+      },
+
       onPointerDown(e) {
         if (!e.isPrimary) return;
         this.isDrawing = true;
         this.pushUndoState();
-        this.lastPoint = this.getCanvasPos(e);
+        const pos = this.getCanvasPos(e);
+        this.startPoint = pos;
+        this.lastPoint = pos;
 
-        this.ctx.beginPath();
-        this.ctx.moveTo(this.lastPoint.x, this.lastPoint.y);
+        if (this.isShapeTool(this.currentTool)) {
+          this.canvasSnapshot = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
+        } else {
+          this.ctx.beginPath();
+          this.ctx.moveTo(pos.x, pos.y);
+        }
       },
 
       onPointerMove(e) {
         if (!this.isDrawing) return;
         const currentPoint = this.getCanvasPos(e);
 
+        if (this.isShapeTool(this.currentTool)) {
+          if (this.canvasSnapshot) {
+            this.ctx.putImageData(this.canvasSnapshot, 0, 0);
+          }
+          this.renderShape(this.ctx, this.currentTool, this.startPoint, currentPoint);
+          return;
+        }
+
         this.ctx.save();
         this.ctx.lineCap = 'round';
         this.ctx.lineJoin = 'round';
 
+        if (this.isDashed) {
+          this.ctx.setLineDash([this.currentStrokeSize * 2, this.currentStrokeSize * 2]);
+        } else {
+          this.ctx.setLineDash([]);
+        }
+
         if (this.currentTool === 'eraser') {
           this.ctx.globalCompositeOperation = 'destination-out';
-          this.ctx.lineWidth = this.currentStrokeSize * 4.5;
+          this.ctx.lineWidth = this.currentStrokeSize * 4;
         } else if (this.currentTool === 'highlighter') {
           this.ctx.globalCompositeOperation = 'source-over';
           this.ctx.strokeStyle = this.hexToRGBA(this.currentColor, 0.35);
           this.ctx.lineWidth = this.currentStrokeSize * 3.5;
-          this.ctx.lineCap = 'square';
         } else if (this.currentTool === 'brush') {
-          // Dynamic pressure response from stylus
           this.ctx.globalCompositeOperation = 'source-over';
           this.ctx.strokeStyle = this.currentColor;
-          const dynamicSize = this.currentStrokeSize * (0.35 + currentPoint.pressure * 1.65);
+          const dynamicSize = this.currentStrokeSize * (0.35 + currentPoint.pressure * 1.6);
           this.ctx.lineWidth = Math.max(1, dynamicSize);
         } else {
           this.ctx.globalCompositeOperation = 'source-over';
@@ -1668,9 +1370,170 @@ int balanceFactor = height(node.left) - height(node.right);
       onPointerUp(e) {
         if (!this.isDrawing) return;
         this.isDrawing = false;
-        this.ctx.closePath();
+
+        if (this.isShapeTool(this.currentTool)) {
+          const currentPoint = this.getCanvasPos(e);
+          if (this.canvasSnapshot) {
+            this.ctx.putImageData(this.canvasSnapshot, 0, 0);
+          }
+          this.renderShape(this.ctx, this.currentTool, this.startPoint, currentPoint);
+          this.canvasSnapshot = null;
+        } else {
+          this.ctx.closePath();
+        }
+
         this.redoStack = [];
         this.saveCanvasToCurrentNotebook();
+      },
+
+      renderShape(ctx, tool, start, end) {
+        if (!start || !end) return;
+        ctx.save();
+        ctx.strokeStyle = this.currentColor;
+        ctx.fillStyle = this.hexToRGBA(this.currentColor, 0.15);
+        ctx.lineWidth = this.currentStrokeSize;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+
+        if (this.isDashed) {
+          ctx.setLineDash([this.currentStrokeSize * 2.5, this.currentStrokeSize * 1.8]);
+        } else {
+          ctx.setLineDash([]);
+        }
+
+        const x1 = start.x, y1 = start.y;
+        const x2 = end.x, y2 = end.y;
+
+        switch (tool) {
+          case 'line':
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.stroke();
+            break;
+          case 'arrow':
+            this.drawArrow(ctx, x1, y1, x2, y2);
+            break;
+          case 'axes':
+            this.drawGraphAxes(ctx, x1, y1, x2, y2);
+            break;
+          case 'rect':
+            const rx = Math.min(x1, x2), ry = Math.min(y1, y2);
+            const rw = Math.abs(x2 - x1), rh = Math.abs(y2 - y1);
+            if (this.isFilled) ctx.fillRect(rx, ry, rw, rh);
+            ctx.strokeRect(rx, ry, rw, rh);
+            break;
+          case 'circle':
+            const cx = (x1 + x2) / 2, cy = (y1 + y2) / 2;
+            const rxRad = Math.abs(x2 - x1) / 2, ryRad = Math.abs(y2 - y1) / 2;
+            ctx.beginPath();
+            ctx.ellipse(cx, cy, Math.max(1, rxRad), Math.max(1, ryRad), 0, 0, Math.PI * 2);
+            if (this.isFilled) ctx.fill();
+            ctx.stroke();
+            break;
+          case 'triangle':
+            ctx.beginPath();
+            ctx.moveTo((x1 + x2) / 2, y1);
+            ctx.lineTo(x2, y2);
+            ctx.lineTo(x1, y2);
+            ctx.closePath();
+            if (this.isFilled) ctx.fill();
+            ctx.stroke();
+            break;
+        }
+        ctx.restore();
+      },
+
+      drawArrow(ctx, fromX, fromY, toX, toY) {
+        const headLength = Math.max(10, this.currentStrokeSize * 3);
+        const angle = Math.atan2(toY - fromY, toX - fromX);
+
+        ctx.beginPath();
+        ctx.moveTo(fromX, fromY);
+        ctx.lineTo(toX, toY);
+        ctx.stroke();
+
+        ctx.save();
+        ctx.setLineDash([]);
+        ctx.beginPath();
+        ctx.moveTo(toX, toY);
+        ctx.lineTo(toX - headLength * Math.cos(angle - Math.PI / 6), toY - headLength * Math.sin(angle - Math.PI / 6));
+        ctx.moveTo(toX, toY);
+        ctx.lineTo(toX - headLength * Math.cos(angle + Math.PI / 6), toY - headLength * Math.sin(angle + Math.PI / 6));
+        ctx.stroke();
+        ctx.restore();
+      },
+
+      drawGraphAxes(ctx, x1, y1, x2, y2) {
+        const ox = x1, oy = y2;
+        const headLen = Math.max(9, this.currentStrokeSize * 2.5);
+
+        ctx.save();
+        ctx.setLineDash([]);
+        ctx.lineWidth = Math.max(1.8, this.currentStrokeSize);
+
+        // X-Axis
+        ctx.beginPath();
+        ctx.moveTo(ox, oy);
+        ctx.lineTo(x2, oy);
+        const dirX = x2 >= ox ? 1 : -1;
+        ctx.lineTo(x2 - dirX * headLen, oy - 4);
+        ctx.moveTo(x2, oy);
+        ctx.lineTo(x2 - dirX * headLen, oy + 4);
+        ctx.stroke();
+
+        // Y-Axis
+        ctx.beginPath();
+        ctx.moveTo(ox, oy);
+        ctx.lineTo(ox, y1);
+        const dirY = y1 <= oy ? 1 : -1;
+        ctx.lineTo(ox - 4, y1 + dirY * headLen);
+        ctx.moveTo(ox, y1);
+        ctx.lineTo(ox + 4, y1 + dirY * headLen);
+        ctx.stroke();
+
+        // Interval Ticks
+        const tickSpacing = 26;
+        const tickSize = 3;
+        ctx.lineWidth = 1.2;
+
+        const stepX = (x2 >= ox) ? tickSpacing : -tickSpacing;
+        for (let tx = ox + stepX; Math.abs(tx - ox) < Math.abs(x2 - ox) - 12; tx += stepX) {
+          ctx.beginPath();
+          ctx.moveTo(tx, oy - tickSize);
+          ctx.lineTo(tx, oy + tickSize);
+          ctx.stroke();
+        }
+
+        const stepY = (y1 <= oy) ? -tickSpacing : tickSpacing;
+        for (let ty = oy + stepY; Math.abs(ty - oy) < Math.abs(y1 - oy) - 12; ty += stepY) {
+          ctx.beginPath();
+          ctx.moveTo(ox - tickSize, ty);
+          ctx.lineTo(ox + tickSize, ty);
+          ctx.stroke();
+        }
+
+        ctx.font = 'bold 11px sans-serif';
+        ctx.fillStyle = this.currentColor;
+        ctx.fillText('x', x2 + (dirX * 5), oy + 3);
+        ctx.fillText('y', ox - 3, y1 - (dirY * 5));
+        ctx.fillText('0', ox - 10, oy + 10);
+
+        ctx.restore();
+      },
+
+      toggleDashed() {
+        this.isDashed = !this.isDashed;
+        document.getElementById('btnDashed').className = this.isDashed
+          ? "p-1.5 rounded-lg border border-amber-400 bg-amber-100 text-amber-900"
+          : "p-1.5 rounded-lg border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-600 dark:text-stone-300 hover:bg-stone-100";
+      },
+
+      toggleFill() {
+        this.isFilled = !this.isFilled;
+        document.getElementById('btnFill').className = this.isFilled
+          ? "p-1.5 rounded-lg border border-amber-400 bg-amber-100 text-amber-900"
+          : "p-1.5 rounded-lg border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-600 dark:text-stone-300 hover:bg-stone-100";
       },
 
       saveCanvasToCurrentNotebook() {
@@ -1700,44 +1563,46 @@ int balanceFactor = height(node.left) - height(node.right);
         this.pushUndoState();
         this.clearCanvasOnly();
         this.saveCanvasToCurrentNotebook();
-        this.showToast('משטח השרטוט נוקה', 'eraser');
       },
 
       pushUndoState() {
-        if (this.undoStack.length >= this.maxUndoSteps) {
-          this.undoStack.shift();
-        }
+        if (this.undoStack.length >= this.maxUndoSteps) this.undoStack.shift();
         this.undoStack.push(this.canvas.toDataURL('image/png'));
       },
 
       undoCanvas() {
         if (this.undoStack.length === 0) return;
         this.redoStack.push(this.canvas.toDataURL('image/png'));
-        const prevState = this.undoStack.pop();
-        this.loadCanvasFromDataURL(prevState);
+        this.loadCanvasFromDataURL(this.undoStack.pop());
       },
 
       redoCanvas() {
         if (this.redoStack.length === 0) return;
         this.undoStack.push(this.canvas.toDataURL('image/png'));
-        const nextState = this.redoStack.pop();
-        this.loadCanvasFromDataURL(nextState);
+        this.loadCanvasFromDataURL(this.redoStack.pop());
       },
 
       setTool(tool) {
         this.currentTool = tool;
-        const buttons = {
+        const toolButtons = {
           pen: document.getElementById('toolPen'),
           brush: document.getElementById('toolBrush'),
           highlighter: document.getElementById('toolHighlighter'),
-          eraser: document.getElementById('toolEraser')
+          eraser: document.getElementById('toolEraser'),
+          line: document.getElementById('toolLine'),
+          arrow: document.getElementById('toolArrow'),
+          axes: document.getElementById('toolAxes'),
+          rect: document.getElementById('toolRect'),
+          circle: document.getElementById('toolCircle'),
+          triangle: document.getElementById('toolTriangle')
         };
 
-        for (let t in buttons) {
-          if (t === tool) {
-            buttons[t].className = "p-2 rounded-xl bg-amber-800 text-white font-medium shadow-xs transition";
-          } else {
-            buttons[t].className = "p-2 rounded-xl text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-750 transition";
+        const activeClass = "p-1.5 rounded bg-amber-800 text-white font-medium shadow-xs";
+        const inactiveClass = "p-1.5 rounded text-stone-600 dark:text-stone-300 hover:bg-stone-100";
+
+        for (let t in toolButtons) {
+          if (toolButtons[t]) {
+            toolButtons[t].className = (t === tool) ? activeClass : inactiveClass;
           }
         }
       },
@@ -1745,41 +1610,33 @@ int balanceFactor = height(node.left) - height(node.right);
       setColor(hex) {
         this.currentColor = hex;
         document.getElementById('brushPreviewCircle').style.backgroundColor = hex;
-        if (this.currentTool === 'eraser') {
-          this.setTool('pen');
-        }
+        if (this.currentTool === 'eraser') this.setTool('pen');
       },
 
       setStrokeSize(size) {
         this.currentStrokeSize = parseInt(size, 10);
         document.getElementById('sizeDisplay').textContent = `${size}px`;
         const preview = document.getElementById('brushPreviewCircle');
-        preview.style.width = `${Math.min(22, Math.max(3, size))}px`;
-        preview.style.height = `${Math.min(22, Math.max(3, size))}px`;
+        preview.style.width = `${Math.min(18, Math.max(3, size))}px`;
+        preview.style.height = `${Math.min(18, Math.max(3, size))}px`;
       },
 
       setSheetTemplate(templateClass) {
         this.currentSheetTemplate = templateClass;
-        const wrapper = document.getElementById('canvasWrapper');
-        wrapper.className = `flex-1 w-full h-full relative ${templateClass} overflow-hidden`;
-        this.showToast('תבנית הדף עודכנה', 'layout-template');
+        document.getElementById('canvasWrapper').className = `flex-1 w-full h-full relative ${templateClass} overflow-hidden`;
       },
 
       exportAllData() {
         const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.notebooks, null, 2));
-        const downloadAnchor = document.createElement('a');
-        downloadAnchor.setAttribute("href", dataStr);
-        downloadAnchor.setAttribute("download", `smartnotes_shelf_${new Date().toISOString().slice(0, 10)}.json`);
-        document.body.appendChild(downloadAnchor);
-        downloadAnchor.click();
-        downloadAnchor.remove();
-        this.showToast('כל המחברות יוצאו בהצלחה לקובץ גיבוי', 'download');
+        const a = document.createElement('a');
+        a.href = dataStr;
+        a.download = `smartnotes_backup_${new Date().toISOString().slice(0, 10)}.json`;
+        a.click();
       },
 
       importAllData(event) {
         const file = event.target.files[0];
         if (!file) return;
-
         const reader = new FileReader();
         reader.onload = (e) => {
           try {
@@ -1788,12 +1645,9 @@ int balanceFactor = height(node.left) - height(node.right);
               this.notebooks = imported;
               this.saveData();
               this.renderNotebooks();
-              this.showToast('מדף המחברות שוחזר בהצלחה!', 'check-circle');
-            } else {
-              this.showToast('קובץ הגיבוי אינו תקין', 'alert-circle');
             }
           } catch (err) {
-            this.showToast('שגיאה בקריאת קובץ הגיבוי', 'alert-circle');
+            console.error('Import failed', err);
           }
         };
         reader.readAsText(file);
@@ -1804,39 +1658,15 @@ int balanceFactor = height(node.left) - height(node.right);
         let c;
         if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) {
           c = hex.substring(1).split('');
-          if (c.length === 3) {
-            c = [c[0], c[0], c[1], c[1], c[2], c[2]];
-          }
+          if (c.length === 3) c = [c[0], c[0], c[1], c[1], c[2], c[2]];
           c = '0x' + c.join('');
           return `rgba(${[(c>>16)&255, (c>>8)&255, c&255].join(',')},${alpha})`;
         }
         return hex;
-      },
-
-      showToast(message, iconName = 'check') {
-        const toast = document.getElementById('toast');
-        const msgEl = document.getElementById('toastMessage');
-        const iconEl = document.getElementById('toastIcon');
-
-        msgEl.textContent = message;
-        iconEl.innerHTML = `<i data-lucide="${iconName}" class="w-4 h-4"></i>`;
-        lucide.createIcons();
-
-        toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
-        toast.classList.add('opacity-100', 'translate-y-0');
-
-        clearTimeout(this.toastTimeout);
-        this.toastTimeout = setTimeout(() => {
-          toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
-          toast.classList.remove('opacity-100', 'translate-y-0');
-        }, 3000);
       }
     };
 
-    window.onload = function() {
-      app.init();
-    };
+    window.onload = () => app.init();
   </script>
-
-
-</body></html>
+</body>
+</html>

@@ -35,82 +35,48 @@
       touch-action: manipulation;
     }
 
-    /* Ambient Study Background */
-    .ambient-study-bg {
-      background-color: #f7f4ed;
-      background-image: 
-        radial-gradient(at 0% 0%, rgba(220, 205, 185, 0.4) 0px, transparent 55%),
-        radial-gradient(at 100% 0%, rgba(200, 220, 210, 0.35) 0px, transparent 50%),
-        radial-gradient(at 50% 100%, rgba(235, 215, 195, 0.4) 0px, transparent 60%);
+    /* Lobby Atmospheric Wallpaper */
+    .lobby-wallpaper {
+      background-size: cover;
+      background-position: center;
       background-attachment: fixed;
-    }
-
-    .dark .ambient-study-bg {
-      background-color: #121418;
-      background-image: 
-        radial-gradient(at 0% 0%, rgba(45, 35, 28, 0.5) 0px, transparent 55%),
-        radial-gradient(at 100% 0%, rgba(25, 40, 35, 0.45) 0px, transparent 50%),
-        radial-gradient(at 50% 100%, rgba(30, 26, 42, 0.5) 0px, transparent 60%);
-      background-attachment: fixed;
-    }
-
-    /* Miniature Standing Realistic Notebook */
-    .mini-notebook {
-      width: 155px;
-      height: 220px;
-      border-radius: 4px 14px 14px 4px;
+      background-repeat: no-repeat;
       position: relative;
-      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-      box-shadow: 
-        -4px 8px 16px -2px rgba(60, 45, 30, 0.2),
-        -1px 2px 4px rgba(0, 0, 0, 0.1),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.2);
     }
-    .mini-notebook:hover {
-      transform: translateY(-6px) scale(1.03);
-      box-shadow: 
-        -8px 16px 24px -4px rgba(60, 45, 30, 0.3),
-        -2px 4px 8px rgba(0, 0, 0, 0.15);
-    }
-    .mini-notebook-spine {
+    .lobby-wallpaper::before {
+      content: '';
       position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      width: 20px;
-      border-radius: 4px 0 0 4px;
-      background: linear-gradient(to left, rgba(0,0,0,0.35) 0%, rgba(255,255,255,0.15) 45%, rgba(0,0,0,0.3) 100%);
-      border-left: 1px solid rgba(0,0,0,0.25);
-    }
-    .mini-notebook-ribbon {
-      position: absolute;
-      bottom: -10px;
-      left: 24px;
-      width: 14px;
-      height: 24px;
-      clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 50% 80%, 0% 100%);
-      box-shadow: -1px 3px 6px rgba(0,0,0,0.25);
-      z-index: 10;
+      inset: 0;
+      background: rgba(247, 244, 237, 0.72);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      pointer-events: none;
+      z-index: 0;
     }
 
-    /* Realistic Notebook Sheet (A4-like page) */
+    /* Clean Notebook Card */
+    .notebook-card {
+      transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+      box-shadow: 0 4px 14px -2px rgba(60, 45, 30, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+    .notebook-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 26px -4px rgba(60, 45, 30, 0.16), 0 4px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    /* Page Paper Sheet */
     .notebook-page-sheet {
       width: 100%;
-      max-width: 820px;
+      max-width: 840px;
       min-height: 1050px;
       background: #ffffff;
-      box-shadow: 0 10px 35px -5px rgba(60, 45, 30, 0.12), 0 1px 3px rgba(0,0,0,0.05);
-      border-radius: 4px;
+      box-shadow: 0 12px 35px -5px rgba(60, 45, 30, 0.12), 0 2px 6px rgba(0,0,0,0.05);
+      border-radius: 6px;
       border: 1px solid #e7ded0;
       position: relative;
     }
-    .dark .notebook-page-sheet {
-      background: #1b1e24;
-      border-color: #2e3543;
-      box-shadow: 0 10px 35px -5px rgba(0, 0, 0, 0.45);
-    }
 
-    /* Interactive Ruler */
+    /* Ruler */
     .ruler-container {
       background: #faf6ee;
       border-bottom: 1px solid #e2d7c5;
@@ -118,10 +84,6 @@
       position: relative;
       user-select: none;
       direction: ltr;
-    }
-    .dark .ruler-container {
-      background: #232832;
-      border-color: #353e4f;
     }
     .ruler-marks {
       width: 100%;
@@ -133,16 +95,11 @@
       background-repeat: repeat-x;
     }
 
-    /* Paper Grid Patterns for Stylus Canvas */
+    /* Paper Grid Patterns for Canvas */
     .paper-ruled {
       background-color: #ffffff;
       background-image: repeating-linear-gradient(transparent, transparent 31px, #e8dfcd 31px, #e8dfcd 32px);
     }
-    .dark .paper-ruled {
-      background-color: #181b22;
-      background-image: repeating-linear-gradient(transparent, transparent 31px, #272f3d 31px, #272f3d 32px);
-    }
-
     .paper-grid {
       background-color: #ffffff;
       background-size: 24px 24px;
@@ -150,27 +107,12 @@
         linear-gradient(to right, #ede4d2 1px, transparent 1px),
         linear-gradient(to bottom, #ede4d2 1px, transparent 1px);
     }
-    .dark .paper-grid {
-      background-color: #181b22;
-      background-size: 24px 24px;
-      background-image: 
-        linear-gradient(to right, #262e3c 1px, transparent 1px),
-        linear-gradient(to bottom, #262e3c 1px, transparent 1px);
-    }
-
     .paper-dots {
       background-color: #ffffff;
       background-image: radial-gradient(#d3c6ae 1.5px, transparent 1.5px);
       background-size: 22px 22px;
     }
-    .dark .paper-dots {
-      background-color: #181b22;
-      background-image: radial-gradient(#3a4659 1.5px, transparent 1.5px);
-      background-size: 22px 22px;
-    }
-
     .paper-blank { background-color: #ffffff; }
-    .dark .paper-blank { background-color: #181b22; }
 
     /* Interactive Draggable & Resizable Sketch Widget */
     .sketch-widget {
@@ -185,16 +127,10 @@
       user-select: none;
       max-width: 100%;
     }
-    .dark .sketch-widget {
-      background: rgba(26, 30, 38, 0.95);
-      border-color: rgba(120, 140, 180, 0.3);
-      box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.35);
-    }
     .sketch-widget:hover, .sketch-widget.active-widget {
       border-color: #c2884a;
       box-shadow: 0 6px 20px -2px rgba(194, 136, 74, 0.2);
     }
-
     .sketch-widget-toolbar {
       opacity: 0;
       pointer-events: none;
@@ -207,7 +143,6 @@
       pointer-events: auto;
       transform: translateY(0);
     }
-
     .sketch-resize-handle {
       position: absolute;
       width: 14px;
@@ -227,7 +162,6 @@
     .sketch-widget.active-widget .sketch-resize-handle {
       opacity: 1;
     }
-
     .sketch-drag-handle { cursor: grab; }
     .sketch-drag-handle:active { cursor: grabbing; }
 
@@ -241,21 +175,15 @@
     .note-content-area h1 { font-size: 1.85rem; font-weight: 800; font-family: 'Frank Ruhl Libre', serif; margin-top: 1.25rem; margin-bottom: 0.65rem; color: #2d261e; }
     .note-content-area h2 { font-size: 1.35rem; font-weight: 700; font-family: 'Frank Ruhl Libre', serif; margin-top: 1.1rem; margin-bottom: 0.45rem; color: #43392c; }
     .note-content-area h3 { font-size: 1.15rem; font-weight: 600; margin-top: 0.9rem; margin-bottom: 0.35rem; color: #5a4d3c; }
-    .dark .note-content-area h1 { color: #f2eee6; }
-    .dark .note-content-area h2 { color: #e4ddcf; }
-    .dark .note-content-area h3 { color: #cfc5b4; }
-    .note-content-area p { margin-bottom: 0.75rem; }
+    .note-content-area p { margin-bottom: 0.75rem; transition: margin-right 0.15s ease; }
     .note-content-area blockquote { border-right: 4px solid #be8c54; padding-right: 1.2rem; font-style: italic; margin: 1.2rem 0; color: #6f5f4b; background: rgba(190, 140, 84, 0.05); padding-top: 6px; padding-bottom: 6px; border-radius: 0 8px 8px 0; }
-    .dark .note-content-area blockquote { color: #b7a892; background: rgba(190, 140, 84, 0.1); }
     .note-content-area code { background: #eee7d8; padding: 0.2rem 0.4rem; border-radius: 0.35rem; font-family: monospace; font-size: 0.9em; color: #8e5e34; }
-    .dark .note-content-area code { background: #222834; color: #d69f64; }
     .note-content-area ul { list-style-type: disc; margin-right: 1.5rem; margin-bottom: 0.75rem; }
     .note-content-area ol { list-style-type: decimal; margin-right: 1.5rem; margin-bottom: 0.75rem; }
 
     ::-webkit-scrollbar { width: 7px; height: 7px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: #d8cdba; border-radius: 6px; }
-    .dark ::-webkit-scrollbar-thumb { background: #343c4a; }
 
     @media print {
       body * { visibility: hidden; }
@@ -265,18 +193,18 @@
     }
   </style>
 </head>
-<body class="ambient-study-bg text-stone-800 dark:text-stone-100 h-full flex flex-col transition-colors duration-300">
+<body class="bg-[#faf7f2] text-stone-800 h-full flex flex-col transition-colors duration-300">
 
   <!-- Toast Notification -->
   <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 transform transition-all duration-300 opacity-0 pointer-events-none translate-y-4">
-    <div class="bg-stone-900/90 dark:bg-stone-800/95 backdrop-blur-md text-stone-100 px-4 py-2 rounded-xl shadow-xl flex items-center gap-2 border border-stone-700/60 text-xs sm:text-sm">
+    <div class="bg-stone-900/90 text-stone-100 px-4 py-2.5 rounded-xl shadow-xl flex items-center gap-2 border border-stone-700/60 text-xs sm:text-sm">
       <span id="toastIcon" class="text-amber-400"></span>
       <span id="toastMessage" class="font-medium">הודעה</span>
     </div>
   </div>
 
-  <!-- Main Header -->
-  <header class="no-print bg-white/80 dark:bg-stone-900/80 backdrop-blur-md border-b border-stone-200/70 dark:border-stone-800 sticky top-0 z-30 transition-colors">
+  <!-- Header Bar -->
+  <header class="no-print bg-white/90 backdrop-blur-md border-b border-stone-200/80 sticky top-0 z-30 shadow-xs">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
       
       <!-- Brand Logo -->
@@ -285,28 +213,28 @@
           <i data-lucide="book-marked" class="w-4 h-4"></i>
         </div>
         <div>
-          <span class="text-base font-bold font-serif tracking-tight text-stone-900 dark:text-stone-100">SmartNotes</span>
-          <span class="text-[11px] text-stone-400 font-normal mr-1.5 hidden sm:inline">| סיכומים ומחברות</span>
+          <span class="text-base font-bold font-serif tracking-tight text-stone-900">SmartNotes</span>
+          <span class="text-[11px] text-stone-500 font-normal mr-1.5 hidden sm:inline">| מרחב סיכומים ומחברות</span>
         </div>
       </div>
 
       <!-- Action Buttons -->
       <div class="flex items-center gap-2">
-        <button onclick="app.exportAllData()" title="ייצוא גיבוי (JSON)" class="p-2 text-stone-500 hover:text-stone-800 dark:text-stone-400 dark:hover:text-stone-100 rounded-lg hover:bg-stone-100 dark:hover:bg-stone-800 transition">
+        <button onclick="app.cycleLobbyWallpaper()" title="החלף תמונת רקע ללובי" class="p-2 text-stone-600 hover:text-stone-900 rounded-lg hover:bg-stone-100 transition flex items-center gap-1.5 text-xs font-medium">
+          <i data-lucide="image" class="w-4 h-4 text-amber-800"></i>
+          <span class="hidden md:inline">החלף רקע</span>
+        </button>
+
+        <button onclick="app.exportAllData()" title="ייצוא גיבוי (JSON)" class="p-2 text-stone-600 hover:text-stone-900 rounded-lg hover:bg-stone-100 transition">
           <i data-lucide="download" class="w-4 h-4"></i>
         </button>
-        <button onclick="document.getElementById('importFileInput').click()" title="ייבוא גיבוי" class="p-2 text-stone-500 hover:text-stone-800 dark:text-stone-400 dark:hover:text-stone-100 rounded-lg hover:bg-stone-100 dark:hover:bg-stone-800 transition">
+        <button onclick="document.getElementById('importFileInput').click()" title="ייבוא גיבוי" class="p-2 text-stone-600 hover:text-stone-900 rounded-lg hover:bg-stone-100 transition">
           <i data-lucide="upload" class="w-4 h-4"></i>
         </button>
         <input type="file" id="importFileInput" class="hidden" accept=".json" onchange="app.importAllData(event)">
 
-        <button onclick="app.toggleDarkMode()" title="החלף תאורה" class="p-2 text-stone-500 hover:text-stone-800 dark:text-stone-400 dark:hover:text-stone-100 rounded-lg hover:bg-stone-100 dark:hover:bg-stone-800 transition">
-          <i data-lucide="moon" class="w-4 h-4 dark:hidden"></i>
-          <i data-lucide="sun" class="w-4 h-4 hidden dark:block text-amber-400"></i>
-        </button>
-
-        <button onclick="app.openNewNotebookModal()" class="bg-amber-800 hover:bg-amber-900 text-white px-3.5 py-1.5 rounded-lg text-xs font-semibold shadow-sm flex items-center gap-1.5 transition active:scale-95 mr-1">
-          <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+        <button onclick="app.openNewNotebookModal()" class="bg-amber-800 hover:bg-amber-900 text-white px-3.5 py-1.5 rounded-xl text-xs font-semibold shadow-sm flex items-center gap-1.5 transition active:scale-95 mr-1">
+          <i data-lucide="plus" class="w-4 h-4"></i>
           <span>מחברת חדשה</span>
         </button>
       </div>
@@ -315,99 +243,105 @@
   </header>
 
   <!-- ============================================================== -->
-  <!-- VIEW 1: DASHBOARD / MINI REALISTIC NOTEBOOKS                   -->
+  <!-- VIEW 1: DASHBOARD / LOBBY WITH INSPIRING WALLPAPER             -->
   <!-- ============================================================== -->
-  <main id="dashboardView" class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 transition-opacity duration-300">
-    
-    <!-- Top Filter Shelf -->
-    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-8 bg-white/70 dark:bg-stone-900/70 p-3 rounded-2xl border border-stone-200/70 dark:border-stone-800 backdrop-blur-sm">
-      <div class="flex items-center gap-1 overflow-x-auto pb-1 sm:pb-0" id="yearFilterTabs">
-        <button onclick="app.setYearFilter('all')" class="year-tab px-3 py-1.5 rounded-lg text-xs font-semibold transition bg-amber-800 text-white" data-year="all">הכל</button>
-        <button onclick="app.setYearFilter('שנה א\'')" class="year-tab px-3 py-1.5 rounded-lg text-xs font-medium text-stone-600 dark:text-stone-300 hover:bg-stone-200/60" data-year="שנה א'">שנה א׳</button>
-        <button onclick="app.setYearFilter('שנה ב\'')" class="year-tab px-3 py-1.5 rounded-lg text-xs font-medium text-stone-600 dark:text-stone-300 hover:bg-stone-200/60" data-year="שנה ב'">שנה ב׳</button>
-        <button onclick="app.setYearFilter('שנה ג\'')" class="year-tab px-3 py-1.5 rounded-lg text-xs font-medium text-stone-600 dark:text-stone-300 hover:bg-stone-200/60" data-year="שנה ג'">שנה ג׳</button>
-        <button onclick="app.setYearFilter('שנה ד\'')" class="year-tab px-3 py-1.5 rounded-lg text-xs font-medium text-stone-600 dark:text-stone-300 hover:bg-stone-200/60" data-year="שנה ד'">שנה ד׳</button>
-      </div>
-
-      <div class="flex items-center gap-2">
-        <div class="relative">
-          <select id="subjectFilterSelect" onchange="app.setSubjectFilter(this.value)" class="bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 text-stone-700 dark:text-stone-200 text-xs rounded-lg px-3 py-1.5 pr-6 appearance-none focus:outline-none">
-            <option value="all">כל המקצועות</option>
-            <option value="מתמטיקה">מתמטיקה</option>
-            <option value="פיזיקה">פיזיקה</option>
-            <option value="מדעי המחשב">מדעי המחשב</option>
-            <option value="הנדסה">הנדסה</option>
-            <option value="רפואה">רפואה</option>
-            <option value="כללי">כללי</option>
-          </select>
-          <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-stone-400 absolute left-2 top-2 pointer-events-none"></i>
+  <main id="dashboardView" class="flex-1 w-full lobby-wallpaper overflow-y-auto py-8 px-4 sm:px-6 lg:px-8 transition-opacity duration-300 relative">
+    <div class="relative z-10 max-w-7xl mx-auto">
+      
+      <!-- Top Filters & Search Shelf -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-8 bg-white/85 p-3.5 rounded-2xl border border-stone-200/90 backdrop-blur-md shadow-xs">
+        
+        <div class="flex items-center gap-1 overflow-x-auto pb-1 sm:pb-0" id="yearFilterTabs">
+          <button onclick="app.setYearFilter('all')" class="year-tab px-3.5 py-1.5 rounded-xl text-xs font-semibold transition bg-amber-800 text-white shadow-xs" data-year="all">הכל</button>
+          <button onclick="app.setYearFilter('שנה א\'')" class="year-tab px-3.5 py-1.5 rounded-xl text-xs font-medium text-stone-700 hover:bg-stone-100" data-year="שנה א'">שנה א׳</button>
+          <button onclick="app.setYearFilter('שנה ב\'')" class="year-tab px-3.5 py-1.5 rounded-xl text-xs font-medium text-stone-700 hover:bg-stone-100" data-year="שנה ב'">שנה ב׳</button>
+          <button onclick="app.setYearFilter('שנה ג\'')" class="year-tab px-3.5 py-1.5 rounded-xl text-xs font-medium text-stone-700 hover:bg-stone-100" data-year="שנה ג'">שנה ג׳</button>
+          <button onclick="app.setYearFilter('שנה ד\'')" class="year-tab px-3.5 py-1.5 rounded-xl text-xs font-medium text-stone-700 hover:bg-stone-100" data-year="שנה ד'">שנה ד׳</button>
         </div>
 
-        <div class="relative w-44 sm:w-56">
-          <i data-lucide="search" class="w-3.5 h-3.5 text-stone-400 absolute right-2.5 top-2.5 pointer-events-none"></i>
-          <input type="text" id="searchInput" oninput="app.setSearchFilter(this.value)" placeholder="חיפוש מחברת..." class="w-full bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 text-stone-800 dark:text-stone-100 text-xs rounded-lg pl-3 pr-8 py-1.5 focus:outline-none">
+        <div class="flex items-center gap-2.5">
+          <div class="relative">
+            <select id="subjectFilterSelect" onchange="app.setSubjectFilter(this.value)" class="bg-white border border-stone-300 text-stone-800 text-xs rounded-xl px-3 py-1.5 pr-6 appearance-none focus:outline-none shadow-xs font-medium cursor-pointer">
+              <option value="all">כל המקצועות</option>
+              <option value="מתמטיקה">מתמטיקה</option>
+              <option value="פיזיקה">פיזיקה</option>
+              <option value="מדעי המחשב">מדעי המחשב</option>
+              <option value="הנדסה">הנדסה</option>
+              <option value="רפואה">רפואה</option>
+              <option value="כללי">כללי</option>
+            </select>
+            <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-stone-500 absolute left-2 top-2.5 pointer-events-none"></i>
+          </div>
+
+          <div class="relative w-48 sm:w-60">
+            <i data-lucide="search" class="w-3.5 h-3.5 text-stone-400 absolute right-3 top-2.5 pointer-events-none"></i>
+            <input type="text" id="searchInput" oninput="app.setSearchFilter(this.value)" placeholder="חיפוש מחברת או קורס..." class="w-full bg-white border border-stone-300 text-stone-800 text-xs rounded-xl pl-3 pr-8 py-1.5 focus:outline-none shadow-xs">
+          </div>
         </div>
+
       </div>
-    </div>
 
-    <!-- Mini Notebooks Bookshelf Grid -->
-    <div id="notebooksGrid" class="flex flex-wrap items-center justify-start gap-7"></div>
+      <!-- Notebooks Grid with Prominent Big Titles and Bright Colors -->
+      <div id="notebooksGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
 
-    <div id="emptyState" class="text-center py-16 px-4 hidden">
-      <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-800 mx-auto flex items-center justify-center mb-2">
-        <i data-lucide="book-open" class="w-6 h-6"></i>
+      <!-- Empty State -->
+      <div id="emptyState" class="text-center py-20 px-4 bg-white/70 backdrop-blur-md rounded-3xl border border-stone-200/80 max-w-md mx-auto hidden shadow-sm">
+        <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-800 mx-auto flex items-center justify-center mb-3 shadow-xs">
+          <i data-lucide="book-open" class="w-6 h-6"></i>
+        </div>
+        <h3 class="text-base font-bold font-serif mb-1">לא נמצאו מחברות</h3>
+        <p class="text-xs text-stone-500 mb-4">נסה לאפס את הסינונים או צור מחברת חדשה</p>
+        <button onclick="app.resetFilters()" class="text-amber-800 text-xs font-bold underline">
+          איפוס כל הסינונים
+        </button>
       </div>
-      <h3 class="text-sm font-bold font-serif mb-1">לא נמצאו מחברות</h3>
-      <p class="text-xs text-stone-400 mb-3">נסה לאפס את החיפוש או צור מחברת חדשה</p>
-      <button onclick="app.resetFilters()" class="text-amber-800 dark:text-amber-300 text-xs font-semibold hover:underline">
-        איפוס סינונים
-      </button>
-    </div>
 
+    </div>
   </main>
 
   <!-- ============================================================== -->
-  <!-- VIEW 2: NOTEBOOK WORKSPACE (PAGE BASED WITH RULER & MARGINS)   -->
+  <!-- VIEW 2: NOTEBOOK WORKSPACE                                     -->
   <!-- ============================================================== -->
   <div id="editorView" class="flex-1 flex flex-col h-[calc(100vh-3.5rem)] p-3 sm:p-5 max-w-[1600px] mx-auto w-full overflow-hidden hidden">
     
-    <!-- Top Bar with Prominent "Back to Home" Button -->
-    <div class="no-print bg-white/95 dark:bg-stone-850/95 backdrop-blur-md border border-stone-200/80 dark:border-stone-750 px-4 py-2.5 rounded-2xl flex items-center justify-between gap-3 shadow-xs mb-3">
+    <!-- Workspace Top Bar with Big Prominent Home Button -->
+    <div class="no-print bg-white/95 backdrop-blur-md border border-stone-200/80 px-4 py-2.5 rounded-2xl flex items-center justify-between gap-3 shadow-xs mb-3">
       
-      <!-- Back to Home & Notebook Identity -->
+      <!-- Prominent Home Button & Notebook Identity -->
       <div class="flex items-center gap-3">
-        <!-- Prominent Back to Home Button -->
-        <button onclick="app.showDashboard()" title="חזרה לדף הבית" class="flex items-center gap-2 bg-amber-100/90 hover:bg-amber-200/90 text-amber-900 border border-amber-300/80 px-3 py-1.5 rounded-xl font-bold text-xs shadow-xs transition active:scale-95">
-          <i data-lucide="home" class="w-4 h-4 text-amber-800"></i>
-          <span>דף הבית</span>
+        
+        <!-- Big Prominent Home Button -->
+        <button onclick="app.showDashboard()" title="חזרה למסך הבית ומדף המחברות" class="flex items-center gap-2.5 bg-gradient-to-r from-amber-700 to-amber-800 hover:from-amber-800 hover:to-amber-900 text-white px-5 py-2.5 rounded-xl font-black text-sm sm:text-base shadow-md shadow-amber-900/20 transition-all hover:scale-105 active:scale-95 border border-amber-600/40">
+          <i data-lucide="home" class="w-5 h-5"></i>
+          <span>חזרה למסך הבית</span>
         </button>
 
-        <div class="h-5 w-px bg-stone-200 dark:bg-stone-700"></div>
+        <div class="h-6 w-px bg-stone-300"></div>
 
         <div>
           <div class="flex items-center gap-2">
-            <h2 id="activeNotebookTitle" class="font-bold font-serif text-sm sm:text-base text-stone-900 dark:text-stone-50">שם המחברת</h2>
-            <span id="activeNotebookSubjectBadge" class="text-[11px] px-2 py-0.5 rounded-md font-medium bg-amber-50 text-amber-800 border border-amber-200/60">מקצוע</span>
+            <h2 id="activeNotebookTitle" class="font-bold font-serif text-base sm:text-lg text-stone-900">שם המחברת</h2>
+            <span id="activeNotebookSubjectBadge" class="text-xs px-2.5 py-0.5 rounded-md font-semibold bg-amber-100 text-amber-900 border border-amber-200">מקצוע</span>
           </div>
-          <div class="flex items-center gap-1.5 text-[11px] text-stone-400">
-            <span id="saveStatusIndicator" class="text-emerald-600 font-medium">נשמר אוטומטית</span>
+          <div class="flex items-center gap-1.5 text-xs text-stone-400">
+            <span id="saveStatusIndicator" class="text-emerald-700 font-medium">נשמר אוטומטית</span>
             <span>•</span>
             <span id="activeNotebookYear">שנה א'</span>
           </div>
         </div>
       </div>
 
-      <!-- Mode Switcher Tabs (PC vs Tablet vs Dual) -->
-      <div class="flex items-center bg-stone-100 dark:bg-stone-900 p-1 rounded-xl border border-stone-200 dark:border-stone-800">
-        <button onclick="app.setEditorMode('text')" id="modeBtnText" class="flex items-center gap-1 px-3 py-1 rounded-lg text-xs font-semibold bg-white dark:bg-stone-800 text-amber-800 dark:text-amber-300 shadow-xs">
+      <!-- Mode Switcher Tabs -->
+      <div class="flex items-center bg-stone-100 p-1 rounded-xl border border-stone-200">
+        <button onclick="app.setEditorMode('text')" id="modeBtnText" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-amber-900 shadow-xs">
           <i data-lucide="type" class="w-3.5 h-3.5"></i>
           <span>הקלדה (PC)</span>
         </button>
-        <button onclick="app.setEditorMode('canvas')" id="modeBtnCanvas" class="flex items-center gap-1 px-3 py-1 rounded-lg text-xs font-medium text-stone-600 dark:text-stone-400 hover:text-stone-900 transition">
+        <button onclick="app.setEditorMode('canvas')" id="modeBtnCanvas" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-stone-600 hover:text-stone-900 transition">
           <i data-lucide="pen-tool" class="w-3.5 h-3.5"></i>
           <span>עט (טאבלט)</span>
         </button>
-        <button onclick="app.setEditorMode('dual')" id="modeBtnDual" class="flex items-center gap-1 px-3 py-1 rounded-lg text-xs font-medium text-stone-600 dark:text-stone-400 hover:text-stone-900 transition">
+        <button onclick="app.setEditorMode('dual')" id="modeBtnDual" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-stone-600 hover:text-stone-900 transition">
           <i data-lucide="columns-2" class="w-3.5 h-3.5"></i>
           <span>מפוצל</span>
         </button>
@@ -415,10 +349,10 @@
 
       <!-- Quick Actions -->
       <div class="flex items-center gap-2">
-        <button onclick="window.print()" title="הדפסה או ייצוא ל-PDF" class="p-1.5 text-stone-500 hover:text-stone-900 rounded-lg hover:bg-stone-100 transition">
+        <button onclick="window.print()" title="הדפסה או ייצוא ל-PDF" class="p-2 text-stone-600 hover:text-stone-900 rounded-xl hover:bg-stone-100 transition">
           <i data-lucide="printer" class="w-4 h-4"></i>
         </button>
-        <button onclick="app.insertCanvasToNote()" title="הטמע שרטוט בדף" class="flex items-center gap-1.5 bg-amber-800 hover:bg-amber-900 text-white px-3 py-1.5 rounded-lg text-xs font-semibold shadow-xs transition active:scale-95">
+        <button onclick="app.insertCanvasToNote()" title="הטמע שרטוט בדף" class="flex items-center gap-1.5 bg-amber-800 hover:bg-amber-900 text-white px-3.5 py-2 rounded-xl text-xs font-semibold shadow-xs transition active:scale-95">
           <i data-lucide="image-plus" class="w-3.5 h-3.5"></i>
           <span class="hidden sm:inline">הטמע שרטוט בדף</span>
         </button>
@@ -427,158 +361,165 @@
     </div>
 
     <!-- Workspace Container -->
-    <div class="flex-1 flex flex-col md:flex-row overflow-hidden relative rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-stone-100/50 dark:bg-stone-900/40 p-2 sm:p-3 gap-3" id="workspaceContainer">
+    <div class="flex-1 flex flex-col md:flex-row overflow-hidden relative rounded-2xl border border-stone-200/80 bg-stone-100/50 p-2 sm:p-3 gap-3" id="workspaceContainer">
       
       <!-- ============================================== -->
       <!-- PANE A: RICH TEXT NOTEBOOK PAGES (WITH RULER)  -->
       <!-- ============================================== -->
-      <div id="textPane" class="flex-1 flex flex-col bg-stone-150 dark:bg-stone-900 rounded-xl overflow-hidden relative">
+      <div id="textPane" class="flex-1 flex flex-col bg-stone-150 rounded-xl overflow-hidden relative">
         
         <!-- Extended Editorial Toolbar -->
-        <div class="no-print bg-white dark:bg-stone-850 border-b border-stone-200/80 dark:border-stone-750 px-3 py-1.5 flex flex-wrap items-center gap-1.5 text-xs z-10 shadow-xs">
+        <div class="no-print bg-white border-b border-stone-200 px-3 py-2 flex flex-wrap items-center gap-2 text-xs z-10 shadow-xs">
           
           <!-- Headings -->
-          <div class="flex items-center bg-stone-100 dark:bg-stone-800 rounded-lg p-0.5">
+          <div class="flex items-center bg-stone-100 rounded-lg p-0.5 border border-stone-200">
             <button onclick="app.execCmd('formatBlock', '<h1>')" class="px-2 py-1 font-bold font-serif hover:bg-white rounded">H1</button>
             <button onclick="app.execCmd('formatBlock', '<h2>')" class="px-2 py-1 font-bold font-serif hover:bg-white rounded">H2</button>
             <button onclick="app.execCmd('formatBlock', '<p>')" class="px-2 py-1 hover:bg-white rounded">P</button>
           </div>
 
-          <div class="w-px h-5 bg-stone-200 dark:bg-stone-700"></div>
+          <div class="w-px h-5 bg-stone-300"></div>
 
           <!-- Basic Styles -->
-          <div class="flex items-center bg-stone-100 dark:bg-stone-800 rounded-lg p-0.5">
-            <button onclick="app.execCmd('bold')" title="מודגש" class="p-1 hover:bg-white rounded"><i data-lucide="bold" class="w-3.5 h-3.5"></i></button>
-            <button onclick="app.execCmd('italic')" title="נטוי" class="p-1 hover:bg-white rounded"><i data-lucide="italic" class="w-3.5 h-3.5"></i></button>
-            <button onclick="app.execCmd('underline')" title="קו תחתון" class="p-1 hover:bg-white rounded"><i data-lucide="underline" class="w-3.5 h-3.5"></i></button>
+          <div class="flex items-center bg-stone-100 rounded-lg p-0.5 border border-stone-200">
+            <button onclick="app.execCmd('bold')" title="מודגש" class="p-1.5 hover:bg-white rounded"><i data-lucide="bold" class="w-3.5 h-3.5"></i></button>
+            <button onclick="app.execCmd('italic')" title="נטוי" class="p-1.5 hover:bg-white rounded"><i data-lucide="italic" class="w-3.5 h-3.5"></i></button>
+            <button onclick="app.execCmd('underline')" title="קו תחתון" class="p-1.5 hover:bg-white rounded"><i data-lucide="underline" class="w-3.5 h-3.5"></i></button>
           </div>
 
-          <div class="w-px h-5 bg-stone-200 dark:bg-stone-700"></div>
+          <div class="w-px h-5 bg-stone-300"></div>
 
-          <!-- Indent / Start of line Controls -->
-          <div class="flex items-center bg-stone-100 dark:bg-stone-800 rounded-lg p-0.5" title="תחילת שורה והזחה">
-            <button onclick="app.execCmd('indent')" title="הגדל הזחה (תחילת שורה פנימה)" class="p-1 hover:bg-white rounded">
-              <i data-lucide="indent" class="w-3.5 h-3.5"></i>
+          <!-- Line Indent Tools (שליטה במיקום כל שורה בנפרד) -->
+          <div class="flex items-center gap-1 bg-amber-50/80 border border-amber-200/90 rounded-lg px-2 py-1" title="שליטה במיקום השורה הנוכחית">
+            <span class="text-[11px] font-bold text-amber-900">מיקום שורה:</span>
+            <button onclick="app.indentCurrentLine(20)" title="הזח שורה נוכחית ימינה (+20px)" class="p-1 bg-white hover:bg-amber-100 rounded border border-amber-300 text-amber-900 font-bold flex items-center gap-0.5 text-[11px]">
+              <i data-lucide="arrow-right" class="w-3 h-3"></i>
+              <span>ימינה</span>
             </button>
-            <button onclick="app.execCmd('outdent')" title="הקטן הזחה (תחילת שורה החוצה)" class="p-1 hover:bg-white rounded">
-              <i data-lucide="outdent" class="w-3.5 h-3.5"></i>
+            <button onclick="app.indentCurrentLine(-20)" title="הזח שורה נוכחית שמאלה (-20px)" class="p-1 bg-white hover:bg-amber-100 rounded border border-amber-300 text-amber-900 font-bold flex items-center gap-0.5 text-[11px]">
+              <i data-lucide="arrow-left" class="w-3 h-3"></i>
+              <span>שמאלה</span>
             </button>
-            <button onclick="app.execCmd('justifyRight')" title="יישור לימין" class="p-1 hover:bg-white rounded">
-              <i data-lucide="align-right" class="w-3.5 h-3.5"></i>
-            </button>
-            <button onclick="app.execCmd('justifyCenter')" title="יישור למרכז" class="p-1 hover:bg-white rounded">
-              <i data-lucide="align-center" class="w-3.5 h-3.5"></i>
+            <button onclick="app.resetCurrentLineIndent()" title="איפוס מיקום שורה להתחלה" class="p-1 bg-white hover:bg-amber-100 rounded border border-amber-300 text-amber-900 text-[10px]" title="איפוס">
+              איפוס
             </button>
           </div>
 
-          <div class="w-px h-5 bg-stone-200 dark:bg-stone-700"></div>
+          <div class="w-px h-5 bg-stone-300"></div>
 
-          <!-- Text Color Picker & Swatches -->
-          <div class="flex items-center gap-1 bg-stone-100 dark:bg-stone-800 rounded-lg p-1">
-            <span class="text-[10px] text-stone-500 font-semibold px-0.5">צבע:</span>
+          <!-- Alignment -->
+          <div class="flex items-center bg-stone-100 rounded-lg p-0.5 border border-stone-200">
+            <button onclick="app.execCmd('justifyRight')" title="יישור לימין" class="p-1.5 hover:bg-white rounded"><i data-lucide="align-right" class="w-3.5 h-3.5"></i></button>
+            <button onclick="app.execCmd('justifyCenter')" title="יישור למרכז" class="p-1.5 hover:bg-white rounded"><i data-lucide="align-center" class="w-3.5 h-3.5"></i></button>
+            <button onclick="app.execCmd('justifyLeft')" title="יישור לשמאל" class="p-1.5 hover:bg-white rounded"><i data-lucide="align-left" class="w-3.5 h-3.5"></i></button>
+          </div>
+
+          <div class="w-px h-5 bg-stone-300"></div>
+
+          <!-- Text Color Picker -->
+          <div class="flex items-center gap-1 bg-stone-100 rounded-lg p-1 border border-stone-200">
+            <span class="text-[10px] text-stone-500 font-bold px-0.5">צבע:</span>
             <button onclick="app.execCmd('foreColor', '#1c1917')" class="w-4 h-4 rounded-full bg-stone-900 border border-white" title="שחור"></button>
-            <button onclick="app.execCmd('foreColor', '#1e3a8a')" class="w-4 h-4 rounded-full bg-blue-900 border border-white" title="כחול כהה"></button>
-            <button onclick="app.execCmd('foreColor', '#991b1b')" class="w-4 h-4 rounded-full bg-red-800 border border-white" title="אדום יין"></button>
-            <button onclick="app.execCmd('foreColor', '#166534')" class="w-4 h-4 rounded-full bg-emerald-800 border border-white" title="ירוק יער"></button>
-            <label class="w-4 h-4 rounded-full border border-stone-400 cursor-pointer overflow-hidden flex items-center justify-center" title="צבע מותאם אישית">
+            <button onclick="app.execCmd('foreColor', '#0284c7')" class="w-4 h-4 rounded-full bg-sky-600 border border-white" title="כחול"></button>
+            <button onclick="app.execCmd('foreColor', '#dc2626')" class="w-4 h-4 rounded-full bg-red-600 border border-white" title="אדום"></button>
+            <button onclick="app.execCmd('foreColor', '#16a34a')" class="w-4 h-4 rounded-full bg-emerald-600 border border-white" title="ירוק"></button>
+            <button onclick="app.execCmd('foreColor', '#d97706')" class="w-4 h-4 rounded-full bg-amber-600 border border-white" title="כתום"></button>
+            <button onclick="app.execCmd('foreColor', '#9333ea')" class="w-4 h-4 rounded-full bg-purple-600 border border-white" title="סגול"></button>
+            <label class="w-4 h-4 rounded-full border border-stone-400 cursor-pointer overflow-hidden flex items-center justify-center" title="צבע נוסף">
               <input type="color" onchange="app.execCmd('foreColor', this.value)" class="opacity-0 w-6 h-6 cursor-pointer">
             </label>
           </div>
 
-          <div class="w-px h-5 bg-stone-200 dark:bg-stone-700"></div>
+          <div class="w-px h-5 bg-stone-300"></div>
 
           <!-- Line Spacing Dropdown -->
-          <div class="flex items-center gap-1 bg-stone-100 dark:bg-stone-800 rounded-lg px-2 py-0.5" title="מרווח בין שורות">
+          <div class="flex items-center gap-1 bg-stone-100 rounded-lg px-2 py-1 border border-stone-200" title="מרווח בין שורות">
             <i data-lucide="chevrons-up-down" class="w-3.5 h-3.5 text-stone-500"></i>
-            <select onchange="app.setLineSpacing(this.value)" id="lineSpacingSelect" class="bg-transparent text-xs text-stone-700 dark:text-stone-300 focus:outline-none cursor-pointer">
-              <option value="1.2">צפוף (1.2)</option>
-              <option value="1.5" selected>רגיל (1.5)</option>
-              <option value="1.8">נושם (1.8)</option>
-              <option value="2.2">כפול (2.2)</option>
+            <select onchange="app.setLineSpacing(this.value)" id="lineSpacingSelect" class="bg-transparent text-xs text-stone-800 focus:outline-none cursor-pointer font-medium">
+              <option value="1.2">שורות צפופות (1.2)</option>
+              <option value="1.5" selected>מרווח רגיל (1.5)</option>
+              <option value="1.85">מרווח נושם (1.85)</option>
+              <option value="2.2">מרווח כפול (2.2)</option>
             </select>
           </div>
 
-          <div class="w-px h-5 bg-stone-200 dark:bg-stone-700"></div>
+          <div class="w-px h-5 bg-stone-300"></div>
 
           <!-- Multi-Columns Control -->
-          <div class="flex items-center bg-stone-100 dark:bg-stone-800 rounded-lg p-0.5" title="חלוקה לטורים">
-            <button onclick="app.setColumns(1)" id="colBtn1" class="px-2 py-0.5 rounded text-xs font-semibold bg-white dark:bg-stone-700 text-amber-800 shadow-xs">1</button>
-            <button onclick="app.setColumns(2)" id="colBtn2" class="px-2 py-0.5 rounded text-xs text-stone-600 dark:text-stone-300 hover:bg-white">2 טורים</button>
-            <button onclick="app.setColumns(3)" id="colBtn3" class="px-2 py-0.5 rounded text-xs text-stone-600 dark:text-stone-300 hover:bg-white">3</button>
+          <div class="flex items-center bg-stone-100 rounded-lg p-0.5 border border-stone-200" title="חלוקה לטורים">
+            <button onclick="app.setColumns(1)" id="colBtn1" class="px-2 py-0.5 rounded text-xs font-bold bg-white text-amber-900 shadow-xs">טור 1</button>
+            <button onclick="app.setColumns(2)" id="colBtn2" class="px-2 py-0.5 rounded text-xs text-stone-600 hover:bg-white">2 טורים</button>
+            <button onclick="app.setColumns(3)" id="colBtn3" class="px-2 py-0.5 rounded text-xs text-stone-600 hover:bg-white">3 טורים</button>
           </div>
 
-          <div class="w-px h-5 bg-stone-200 dark:bg-stone-700"></div>
+          <div class="w-px h-5 bg-stone-300"></div>
 
           <!-- Math Snippet -->
-          <button onclick="app.insertMathSnippet()" title="נוסחה מתמטית" class="px-2 py-1 bg-amber-50 hover:bg-amber-100 text-amber-900 rounded font-serif text-[11px] font-bold border border-amber-200">
+          <button onclick="app.insertMathSnippet()" title="נוסחה מתמטית מעוצבת" class="px-2 py-1 bg-amber-50 hover:bg-amber-100 text-amber-900 rounded-lg font-serif text-[11px] font-bold border border-amber-300">
             ƒ(x) נוסחה
           </button>
 
         </div>
 
         <!-- Page Pagination Bar -->
-        <div class="no-print bg-stone-100 dark:bg-stone-850 border-b border-stone-200 dark:border-stone-800 px-4 py-1.5 flex items-center justify-between text-xs text-stone-600 dark:text-stone-300">
+        <div class="no-print bg-stone-100 border-b border-stone-200 px-4 py-2 flex items-center justify-between text-xs text-stone-700">
           <div class="flex items-center gap-2">
-            <button onclick="app.prevPage()" class="p-1 hover:bg-stone-200 dark:hover:bg-stone-700 rounded transition" title="עמוד קודם">
+            <button onclick="app.prevPage()" class="p-1 hover:bg-stone-200 rounded transition" title="עמוד קודם">
               <i data-lucide="chevron-right" class="w-4 h-4"></i>
             </button>
-            <span class="font-semibold font-serif text-stone-800 dark:text-stone-100" id="pageNumberDisplay">דף 1 מתוך 1</span>
-            <button onclick="app.nextPage()" class="p-1 hover:bg-stone-200 dark:hover:bg-stone-700 rounded transition" title="עמוד הבא">
+            <span class="font-bold font-serif text-stone-900 text-sm" id="pageNumberDisplay">דף 1 מתוך 1</span>
+            <button onclick="app.nextPage()" class="p-1 hover:bg-stone-200 rounded transition" title="עמוד הבא">
               <i data-lucide="chevron-left" class="w-4 h-4"></i>
             </button>
           </div>
 
           <div class="flex items-center gap-2">
-            <button onclick="app.addNewPage()" class="flex items-center gap-1 bg-stone-200 hover:bg-stone-300 dark:bg-stone-800 dark:hover:bg-stone-700 px-2.5 py-1 rounded-lg text-xs font-semibold transition">
-              <i data-lucide="file-plus" class="w-3.5 h-3.5"></i>
-              <span>הוסף דף חדש</span>
+            <button onclick="app.addNewPage()" class="flex items-center gap-1.5 bg-white hover:bg-stone-50 border border-stone-300 px-3 py-1.5 rounded-lg text-xs font-bold shadow-xs transition">
+              <i data-lucide="file-plus" class="w-3.5 h-3.5 text-amber-800"></i>
+              <span>הוסף דף חדש למחברת</span>
             </button>
-            <button onclick="app.deleteCurrentPage()" title="מחק דף נוכחי" class="p-1 hover:bg-red-100 text-stone-400 hover:text-red-600 rounded transition">
-              <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+            <button onclick="app.deleteCurrentPage()" title="מחק דף נוכחי" class="p-1.5 hover:bg-red-100 text-stone-500 hover:text-red-700 rounded transition">
+              <i data-lucide="trash-2" class="w-4 h-4"></i>
             </button>
           </div>
         </div>
 
-        <!-- Scrollable Desk Containing the Bound Notebook Page -->
-        <div class="flex-1 overflow-y-auto p-4 sm:p-8 flex justify-center bg-stone-200/50 dark:bg-stone-950/60" id="printArea">
+        <!-- Scrollable Desk Containing Page -->
+        <div class="flex-1 overflow-y-auto p-4 sm:p-8 flex justify-center bg-stone-200/50" id="printArea">
           
-          <!-- Individual Physical Notebook Sheet -->
           <div class="notebook-page-sheet flex flex-col justify-between" id="activeNotebookPageContainer">
             
             <!-- Top Section: Ruler & Header -->
             <div>
-              <!-- Visual Interactive Ruler with Indent Slider -->
               <div class="ruler-container flex items-center px-6">
                 <div class="ruler-marks relative flex-1">
-                  <!-- Right Margin / Indent Marker Handle -->
-                  <div id="rulerIndentMarker" title="גרור לקביעת תחילת שורה" class="absolute top-0 bottom-0 w-2.5 bg-amber-700 cursor-ew-resize rounded-b shadow-sm -ml-1 flex items-center justify-center" style="right: 20px;">
+                  <div id="rulerIndentMarker" title="סמן שולי דף כלליים" class="absolute top-0 bottom-0 w-2.5 bg-amber-700 cursor-ew-resize rounded-b shadow-sm -ml-1 flex items-center justify-center" style="right: 20px;">
                     <span class="w-0.5 h-3 bg-white"></span>
                   </div>
                 </div>
-                <!-- Margin input controller -->
-                <div class="flex items-center gap-1 text-[10px] text-stone-500 mr-2 shrink-0">
-                  <span>תחילת שורה:</span>
-                  <input type="range" id="marginSlider" min="0" max="140" value="20" oninput="app.setRightIndent(this.value)" class="w-16 accent-amber-700 h-1 cursor-pointer">
+                <div class="flex items-center gap-1 text-[11px] text-stone-600 mr-2 shrink-0 font-medium">
+                  <span>שולי דף כלליים:</span>
+                  <input type="range" id="marginSlider" min="0" max="120" value="20" oninput="app.setPageRightIndent(this.value)" class="w-16 accent-amber-700 h-1 cursor-pointer">
                 </div>
               </div>
 
-              <!-- Header (כותרת עליונה) -->
-              <div class="px-8 pt-5 pb-3 border-b border-stone-200/60 dark:border-stone-800 flex items-center justify-between text-xs text-stone-400 font-serif">
-                <div contenteditable="true" id="pageHeaderLeft" class="outline-none placeholder:text-stone-300" oninput="app.onPageMetaChange()">אינפי 1 | סיכום הרצאה</div>
-                <div contenteditable="true" id="pageHeaderRight" class="outline-none placeholder:text-stone-300 text-left" oninput="app.onPageMetaChange()">סמסטר א'</div>
+              <!-- Header -->
+              <div class="px-8 pt-5 pb-3 border-b border-stone-200 flex items-center justify-between text-xs text-stone-500 font-serif font-bold">
+                <div contenteditable="true" id="pageHeaderLeft" class="outline-none" oninput="app.onPageMetaChange()">אינפי 1 | סיכום שיעור</div>
+                <div contenteditable="true" id="pageHeaderRight" class="outline-none text-left" oninput="app.onPageMetaChange()">סמסטר א' תשפ"ז</div>
               </div>
             </div>
 
-            <!-- Note Text Content Body (with customizable columns, indent, line spacing) -->
+            <!-- Note Text Content Body -->
             <div class="flex-1 px-8 py-6">
-              <div id="noteContent" contenteditable="true" class="note-content-area min-h-[750px] outline-none text-stone-800 dark:text-stone-100 text-base leading-relaxed" oninput="app.onTextChange()" style="padding-right: 20px; line-height: 1.5;">
+              <div id="noteContent" contenteditable="true" class="note-content-area min-h-[750px] outline-none text-stone-800 text-base leading-relaxed" oninput="app.onTextChange()" style="padding-right: 20px; line-height: 1.5;">
               </div>
             </div>
 
-            <!-- Footer (כותרת תחתונה) -->
-            <div class="px-8 py-4 border-t border-stone-200/60 dark:border-stone-800 flex items-center justify-between text-xs text-stone-400 font-serif">
-              <div contenteditable="true" id="pageFooterText" class="outline-none" oninput="app.onPageMetaChange()">סיכומי לימודים SmartNotes</div>
-              <div id="pageNumberFooter" class="font-bold text-stone-500">עמוד 1</div>
+            <!-- Footer -->
+            <div class="px-8 py-4 border-t border-stone-200 flex items-center justify-between text-xs text-stone-500 font-serif">
+              <div contenteditable="true" id="pageFooterText" class="outline-none" oninput="app.onPageMetaChange()">SmartNotes | מרחב לימודים אישי</div>
+              <div id="pageNumberFooter" class="font-bold text-stone-700">עמוד 1</div>
             </div>
 
           </div>
@@ -590,64 +531,63 @@
       <!-- ============================================== -->
       <!-- PANE B: TABLET STYLUS CANVAS                   -->
       <!-- ============================================== -->
-      <div id="canvasPane" class="flex-1 flex flex-col bg-white dark:bg-stone-850 rounded-xl border border-stone-200/70 dark:border-stone-800 shadow-xs overflow-hidden relative hidden">
+      <div id="canvasPane" class="flex-1 flex flex-col bg-white rounded-xl border border-stone-200 shadow-xs overflow-hidden relative hidden">
         
-        <!-- Canvas Toolbar -->
-        <div class="no-print bg-stone-50 dark:bg-stone-800/60 border-b border-stone-200/70 dark:border-stone-800 px-3 py-1.5 flex flex-wrap items-center justify-between gap-2 text-xs">
+        <div class="no-print bg-stone-50 border-b border-stone-200 px-3 py-1.5 flex flex-wrap items-center justify-between gap-2 text-xs">
           
           <div class="flex items-center flex-wrap gap-1">
-            <div class="flex items-center bg-white dark:bg-stone-800 p-0.5 rounded-lg border border-stone-200 dark:border-stone-700">
+            <div class="flex items-center bg-white p-0.5 rounded-lg border border-stone-200">
               <button onclick="app.setTool('pen')" id="toolPen" title="עט רגיל" class="p-1.5 rounded bg-amber-800 text-white font-medium">
                 <i data-lucide="pen" class="w-3.5 h-3.5"></i>
               </button>
-              <button onclick="app.setTool('brush')" id="toolBrush" title="עט נובע (לחץ עט)" class="p-1.5 rounded text-stone-600 dark:text-stone-300 hover:bg-stone-100">
+              <button onclick="app.setTool('brush')" id="toolBrush" title="עט נובע (רגיש ללחץ)" class="p-1.5 rounded text-stone-600 hover:bg-stone-100">
                 <i data-lucide="feather" class="w-3.5 h-3.5"></i>
               </button>
-              <button onclick="app.setTool('highlighter')" id="toolHighlighter" title="מרקר שרטוטים" class="p-1.5 rounded text-stone-600 dark:text-stone-300 hover:bg-stone-100">
+              <button onclick="app.setTool('highlighter')" id="toolHighlighter" title="מרקר שרטוטים" class="p-1.5 rounded text-stone-600 hover:bg-stone-100">
                 <i data-lucide="highlighter" class="w-3.5 h-3.5"></i>
               </button>
-              <button onclick="app.setTool('eraser')" id="toolEraser" title="מחק" class="p-1.5 rounded text-stone-600 dark:text-stone-300 hover:bg-stone-100">
+              <button onclick="app.setTool('eraser')" id="toolEraser" title="מחק" class="p-1.5 rounded text-stone-600 hover:bg-stone-100">
                 <i data-lucide="eraser" class="w-3.5 h-3.5"></i>
               </button>
             </div>
 
-            <div class="w-px h-5 bg-stone-200 dark:bg-stone-700 mx-0.5"></div>
+            <div class="w-px h-5 bg-stone-300 mx-0.5"></div>
 
             <!-- Shapes -->
-            <div class="flex items-center bg-white dark:bg-stone-800 p-0.5 rounded-lg border border-stone-200 dark:border-stone-700">
-              <button onclick="app.setTool('line')" id="toolLine" title="קו ישר" class="p-1.5 rounded text-stone-600 dark:text-stone-300 hover:bg-stone-100"><i data-lucide="minus" class="w-3.5 h-3.5"></i></button>
-              <button onclick="app.setTool('arrow')" id="toolArrow" title="חץ וקטורי" class="p-1.5 rounded text-stone-600 dark:text-stone-300 hover:bg-stone-100"><i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i></button>
-              <button onclick="app.setTool('axes')" id="toolAxes" title="מערכת צירים" class="p-1.5 rounded text-stone-600 dark:text-stone-300 hover:bg-stone-100 flex items-center justify-center">
+            <div class="flex items-center bg-white p-0.5 rounded-lg border border-stone-200">
+              <button onclick="app.setTool('line')" id="toolLine" title="קו ישר" class="p-1.5 rounded text-stone-600 hover:bg-stone-100"><i data-lucide="minus" class="w-3.5 h-3.5"></i></button>
+              <button onclick="app.setTool('arrow')" id="toolArrow" title="חץ וקטורי" class="p-1.5 rounded text-stone-600 hover:bg-stone-100"><i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i></button>
+              <button onclick="app.setTool('axes')" id="toolAxes" title="מערכת צירים" class="p-1.5 rounded text-stone-600 hover:bg-stone-100 flex items-center justify-center">
                 <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20h16M20 20l-3-3M20 20l-3 3M4 20V4M4 4l-3 3M4 4l3 3M8 18v4M12 18v4M16 18v4M2 16h4M2 12h4M2 8h4"/></svg>
               </button>
-              <button onclick="app.setTool('rect')" id="toolRect" title="מלבן" class="p-1.5 rounded text-stone-600 dark:text-stone-300 hover:bg-stone-100"><i data-lucide="square" class="w-3.5 h-3.5"></i></button>
-              <button onclick="app.setTool('circle')" id="toolCircle" title="עיגול" class="p-1.5 rounded text-stone-600 dark:text-stone-300 hover:bg-stone-100"><i data-lucide="circle" class="w-3.5 h-3.5"></i></button>
-              <button onclick="app.setTool('triangle')" id="toolTriangle" title="משולש" class="p-1.5 rounded text-stone-600 dark:text-stone-300 hover:bg-stone-100"><i data-lucide="triangle" class="w-3.5 h-3.5"></i></button>
+              <button onclick="app.setTool('rect')" id="toolRect" title="מלבן" class="p-1.5 rounded text-stone-600 hover:bg-stone-100"><i data-lucide="square" class="w-3.5 h-3.5"></i></button>
+              <button onclick="app.setTool('circle')" id="toolCircle" title="עיגול" class="p-1.5 rounded text-stone-600 hover:bg-stone-100"><i data-lucide="circle" class="w-3.5 h-3.5"></i></button>
+              <button onclick="app.setTool('triangle')" id="toolTriangle" title="משולש" class="p-1.5 rounded text-stone-600 hover:bg-stone-100"><i data-lucide="triangle" class="w-3.5 h-3.5"></i></button>
             </div>
 
-            <div class="flex items-center gap-1.5 px-2 bg-white dark:bg-stone-800 rounded-lg border border-stone-200 dark:border-stone-700 py-1">
-              <span class="text-[10px] text-stone-400 font-mono" id="sizeDisplay">3px</span>
+            <div class="flex items-center gap-1.5 px-2 bg-white rounded-lg border border-stone-200 py-1">
+              <span class="text-[10px] text-stone-500 font-mono font-bold" id="sizeDisplay">3px</span>
               <input type="range" id="strokeSizeInput" min="1" max="24" value="3" oninput="app.setStrokeSize(this.value)" class="w-16 accent-amber-700 h-1 cursor-pointer">
-              <div id="brushPreviewCircle" class="w-1.5 h-1.5 rounded-full bg-stone-900 dark:bg-white"></div>
+              <div id="brushPreviewCircle" class="w-1.5 h-1.5 rounded-full bg-stone-900"></div>
             </div>
           </div>
 
           <!-- Color Presets -->
           <div class="flex items-center gap-1.5">
             <button onclick="app.setColor('#1c1917')" class="w-5 h-5 rounded-full bg-stone-900 border border-white" title="שחור"></button>
-            <button onclick="app.setColor('#1e3a8a')" class="w-5 h-5 rounded-full bg-blue-900 border border-white" title="כחול"></button>
-            <button onclick="app.setColor('#991b1b')" class="w-5 h-5 rounded-full bg-red-800 border border-white" title="אדום"></button>
-            <button onclick="app.setColor('#166534')" class="w-5 h-5 rounded-full bg-emerald-800 border border-white" title="ירוק"></button>
-            <button onclick="app.setColor('#92400e')" class="w-5 h-5 rounded-full bg-amber-800 border border-white" title="חום"></button>
+            <button onclick="app.setColor('#0284c7')" class="w-5 h-5 rounded-full bg-sky-600 border border-white" title="כחול"></button>
+            <button onclick="app.setColor('#dc2626')" class="w-5 h-5 rounded-full bg-red-600 border border-white" title="אדום"></button>
+            <button onclick="app.setColor('#16a34a')" class="w-5 h-5 rounded-full bg-emerald-600 border border-white" title="ירוק"></button>
+            <button onclick="app.setColor('#d97706')" class="w-5 h-5 rounded-full bg-amber-600 border border-white" title="ענבר"></button>
             <label class="w-5 h-5 rounded-full border border-stone-300 cursor-pointer overflow-hidden flex items-center justify-center">
               <input type="color" onchange="app.setColor(this.value)" class="opacity-0 w-8 h-8 cursor-pointer">
               <i data-lucide="plus" class="w-3 h-3 text-stone-500 pointer-events-none"></i>
             </label>
           </div>
 
-          <!-- Sheet & Canvas Actions -->
+          <!-- Sheet Template & Canvas Actions -->
           <div class="flex items-center gap-1">
-            <select id="sheetTemplateSelect" onchange="app.setSheetTemplate(this.value)" class="bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 text-[11px] rounded-lg px-2 py-1 text-stone-700 dark:text-stone-300">
+            <select id="sheetTemplateSelect" onchange="app.setSheetTemplate(this.value)" class="bg-white border border-stone-200 text-[11px] rounded-lg px-2 py-1 text-stone-700">
               <option value="paper-grid" selected>משבצות</option>
               <option value="paper-ruled">שורות</option>
               <option value="paper-dots">נקודות</option>
@@ -661,12 +601,12 @@
 
         </div>
 
-        <!-- Drawing Canvas Area -->
+        <!-- Canvas Drawing Area -->
         <div id="canvasWrapper" class="flex-1 w-full h-full relative paper-grid overflow-hidden">
           <canvas id="drawingCanvas" class="w-full h-full block"></canvas>
-          <div class="no-print absolute bottom-3 left-3 bg-white/80 dark:bg-stone-900/80 px-2.5 py-1 rounded-full border border-stone-200 text-[10px] text-stone-500 flex items-center gap-1.5 pointer-events-none">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
-            <span>עט סטיילוס ורגישות לחץ פעילים</span>
+          <div class="no-print absolute bottom-3 left-3 bg-white/90 px-3 py-1 rounded-full border border-stone-200 text-[11px] text-stone-600 flex items-center gap-2 pointer-events-none shadow-xs">
+            <span class="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
+            <span class="font-medium">עט סטיילוס ורגישות לחץ פעילים</span>
           </div>
         </div>
 
@@ -675,31 +615,34 @@
     </div>
   </div>
 
-  <!-- MODAL: מחברת חדשה -->
+  <!-- MODAL: מחברת חדשה עם צבעים בהירים ויפים -->
   <div id="newNotebookModal" class="fixed inset-0 bg-stone-950/50 backdrop-blur-xs z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-200">
-    <div class="bg-white dark:bg-stone-850 rounded-2xl max-w-md w-full p-5 sm:p-6 shadow-xl border border-stone-200 dark:border-stone-700 transform transition-all duration-200 scale-95" id="newNotebookCard">
-      <div class="flex items-center justify-between mb-4">
-        <div class="flex items-center gap-2">
-          <div class="w-8 h-8 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center">
-            <i data-lucide="book-plus" class="w-4 h-4"></i>
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-7 shadow-2xl border border-stone-200 transform transition-all duration-200 scale-95" id="newNotebookCard">
+      <div class="flex items-center justify-between mb-5">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-2xl bg-amber-100 text-amber-800 flex items-center justify-center shadow-xs">
+            <i data-lucide="book-plus" class="w-5 h-5"></i>
           </div>
-          <h3 class="text-base font-bold font-serif">יצירת מחברת חדשה</h3>
+          <div>
+            <h3 class="text-lg font-bold font-serif">יצירת מחברת חדשה</h3>
+            <p class="text-xs text-stone-500">הוסף מחברת מעוצבת למדף הלימודים שלך</p>
+          </div>
         </div>
-        <button onclick="app.closeNewNotebookModal()" class="text-stone-400 hover:text-stone-600 p-1">
-          <i data-lucide="x" class="w-4 h-4"></i>
+        <button onclick="app.closeNewNotebookModal()" class="text-stone-400 hover:text-stone-600 p-1 rounded-lg">
+          <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
 
-      <form onsubmit="app.handleCreateNotebook(event)" class="space-y-3.5">
+      <form onsubmit="app.handleCreateNotebook(event)" class="space-y-4">
         <div>
-          <label class="block text-xs font-semibold text-stone-600 dark:text-stone-300 mb-1">שם הקורס / המחברת *</label>
-          <input type="text" id="nbTitleInput" required placeholder="למשל: אינפי 1, מבני נתונים, פיזיקה" class="w-full bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-lg px-3 py-2 text-xs sm:text-sm focus:outline-none">
+          <label class="block text-xs font-bold text-stone-700 mb-1.5">שם המחברת / הקורס *</label>
+          <input type="text" id="nbTitleInput" required placeholder="למשל: אינפי 1, מבני נתונים ואלגוריתמים, פיזיקה" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-600">
         </div>
 
-        <div class="grid grid-cols-2 gap-3">
+        <div class="grid grid-cols-2 gap-3.5">
           <div>
-            <label class="block text-xs font-semibold text-stone-600 dark:text-stone-300 mb-1">שנת לימודים</label>
-            <select id="nbYearSelect" class="w-full bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none">
+            <label class="block text-xs font-bold text-stone-700 mb-1.5">שנת לימודים</label>
+            <select id="nbYearSelect" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-3 py-2 text-xs focus:outline-none">
               <option value="שנה א'">שנה א׳</option>
               <option value="שנה ב'">שנה ב׳</option>
               <option value="שנה ג'">שנה ג׳</option>
@@ -708,8 +651,8 @@
           </div>
 
           <div>
-            <label class="block text-xs font-semibold text-stone-600 dark:text-stone-300 mb-1">תחום מקצוע</label>
-            <select id="nbSubjectSelect" class="w-full bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none">
+            <label class="block text-xs font-bold text-stone-700 mb-1.5">תחום מקצוע</label>
+            <select id="nbSubjectSelect" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-3 py-2 text-xs focus:outline-none">
               <option value="מתמטיקה">מתמטיקה</option>
               <option value="פיזיקה">פיזיקה</option>
               <option value="מדעי המחשב">מדעי המחשב</option>
@@ -720,35 +663,72 @@
           </div>
         </div>
 
+        <!-- 8 Vibrant Bright & Pastel Color Choices -->
         <div>
-          <label class="block text-xs font-semibold text-stone-600 dark:text-stone-300 mb-1.5">סגנון כריכת המחברת</label>
-          <div class="grid grid-cols-5 gap-2">
+          <label class="block text-xs font-bold text-stone-700 mb-2">בחר צבע כריכה בהיר ומאיר עיניים</label>
+          <div class="grid grid-cols-4 gap-2.5" id="colorPaletteContainer">
+            <!-- Sky Blue -->
             <label class="cursor-pointer">
-              <input type="radio" name="nbColor" value="color-sage" class="sr-only peer" checked>
-              <div class="h-9 rounded-lg bg-[#1b4332] border-2 border-transparent peer-checked:border-amber-500 shadow-xs flex items-center justify-center text-[10px] text-white">ירוק</div>
+              <input type="radio" name="nbColor" value="color-sky" class="sr-only peer" checked>
+              <div class="h-10 rounded-xl bg-gradient-to-r from-sky-200 to-sky-300 border-2 border-transparent peer-checked:border-sky-600 peer-checked:ring-2 peer-checked:ring-sky-200 shadow-xs flex items-center justify-center text-xs font-bold text-sky-900 transition">
+                שמיים
+              </div>
             </label>
+            <!-- Mint Green -->
             <label class="cursor-pointer">
-              <input type="radio" name="nbColor" value="color-navy" class="sr-only peer">
-              <div class="h-9 rounded-lg bg-[#1a2a44] border-2 border-transparent peer-checked:border-amber-500 shadow-xs flex items-center justify-center text-[10px] text-white">כחול</div>
+              <input type="radio" name="nbColor" value="color-mint" class="sr-only peer">
+              <div class="h-10 rounded-xl bg-gradient-to-r from-emerald-200 to-emerald-300 border-2 border-transparent peer-checked:border-emerald-600 peer-checked:ring-2 peer-checked:ring-emerald-200 shadow-xs flex items-center justify-center text-xs font-bold text-emerald-900 transition">
+                מנטה
+              </div>
             </label>
+            <!-- Peach -->
             <label class="cursor-pointer">
-              <input type="radio" name="nbColor" value="color-terracotta" class="sr-only peer">
-              <div class="h-9 rounded-lg bg-[#4a1525] border-2 border-transparent peer-checked:border-amber-500 shadow-xs flex items-center justify-center text-[10px] text-white">בורדו</div>
+              <input type="radio" name="nbColor" value="color-peach" class="sr-only peer">
+              <div class="h-10 rounded-xl bg-gradient-to-r from-orange-200 to-amber-200 border-2 border-transparent peer-checked:border-orange-600 peer-checked:ring-2 peer-checked:ring-orange-200 shadow-xs flex items-center justify-center text-xs font-bold text-orange-950 transition">
+                אפרסק
+              </div>
             </label>
+            <!-- Lavender -->
             <label class="cursor-pointer">
-              <input type="radio" name="nbColor" value="color-cognac" class="sr-only peer">
-              <div class="h-9 rounded-lg bg-[#6c3e1e] border-2 border-transparent peer-checked:border-amber-500 shadow-xs flex items-center justify-center text-[10px] text-white">קוניאק</div>
+              <input type="radio" name="nbColor" value="color-lavender" class="sr-only peer">
+              <div class="h-10 rounded-xl bg-gradient-to-r from-purple-200 to-purple-300 border-2 border-transparent peer-checked:border-purple-600 peer-checked:ring-2 peer-checked:ring-purple-200 shadow-xs flex items-center justify-center text-xs font-bold text-purple-950 transition">
+                לבנדר
+              </div>
             </label>
+            <!-- Sunny Amber -->
             <label class="cursor-pointer">
-              <input type="radio" name="nbColor" value="color-charcoal" class="sr-only peer">
-              <div class="h-9 rounded-lg bg-[#2c333a] border-2 border-transparent peer-checked:border-amber-500 shadow-xs flex items-center justify-center text-[10px] text-white">בזלת</div>
+              <input type="radio" name="nbColor" value="color-sunny" class="sr-only peer">
+              <div class="h-10 rounded-xl bg-gradient-to-r from-amber-200 to-yellow-300 border-2 border-transparent peer-checked:border-amber-600 peer-checked:ring-2 peer-checked:ring-amber-200 shadow-xs flex items-center justify-center text-xs font-bold text-amber-950 transition">
+                שמש
+              </div>
+            </label>
+            <!-- Coral Rose -->
+            <label class="cursor-pointer">
+              <input type="radio" name="nbColor" value="color-rose" class="sr-only peer">
+              <div class="h-10 rounded-xl bg-gradient-to-r from-rose-200 to-pink-300 border-2 border-transparent peer-checked:border-rose-600 peer-checked:ring-2 peer-checked:ring-rose-200 shadow-xs flex items-center justify-center text-xs font-bold text-rose-950 transition">
+                ורד
+              </div>
+            </label>
+            <!-- Turquoise -->
+            <label class="cursor-pointer">
+              <input type="radio" name="nbColor" value="color-teal" class="sr-only peer">
+              <div class="h-10 rounded-xl bg-gradient-to-r from-teal-200 to-cyan-300 border-2 border-transparent peer-checked:border-teal-600 peer-checked:ring-2 peer-checked:ring-teal-200 shadow-xs flex items-center justify-center text-xs font-bold text-teal-950 transition">
+                טורקיז
+              </div>
+            </label>
+            <!-- Latte / Sand -->
+            <label class="cursor-pointer">
+              <input type="radio" name="nbColor" value="color-latte" class="sr-only peer">
+              <div class="h-10 rounded-xl bg-gradient-to-r from-[#faedcd] to-[#e9edc9] border-2 border-transparent peer-checked:border-amber-700 peer-checked:ring-2 peer-checked:ring-amber-200 shadow-xs flex items-center justify-center text-xs font-bold text-amber-950 transition">
+                מוקה
+              </div>
             </label>
           </div>
         </div>
 
-        <div class="flex items-center justify-end gap-2 pt-3 border-t border-stone-200 dark:border-stone-800">
-          <button type="button" onclick="app.closeNewNotebookModal()" class="px-3 py-1.5 rounded-lg text-xs font-medium text-stone-500 hover:bg-stone-100">ביטול</button>
-          <button type="submit" class="bg-amber-800 hover:bg-amber-900 text-white px-4 py-1.5 rounded-lg text-xs font-semibold shadow-xs">כרוך מחברת ופתח</button>
+        <div class="flex items-center justify-end gap-2.5 pt-4 border-t border-stone-200">
+          <button type="button" onclick="app.closeNewNotebookModal()" class="px-4 py-2 rounded-xl text-xs font-semibold text-stone-600 hover:bg-stone-100 transition">ביטול</button>
+          <button type="submit" class="bg-amber-800 hover:bg-amber-900 text-white px-5 py-2.5 rounded-xl text-xs font-bold shadow-md shadow-amber-900/20 transition active:scale-95">פתח מחברת לעבודה</button>
         </div>
       </form>
     </div>
@@ -756,20 +736,20 @@
 
   <!-- Delete Modal -->
   <div id="confirmModal" class="fixed inset-0 bg-stone-950/50 backdrop-blur-xs z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-200">
-    <div class="bg-white dark:bg-stone-850 rounded-2xl max-w-xs w-full p-5 text-center shadow-xl border border-stone-200 dark:border-stone-700">
-      <div class="w-10 h-10 rounded-xl bg-red-100 text-red-600 mx-auto flex items-center justify-center mb-3">
-        <i data-lucide="alert-triangle" class="w-5 h-5"></i>
+    <div class="bg-white rounded-3xl max-w-xs w-full p-6 text-center shadow-2xl border border-stone-200">
+      <div class="w-12 h-12 rounded-2xl bg-red-100 text-red-600 mx-auto flex items-center justify-center mb-3">
+        <i data-lucide="alert-triangle" class="w-6 h-6"></i>
       </div>
-      <h3 class="text-sm font-bold font-serif mb-1">האם למחוק מחברת זו?</h3>
-      <p class="text-xs text-stone-400 mb-4">כל הדפים והשרטוטים במחברת יימחקו.</p>
-      <div class="flex items-center justify-center gap-2">
-        <button onclick="app.closeConfirmModal()" class="px-3 py-1.5 rounded-lg text-xs text-stone-500 hover:bg-stone-100">ביטול</button>
-        <button id="confirmBtnAction" class="bg-red-600 hover:bg-red-700 text-white px-4 py-1.5 rounded-lg text-xs font-semibold">מחק</button>
+      <h3 class="text-base font-bold font-serif mb-1.5">האם למחוק מחברת זו?</h3>
+      <p class="text-xs text-stone-500 mb-5">כל הדפים והשרטוטים במחברת זו יימחקו לצמיתות.</p>
+      <div class="flex items-center justify-center gap-2.5">
+        <button onclick="app.closeConfirmModal()" class="px-4 py-2 rounded-xl text-xs font-medium text-stone-600 hover:bg-stone-100">ביטול</button>
+        <button id="confirmBtnAction" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-xl text-xs font-bold shadow-sm">מחק מחברת</button>
       </div>
     </div>
   </div>
 
-  <!-- JAVASCRIPT APPLICATION CODE -->
+  <!-- APPLICATION LOGIC -->
   <script>
     const app = {
       notebooks: [],
@@ -794,21 +774,75 @@
       maxUndoSteps: 25,
       saveTimeout: null,
 
+      // Lobby Wallpapers Palette
+      wallpapers: [
+        'https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=2000&q=80', // Soft luminous warm ambient
+        'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=2000&q=80', // Elegant aesthetic books & light
+        'https://images.unsplash.com/photo-1507842229451-79b1be886a20?auto=format&fit=crop&w=2000&q=80', // Library wood & serenity
+        'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=2000&q=80'  // Open quiet pages
+      ],
+      currentWallpaperIdx: 0,
+
+      // Vibrant & Bright Color Styles for Notebooks
       coverStyles: {
-        'color-sage': { gradient: 'from-[#1b4332] to-[#0f281e]', ribbon: '#eab308', name: 'יער' },
-        'color-navy': { gradient: 'from-[#1a2a44] to-[#0f192b]', ribbon: '#38bdf8', name: 'צי' },
-        'color-terracotta': { gradient: 'from-[#4a1525] to-[#2c0b15]', ribbon: '#fb7185', name: 'בורדו' },
-        'color-cognac': { gradient: 'from-[#6c3e1e] to-[#40230f]', ribbon: '#fbbf24', name: 'קוניאק' },
-        'color-charcoal': { gradient: 'from-[#2c333a] to-[#181c20]', ribbon: '#a855f7', name: 'בזלת' }
+        'color-sky': {
+          headerBg: 'bg-gradient-to-r from-sky-400 to-sky-500',
+          badgeBg: 'bg-sky-100 text-sky-900 border-sky-300',
+          accent: 'text-sky-700',
+          borderAccent: 'border-t-sky-500'
+        },
+        'color-mint': {
+          headerBg: 'bg-gradient-to-r from-emerald-400 to-teal-500',
+          badgeBg: 'bg-emerald-100 text-emerald-900 border-emerald-300',
+          accent: 'text-emerald-700',
+          borderAccent: 'border-t-emerald-500'
+        },
+        'color-peach': {
+          headerBg: 'bg-gradient-to-r from-orange-400 to-amber-500',
+          badgeBg: 'bg-orange-100 text-orange-900 border-orange-300',
+          accent: 'text-orange-700',
+          borderAccent: 'border-t-orange-500'
+        },
+        'color-lavender': {
+          headerBg: 'bg-gradient-to-r from-purple-400 to-indigo-500',
+          badgeBg: 'bg-purple-100 text-purple-900 border-purple-300',
+          accent: 'text-purple-700',
+          borderAccent: 'border-t-purple-500'
+        },
+        'color-sunny': {
+          headerBg: 'bg-gradient-to-r from-amber-300 to-yellow-400',
+          badgeBg: 'bg-amber-100 text-amber-900 border-amber-300',
+          accent: 'text-amber-800',
+          borderAccent: 'border-t-amber-400'
+        },
+        'color-rose': {
+          headerBg: 'bg-gradient-to-r from-rose-400 to-pink-500',
+          badgeBg: 'bg-rose-100 text-rose-900 border-rose-300',
+          accent: 'text-rose-700',
+          borderAccent: 'border-t-rose-500'
+        },
+        'color-teal': {
+          headerBg: 'bg-gradient-to-r from-teal-400 to-cyan-500',
+          badgeBg: 'bg-teal-100 text-teal-900 border-teal-300',
+          accent: 'text-teal-700',
+          borderAccent: 'border-t-teal-500'
+        },
+        'color-latte': {
+          headerBg: 'bg-gradient-to-r from-[#d4a373] to-[#ccd5ae]',
+          badgeBg: 'bg-amber-100 text-amber-900 border-amber-300',
+          accent: 'text-amber-900',
+          borderAccent: 'border-t-[#d4a373]'
+        }
       },
 
-      STORAGE_KEY: 'smartnotes_academic_paged_v4',
-      THEME_KEY: 'smartnotes_theme_mode',
+      STORAGE_KEY: 'smartnotes_academic_v5_bright',
+      WALLPAPER_KEY: 'smartnotes_wallpaper_idx',
 
       init() {
         this.loadSettings();
         this.loadData();
         this.initCanvas();
+        this.applyWallpaper();
         this.renderNotebooks();
         this.initInteractiveWidgetsObserver();
         lucide.createIcons();
@@ -819,18 +853,24 @@
       },
 
       loadSettings() {
-        const savedTheme = localStorage.getItem(this.THEME_KEY);
-        if (savedTheme === 'dark') {
-          document.documentElement.classList.add('dark');
-        } else {
-          document.documentElement.classList.remove('dark');
+        const savedWp = localStorage.getItem(this.WALLPAPER_KEY);
+        if (savedWp !== null) {
+          this.currentWallpaperIdx = parseInt(savedWp, 10) || 0;
         }
       },
 
-      toggleDarkMode() {
-        const isDark = document.documentElement.classList.toggle('dark');
-        localStorage.setItem(this.THEME_KEY, isDark ? 'dark' : 'light');
-        lucide.createIcons();
+      applyWallpaper() {
+        const lobby = document.getElementById('dashboardView');
+        if (lobby) {
+          lobby.style.backgroundImage = `url('${this.wallpapers[this.currentWallpaperIdx]}')`;
+        }
+      },
+
+      cycleLobbyWallpaper() {
+        this.currentWallpaperIdx = (this.currentWallpaperIdx + 1) % this.wallpapers.length;
+        localStorage.setItem(this.WALLPAPER_KEY, this.currentWallpaperIdx);
+        this.applyWallpaper();
+        this.showToast('תמונת רקע הלובי עודכנה בהצלחה', 'image');
       },
 
       loadData() {
@@ -844,14 +884,14 @@
           }
         }
 
-        // Default initial notebooks with Multi-Page structure
+        // Default initial notebooks with bright vivid colors and big titles
         this.notebooks = [
           {
             id: 'nb_1',
-            title: 'אינפי 1 - נגזרות ואינטגרלים',
+            title: 'אינפי 1 - נגזרות, אינטגרלים וסדרות',
             year: 'שנה א\'',
             subject: 'מתמטיקה',
-            coverStyle: 'color-sage',
+            coverStyle: 'color-mint',
             updatedAt: new Date().toISOString(),
             pages: [
               {
@@ -864,10 +904,10 @@
                   <p>סיכום מעמיק מתוך חומרי ההרצאה ותרגולי הבית.</p>
                   <blockquote>
                     <strong>משפט הערך הממוצע של לגראנז':</strong><br>
-                    תהי f פונקציה רציפה ב-[a,b] וגזירה ב-(a,b). אזי קיימת נקודה c בה השיפוע שווה לקצב הממוצע:
+                    תהי f פונקציה רציפה ב-[a,b] וגזירה ב-(a,b). אזי קיימת נקודה c שבה השיפוע שווה לקצב הממוצע:
                     <br><em>f'(c) = [f(b) - f(a)] / (b - a)</em>
                   </blockquote>
-                  <p>ניתן לשרטט בטאבלט ולהטמיע ישירות בגוף הסיכום. השתמש בסרגל למעלה כדי לקבוע את מרווחי תחילת השורה.</p>
+                  <p>תוכל להזיז שורה זו ימינה או שמאלה בלחיצה על כפתורי "מיקום שורה" בסרגל העליון!</p>
                 `,
                 canvasData: null
               }
@@ -878,7 +918,7 @@
             title: 'מבני נתונים ואלגוריתמים 1',
             year: 'שנה ב\'',
             subject: 'מדעי המחשב',
-            coverStyle: 'color-navy',
+            coverStyle: 'color-sky',
             updatedAt: new Date(Date.now() - 3600000 * 24).toISOString(),
             pages: [
               {
@@ -896,7 +936,7 @@
             title: 'מכניקה קלאסית ותרמודינמיקה',
             year: 'שנה א\'',
             subject: 'פיזיקה',
-            coverStyle: 'color-cognac',
+            coverStyle: 'color-peach',
             updatedAt: new Date(Date.now() - 3600000 * 48).toISOString(),
             pages: [
               {
@@ -929,15 +969,14 @@
         const nb = this.notebooks.find(n => n.id === id);
         if (!nb) return;
 
-        // Backward compatibility ensure pages array exists
         if (!nb.pages || nb.pages.length === 0) {
           nb.pages = [{
             id: 'p_' + Date.now(),
             headerLeft: nb.title,
             headerRight: nb.year,
             footerText: 'SmartNotes',
-            content: nb.content || '<h1>' + nb.title + '</h1><p>כתוב את הסיכום כאן...</p>',
-            canvasData: nb.canvasData || null
+            content: `<h1>${nb.title}</h1><p>התחל לכתוב את סיכום ההרצאה כאן...</p>`,
+            canvasData: null
           }];
         }
 
@@ -962,7 +1001,6 @@
         lucide.createIcons();
       },
 
-      // Multi-Page Navigation
       loadCurrentPageContent() {
         const nb = this.notebooks.find(n => n.id === this.activeNotebookId);
         if (!nb || !nb.pages[this.currentPageIdx]) return;
@@ -1050,14 +1088,51 @@
         this.triggerAutoSave();
       },
 
-      // Typography & Page Formatting
-      setRightIndent(val) {
+      // LINE-BY-LINE POSITION CONTROL (שליטה במיקום כל שורה בנפרד)
+      getCurrentLineBlock() {
+        const sel = window.getSelection();
+        if (!sel.rangeCount) return null;
+        let node = sel.anchorNode;
+        if (!node) return null;
+        if (node.nodeType === 3) node = node.parentElement;
+
+        const editor = document.getElementById('noteContent');
+        while (node && node.parentElement && node.parentElement !== editor && node !== editor) {
+          node = node.parentElement;
+        }
+        return (node && node !== editor) ? node : null;
+      },
+
+      indentCurrentLine(deltaPx) {
+        const block = this.getCurrentLineBlock();
+        if (block) {
+          const currentMargin = parseInt(window.getComputedStyle(block).marginRight, 10) || 0;
+          const newMargin = Math.max(0, Math.min(260, currentMargin + deltaPx));
+          block.style.marginRight = `${newMargin}px`;
+          this.onTextChange();
+          this.showToast(`מיקום שורה עודכן: ${newMargin}px`, 'arrow-right');
+        } else {
+          // fallback to command
+          if (deltaPx > 0) document.execCommand('indent');
+          else document.execCommand('outdent');
+          this.onTextChange();
+        }
+      },
+
+      resetCurrentLineIndent() {
+        const block = this.getCurrentLineBlock();
+        if (block) {
+          block.style.marginRight = '0px';
+          this.onTextChange();
+          this.showToast('מיקום השורה אופס להתחלה', 'check');
+        }
+      },
+
+      setPageRightIndent(val) {
         const editor = document.getElementById('noteContent');
         editor.style.paddingRight = `${val}px`;
         const marker = document.getElementById('rulerIndentMarker');
-        if (marker) {
-          marker.style.right = `${val}px`;
-        }
+        if (marker) marker.style.right = `${val}px`;
         this.onTextChange();
       },
 
@@ -1075,9 +1150,9 @@
         ['colBtn1', 'colBtn2', 'colBtn3'].forEach((id, idx) => {
           const btn = document.getElementById(id);
           if (idx + 1 === colCount) {
-            btn.className = "px-2 py-0.5 rounded text-xs font-semibold bg-white dark:bg-stone-700 text-amber-800 shadow-xs";
+            btn.className = "px-2 py-0.5 rounded text-xs font-bold bg-white text-amber-900 shadow-xs";
           } else {
-            btn.className = "px-2 py-0.5 rounded text-xs text-stone-600 dark:text-stone-300 hover:bg-white";
+            btn.className = "px-2 py-0.5 rounded text-xs text-stone-600 hover:bg-white";
           }
         });
         this.onTextChange();
@@ -1092,10 +1167,10 @@
         const btnDual = document.getElementById('modeBtnDual');
 
         [btnText, btnCanvas, btnDual].forEach(btn => {
-          btn.className = "flex items-center gap-1 px-3 py-1 rounded-lg text-xs font-medium text-stone-600 dark:text-stone-400 hover:text-stone-900 transition";
+          btn.className = "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-stone-600 hover:text-stone-900 transition";
         });
 
-        const activeClass = "flex items-center gap-1 px-3 py-1 rounded-lg text-xs font-semibold bg-white dark:bg-stone-800 text-amber-800 dark:text-amber-300 shadow-xs";
+        const activeClass = "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-amber-900 shadow-xs";
 
         if (mode === 'text') {
           textPane.classList.remove('hidden');
@@ -1114,7 +1189,7 @@
         }
       },
 
-      // Render Realistic Miniature Standing Notebooks
+      // RENDER NOTEBOOK CARDS IN LOBBY WITH VERY BIG TITLES & BRIGHT COLORS
       renderNotebooks() {
         const grid = document.getElementById('notebooksGrid');
         const emptyState = document.getElementById('emptyState');
@@ -1123,7 +1198,9 @@
         let filtered = this.notebooks.filter(nb => {
           const matchYear = (this.filters.year === 'all') || (nb.year === this.filters.year);
           const matchSubject = (this.filters.subject === 'all') || (nb.subject === this.filters.subject);
-          const matchSearch = (!this.filters.search) || (nb.title.toLowerCase().includes(this.filters.search));
+          const matchSearch = (!this.filters.search) || 
+            (nb.title.toLowerCase().includes(this.filters.search)) || 
+            (nb.subject.toLowerCase().includes(this.filters.search));
           return matchYear && matchSubject && matchSearch;
         });
 
@@ -1135,57 +1212,53 @@
         }
 
         filtered.forEach(nb => {
-          const style = this.coverStyles[nb.coverStyle] || this.coverStyles['color-sage'];
+          const style = this.coverStyles[nb.coverStyle] || this.coverStyles['color-mint'];
           const pageCount = (nb.pages && nb.pages.length) ? nb.pages.length : 1;
+          const formattedDate = new Date(nb.updatedAt).toLocaleDateString('he-IL', {
+            month: 'numeric',
+            day: 'numeric'
+          });
 
           const card = document.createElement('div');
-          card.className = "flex flex-col items-center cursor-pointer group";
+          card.className = "notebook-card bg-white/95 backdrop-blur-md rounded-2xl p-5 border border-stone-200/90 cursor-pointer flex flex-col justify-between relative overflow-hidden group";
           card.onclick = () => app.openNotebook(nb.id);
 
-          // Miniature Standing Notebook Cover
           card.innerHTML = `
-            <div class="mini-notebook bg-gradient-to-l ${style.gradient} flex flex-col justify-between p-3 overflow-hidden text-center">
-              
-              <!-- Spine (Right for Hebrew RTL) -->
-              <div class="mini-notebook-spine"></div>
-              
-              <!-- Ribbon Bookmark -->
-              <div class="mini-notebook-ribbon" style="background-color: ${style.ribbon};"></div>
+            <!-- Top Vivid Color Strip -->
+            <div class="absolute top-0 right-0 left-0 h-2 ${style.headerBg}"></div>
 
-              <!-- Top Year Tag -->
-              <div class="flex items-center justify-between z-10 pr-5">
-                <span class="text-[10px] font-bold text-white/90 bg-black/30 px-1.5 py-0.5 rounded backdrop-blur-xs font-serif">
-                  ${nb.year}
-                </span>
-
-                <!-- Delete Notebook Action -->
-                <button onclick="event.stopPropagation(); app.confirmDeleteNotebook('${nb.id}')" title="מחק מחברת" class="p-1 rounded text-white/70 hover:text-white hover:bg-black/30 transition opacity-40 group-hover:opacity-100">
-                  <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
-                </button>
-              </div>
-
-              <!-- Stitched Paper Bookplate (תווית שם נקייה) -->
-              <div class="bg-[#fdfbf7] dark:bg-stone-850 rounded-lg p-2.5 mx-auto my-auto w-[85%] text-center shadow-md border border-stone-300 dark:border-stone-700 z-10 pr-3">
-                <span class="inline-block text-[9px] font-bold text-amber-800 dark:text-amber-300 bg-amber-100 dark:bg-amber-950/80 px-1.5 py-0.2 rounded mb-1">
+            <!-- Card Header Meta -->
+            <div class="flex items-center justify-between mb-3 pt-1">
+              <div class="flex items-center gap-2">
+                <span class="text-xs px-2.5 py-1 rounded-lg font-bold ${style.badgeBg} border">
                   ${nb.subject}
                 </span>
-                <h3 class="font-bold text-xs font-serif text-stone-900 dark:text-stone-100 line-clamp-3 leading-snug">
-                  ${nb.title}
-                </h3>
+                <span class="text-xs font-semibold text-stone-500 bg-stone-100 px-2 py-0.5 rounded-md">
+                  ${nb.year}
+                </span>
               </div>
 
-              <!-- Bottom Footer -->
-              <div class="flex items-center justify-between text-[10px] text-white/80 pr-5 z-10 border-t border-white/10 pt-1.5">
-                <span>${pageCount} דפים</span>
-                <span class="font-serif font-bold text-amber-200">פתח</span>
-              </div>
-
+              <!-- Delete Action -->
+              <button onclick="event.stopPropagation(); app.confirmDeleteNotebook('${nb.id}')" title="מחק מחברת" class="p-1.5 rounded-lg text-stone-400 hover:text-red-600 hover:bg-red-50 transition opacity-50 group-hover:opacity-100">
+                <i data-lucide="trash-2" class="w-4 h-4"></i>
+              </button>
             </div>
-            
-            <!-- Course Title Below Cover -->
-            <span class="mt-2 text-xs font-bold font-serif text-stone-700 dark:text-stone-300 text-center max-w-[150px] truncate group-hover:text-amber-800 transition">
-              ${nb.title}
-            </span>
+
+            <!-- Big, Bold and Highly Legible Notebook Title -->
+            <div class="my-3">
+              <h3 class="text-lg sm:text-xl font-black font-serif text-stone-900 group-hover:${style.accent} transition-colors line-clamp-2 leading-snug">
+                ${nb.title}
+              </h3>
+            </div>
+
+            <!-- Footer Details -->
+            <div class="flex items-center justify-between text-xs text-stone-500 pt-3 border-t border-stone-100">
+              <span class="flex items-center gap-1.5 font-medium">
+                <i data-lucide="file-text" class="w-3.5 h-3.5 ${style.accent}"></i>
+                <span>${pageCount} עמודים</span>
+              </span>
+              <span class="text-stone-400 text-[11px]">${formattedDate}</span>
+            </div>
           `;
 
           grid.appendChild(card);
@@ -1198,9 +1271,9 @@
         this.filters.year = year;
         document.querySelectorAll('.year-tab').forEach(btn => {
           if (btn.dataset.year === year) {
-            btn.className = 'year-tab px-3 py-1.5 rounded-lg text-xs font-semibold transition bg-amber-800 text-white';
+            btn.className = 'year-tab px-3.5 py-1.5 rounded-xl text-xs font-semibold transition bg-amber-800 text-white shadow-xs';
           } else {
-            btn.className = 'year-tab px-3 py-1.5 rounded-lg text-xs font-medium text-stone-600 dark:text-stone-300 hover:bg-stone-200/60';
+            btn.className = 'year-tab px-3.5 py-1.5 rounded-xl text-xs font-medium text-stone-700 hover:bg-stone-100';
           }
         });
         this.renderNotebooks();
@@ -1223,7 +1296,6 @@
         this.setYearFilter('all');
       },
 
-      // Modal
       openNewNotebookModal() {
         const modal = document.getElementById('newNotebookModal');
         const card = document.getElementById('newNotebookCard');
@@ -1247,7 +1319,7 @@
         const year = document.getElementById('nbYearSelect').value;
         const subject = document.getElementById('nbSubjectSelect').value;
         const selectedColorRadio = document.querySelector('input[name="nbColor"]:checked');
-        const coverStyle = selectedColorRadio ? selectedColorRadio.value : 'color-sage';
+        const coverStyle = selectedColorRadio ? selectedColorRadio.value : 'color-mint';
 
         if (!title) return;
 
@@ -1287,6 +1359,7 @@
           this.saveData();
           this.closeConfirmModal();
           this.renderNotebooks();
+          this.showToast('המחברת נמחקה', 'trash-2');
         };
         lucide.createIcons();
       },
@@ -1327,14 +1400,14 @@
 
       triggerAutoSave() {
         const indicator = document.getElementById('saveStatusIndicator');
-        indicator.textContent = 'שומר שינויים...';
-        indicator.className = "text-[11px] text-amber-600 font-medium";
+        indicator.textContent = 'שומר...';
+        indicator.className = "text-xs text-amber-600 font-medium";
 
         clearTimeout(this.saveTimeout);
         this.saveTimeout = setTimeout(() => {
           this.saveData();
           indicator.textContent = 'נשמר אוטומטית';
-          indicator.className = "text-[11px] text-emerald-600 dark:text-emerald-400 font-medium";
+          indicator.className = "text-xs text-emerald-700 font-medium";
         }, 500);
       },
 
@@ -1750,7 +1823,7 @@
         };
 
         const activeClass = "p-1.5 rounded bg-amber-800 text-white font-medium shadow-xs";
-        const inactiveClass = "p-1.5 rounded text-stone-600 dark:text-stone-300 hover:bg-stone-100";
+        const inactiveClass = "p-1.5 rounded text-stone-600 hover:bg-stone-100";
 
         for (let t in toolButtons) {
           if (toolButtons[t]) {
@@ -1797,6 +1870,7 @@
               this.notebooks = imported;
               this.saveData();
               this.renderNotebooks();
+              this.showToast('כל המחברות שוחזרו בהצלחה', 'check');
             }
           } catch (err) {
             console.error('Import failed', err);
